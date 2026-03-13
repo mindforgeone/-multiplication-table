@@ -1,955 +1,993 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multiplication Legend: Cyber Training</title>
+    <title>THE UPSIDE DOWN: Cyber Training</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Creepster&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --st-red: #e50914;
+            --st-dark: #0a0a0f;
+            --st-blue: #1e3a8a;
+        }
+
         body {
             font-family: 'Share Tech Mono', monospace;
-            background-color: #050510;
-            color: #fff;
+            background-color: var(--st-dark);
+            color: #d1d5db;
             overflow-x: hidden;
             touch-action: manipulation;
+            background-image: radial-gradient(circle at center, #111 0%, #000 100%);
         }
+
+        .title-font { font-family: 'Creepster', cursive; letter-spacing: 0.2rem; }
 
         /* Neon utilities */
-        .neon-text-blue {
-            text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
-        }
-        .neon-text-green {
-            text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 20px #0f0;
-        }
-        .neon-text-red {
-            text-shadow: 0 0 5px #f00, 0 0 10px #f00, 0 0 20px #f00;
-        }
-        .neon-text-purple {
-            text-shadow: 0 0 5px #b026ff, 0 0 10px #b026ff, 0 0 20px #b026ff;
-        }
+        .neon-text-red { color: #ff3333; text-shadow: 0 0 5px #f00, 0 0 15px #f00, 0 0 30px var(--st-red); }
+        .neon-text-blue { color: #66b3ff; text-shadow: 0 0 5px #0055ff, 0 0 15px #0055ff, 0 0 30px #0022aa; }
+        .neon-text-purple { color: #d8b4fe; text-shadow: 0 0 5px #9333ea, 0 0 15px #7e22ce, 0 0 30px #581c87; }
+        .neon-text-green { color: #4ade80; text-shadow: 0 0 5px #22c55e, 0 0 15px #16a34a, 0 0 30px #15803d; }
 
-        .neon-border-blue {
-            border-color: #0ff;
-            box-shadow: 0 0 10px #0ff, inset 0 0 10px #0ff;
-        }
-        .neon-border-green {
-            border-color: #0f0;
-            box-shadow: 0 0 10px #0f0, inset 0 0 10px #0f0;
-        }
-        .neon-border-purple {
-            border-color: #b026ff;
-            box-shadow: 0 0 10px #b026ff, inset 0 0 10px #b026ff;
-        }
-        .neon-border-red {
-            border-color: #f00;
-            box-shadow: 0 0 15px #f00, inset 0 0 15px #f00 !important;
-        }
+        .neon-border-red { border-color: var(--st-red); box-shadow: 0 0 10px var(--st-red), inset 0 0 10px var(--st-red); background: rgba(229, 9, 20, 0.05); }
+        .neon-border-blue { border-color: #3b82f6; box-shadow: 0 0 10px #3b82f6, inset 0 0 10px #3b82f6; background: rgba(59, 130, 246, 0.05); }
+        .neon-border-green { border-color: #22c55e; box-shadow: 0 0 10px #22c55e, inset 0 0 10px #22c55e; background: rgba(34, 197, 94, 0.05); }
 
-        .btn {
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-        }
-        .btn:hover {
-            transform: scale(1.05);
-        }
-        .btn:active {
-            transform: scale(0.95);
-        }
+        .btn { transition: all 0.2s ease; text-transform: uppercase; }
+        .btn:hover { transform: scale(1.02); background: rgba(255,255,255,0.1); }
+        .btn:active { transform: scale(0.98); }
 
-        input:focus {
-            outline: none;
-        }
+        input:focus { outline: none; }
         
-        /* Scanline effect */
         .scanlines {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1));
-            background-size: 100% 4px;
-            pointer-events: none;
-            z-index: 50;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px; pointer-events: none; z-index: 50;
+        }
+        .vignette {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: radial-gradient(circle, transparent 50%, rgba(20,0,0,0.8) 100%);
+            pointer-events: none; z-index: 49;
         }
 
-        /* RPG Animations */
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-15px); }
-            50% { transform: translateX(15px); }
-            75% { transform: translateX(-15px); }
+        .glitch { position: relative; }
+        .glitch::before, .glitch::after {
+            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--st-dark);
         }
+        .glitch::before { left: 2px; text-shadow: -1px 0 red; clip: rect(24px, 550px, 90px, 0); animation: glitch-anim-2 3s infinite linear alternate-reverse; }
+        .glitch::after { left: -2px; text-shadow: -1px 0 blue; clip: rect(85px, 550px, 140px, 0); animation: glitch-anim 2.5s infinite linear alternate-reverse; }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(11px, 9999px, 86px, 0); transform: skew(0.8deg); }
+            20% { clip: rect(40px, 9999px, 87px, 0); transform: skew(0.8deg); }
+            40% { clip: rect(27px, 9999px, 34px, 0); transform: skew(0.9deg); }
+            60% { clip: rect(72px, 9999px, 47px, 0); transform: skew(0.6deg); }
+            80% { clip: rect(21px, 9999px, 77px, 0); transform: skew(0.1deg); }
+            100% { clip: rect(41px, 9999px, 38px, 0); transform: skew(0.8deg); }
+        }
+
+        .spores-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 1; overflow: hidden; }
+        .spore { position: absolute; background: rgba(255, 255, 255, 0.6); border-radius: 50%; filter: blur(1px); animation: float 10s infinite linear; }
+        @keyframes float { 0% { transform: translateY(100vh) scale(0.5); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-10vh) scale(1.5); opacity: 0; } }
+        
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-15px); } 50% { transform: translateX(15px); } 75% { transform: translateX(-15px); } }
         .shake-active { animation: shake 0.4s ease-in-out; }
-
-        @keyframes comboFlash {
-            0% { background-color: rgba(0, 255, 255, 0.3); box-shadow: inset 0 0 50px #0ff; }
-            100% { background-color: transparent; box-shadow: none; }
-        }
+        
+        @keyframes comboFlash { 0% { background-color: rgba(229, 9, 20, 0.4); box-shadow: inset 0 0 100px #e50914; } 100% { background-color: transparent; box-shadow: none; } }
         .combo-flash-active { animation: comboFlash 0.5s ease-out; }
+        
+        .fade-in { animation: fadeIn 0.4s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        
+        /* Floating Text Animation for Points */
+        @keyframes floatUpFade {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, -200%) scale(1.5); opacity: 0; }
+        }
+        .floating-text { animation: floatUpFade 1s cubic-bezier(0.1, 0.8, 0.3, 1) forwards; }
+
+        /* Super Reward Portal */
+        #super-reward { background: radial-gradient(circle, #400 0%, #000 100%); box-shadow: inset 0 0 150px #f00; }
+        .portal-spin {
+            width: 300px; height: 300px; border-radius: 50%; border: 10px dashed #f00;
+            animation: spin 10s linear infinite; box-shadow: 0 0 50px #f00, inset 0 0 50px #f00;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        }
+        @keyframes spin { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+
+        .grid-button-text { font-size: 1.1rem; }
+
+        /* Custom Audio Player UI */
+        .audio-widget {
+            position: fixed; bottom: 20px; right: 20px;
+            background: rgba(0, 0, 0, 0.8); border: 1px solid var(--st-blue);
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.3); border-radius: 8px;
+            padding: 10px 15px; display: flex; align-items: center; gap: 12px;
+            z-index: 90; backdrop-filter: blur(5px); transition: opacity 0.3s;
+        }
+        .audio-widget input[type="range"] { width: 80px; accent-color: #3b82f6; }
+        
+        /* Level Badge */
+        .level-badge {
+            background: rgba(229, 9, 20, 0.1); border: 1px solid var(--st-red); box-shadow: 0 0 10px var(--st-red);
+            color: #fff; padding: 5px 15px; border-radius: 20px; font-family: 'Share Tech Mono', monospace;
+            letter-spacing: 2px; display: inline-block; margin-bottom: 20px;
+        }
     </style>
 </head>
 <body id="main-body" class="min-h-screen flex flex-col items-center justify-center p-4 transition-colors duration-300">
     <div class="scanlines"></div>
+    <div class="vignette"></div>
+    <div class="spores-container" id="spores"></div>
+
+    <!-- AUDIO WIDGET (СВЯЗЬ С ТВОИМ ТРЕКОМ) -->
+    <div class="audio-widget" id="audio-widget">
+        <!-- Атрибут loop зацикливает трек, src жестко смотрит на theme.mp3 -->
+        <audio id="custom-bgm" src="./theme.mp3" loop></audio>
+        
+        <button id="btn-play-music" class="text-green-400 hover:text-white transition-colors" title="Play/Pause">
+            <svg id="icon-play" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <svg id="icon-pause" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        </button>
+        
+        <input type="range" id="music-volume" min="0" max="1" step="0.05" value="0.3" title="Громкость">
+        <div id="audio-track-name" class="text-xs text-gray-400 w-24 truncate">theme.mp3</div>
+    </div>
 
     <!-- MAIN MENU -->
-    <div id="menu-screen" class="w-full max-w-2xl flex flex-col items-center space-y-8 z-10">
-        <h1 class="text-4xl md:text-6xl font-bold neon-text-blue text-center mb-4">MULTIPLICATION<br><span class="text-purple-400 neon-text-purple">LEGEND</span></h1>
-        
-        <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="flex flex-col items-center p-6 border-2 neon-border-green rounded-lg bg-gray-900 bg-opacity-80">
-                <h2 class="text-2xl neon-text-green mb-4">TRAINING (УЧЕНИК)</h2>
-                <p class="text-sm text-gray-400 text-center mb-6">Без таймера. Работа над ошибками до победного.</p>
-                <div class="grid grid-cols-4 gap-2 mb-4 w-full">
-                    <button onclick="selectSettings('training', 2)" class="btn border neon-border-green py-2 rounded text-xl">2</button>
-                    <button onclick="selectSettings('training', 3)" class="btn border neon-border-green py-2 rounded text-xl">3</button>
-                    <button onclick="selectSettings('training', 4)" class="btn border neon-border-green py-2 rounded text-xl">4</button>
-                    <button onclick="selectSettings('training', 5)" class="btn border neon-border-green py-2 rounded text-xl">5</button>
-                    <button onclick="selectSettings('training', 6)" class="btn border neon-border-green py-2 rounded text-xl">6</button>
-                    <button onclick="selectSettings('training', 7)" class="btn border neon-border-green py-2 rounded text-xl">7</button>
-                    <button onclick="selectSettings('training', 8)" class="btn border neon-border-green py-2 rounded text-xl">8</button>
-                    <button onclick="selectSettings('training', 9)" class="btn border neon-border-green py-2 rounded text-xl">9</button>
-                </div>
-            </div>
-
-            <div class="flex flex-col items-center p-6 border-2 neon-border-red rounded-lg bg-gray-900 bg-opacity-80">
-                <h2 class="text-2xl neon-text-red mb-4">BATTLE (ЭКЗАМЕН)</h2>
-                <p class="text-sm text-gray-400 text-center mb-6">Таймер + Ошибки = Грейд. Стань Легендой.</p>
-                <div class="grid grid-cols-4 gap-2 mb-4 w-full">
-                    <button onclick="selectSettings('battle', 2)" class="btn border neon-border-red py-2 rounded text-xl">2</button>
-                    <button onclick="selectSettings('battle', 3)" class="btn border neon-border-red py-2 rounded text-xl">3</button>
-                    <button onclick="selectSettings('battle', 4)" class="btn border neon-border-red py-2 rounded text-xl">4</button>
-                    <button onclick="selectSettings('battle', 5)" class="btn border neon-border-red py-2 rounded text-xl">5</button>
-                    <button onclick="selectSettings('battle', 6)" class="btn border neon-border-red py-2 rounded text-xl">6</button>
-                    <button onclick="selectSettings('battle', 7)" class="btn border neon-border-red py-2 rounded text-xl">7</button>
-                    <button onclick="selectSettings('battle', 8)" class="btn border neon-border-red py-2 rounded text-xl">8</button>
-                    <button onclick="selectSettings('battle', 9)" class="btn border neon-border-red py-2 rounded text-xl">9</button>
-                </div>
-                <button onclick="selectSettings('battle', 'mix')" class="btn border-2 neon-border-purple py-3 px-8 rounded w-full text-xl neon-text-purple tracking-widest">MIX [2-9]</button>
+    <div id="menu-screen" class="w-full max-w-5xl flex flex-col items-center space-y-4 z-10 fade-in">
+        <div class="text-center mt-4">
+            <h2 class="text-xl text-gray-500 tracking-[0.5em] mb-2 uppercase">Проект Изнанка</h2>
+            <h1 class="text-5xl md:text-7xl font-bold neon-text-red title-font uppercase glitch mb-4" data-text="ВРАТА РАЗУМА">ВРАТА РАЗУМА</h1>
+            <div id="global-progression" class="level-badge shadow-[0_0_15px_rgba(229,9,20,0.4)] hidden">
+                <span class="text-gray-400">ОПЕРАТИВНИК УР.</span> <span id="global-level" class="text-red-400 font-bold text-xl">1</span> 
+                <span class="ml-4 text-gray-500 text-xs">EXP: <span id="global-exp" class="text-white">0</span></span>
             </div>
         </div>
         
-        <!-- NEW RPG BUTTON -->
-        <div class="w-full mt-2">
-            <button onclick="showRpgSetup()" class="btn border-2 neon-border-blue py-4 px-8 rounded w-full text-2xl neon-text-blue tracking-widest bg-gray-900 bg-opacity-80">
-                SURVIVAL (RPG РЕЖИМ)
-            </button>
+        <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+            <!-- TAB 1: MATH TRAINING -->
+            <div class="flex flex-col items-center p-6 border-2 neon-border-blue rounded-lg bg-black bg-opacity-70 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-blue-900 opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                <h2 class="text-2xl neon-text-blue mb-2 font-bold title-font tracking-widest z-10">АКАДЕМИЯ (ТРЕНИРОВКА)</h2>
+                <p class="text-xs text-gray-400 text-center mb-4 h-8 z-10">Строгий порядок. Работа над ошибками до полного усвоения.</p>
+                <div class="grid grid-cols-4 gap-2 mb-2 w-full z-10">
+                    <button onclick="startStandardMode('training', 2)" class="btn border border-blue-500/50 text-blue-200 py-2 rounded grid-button-text">2</button>
+                    <button onclick="startStandardMode('training', 3)" class="btn border border-blue-500/50 text-blue-200 py-2 rounded grid-button-text">3</button>
+                    <button onclick="startStandardMode('training', 4)" class="btn border border-blue-500/50 text-blue-200 py-2 rounded grid-button-text">4</button>
+                    <button onclick="startStandardMode('training', 5)" class="btn border border-blue-500/50 text-blue-200 py-2 rounded grid-button-text">5</button>
+                    <button onclick="startStandardMode('training', 6)" class="btn border border-blue-500/50 text-blue-200 py-2 rounded grid-button-text">6</button>
+                    <button onclick="startStandardMode('training', 7)" class="btn border border-blue-500/50 text-blue-200 py-2 rounded grid-button-text">7</button>
+                    <button onclick="startStandardMode('training', 8)" class="btn border border-blue-500/50 text-blue-200 py-2 rounded grid-button-text">8</button>
+                    <button onclick="startStandardMode('training', 9)" class="btn border border-blue-500/50 text-blue-200 py-2 rounded grid-button-text">9</button>
+                </div>
+            </div>
+
+            <!-- TAB 2: EXAM -->
+            <div class="flex flex-col items-center p-6 border-2 neon-border-green rounded-lg bg-black bg-opacity-70 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-green-900 opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                <h2 class="text-2xl neon-text-green mb-2 font-bold title-font tracking-widest z-10">ИСПЫТАНИЕ (ЭКЗАМЕН)</h2>
+                <p class="text-xs text-gray-400 text-center mb-4 h-8 z-10">Таймер запущен. Примеры перемешаны! Оценивается общее время.</p>
+                <div class="grid grid-cols-4 gap-2 mb-2 w-full z-10">
+                    <button onclick="startStandardMode('battle', 2)" class="btn border border-green-500/50 text-green-200 py-2 rounded grid-button-text">2</button>
+                    <button onclick="startStandardMode('battle', 3)" class="btn border border-green-500/50 text-green-200 py-2 rounded grid-button-text">3</button>
+                    <button onclick="startStandardMode('battle', 4)" class="btn border border-green-500/50 text-green-200 py-2 rounded grid-button-text">4</button>
+                    <button onclick="startStandardMode('battle', 5)" class="btn border border-green-500/50 text-green-200 py-2 rounded grid-button-text">5</button>
+                    <button onclick="startStandardMode('battle', 6)" class="btn border border-green-500/50 text-green-200 py-2 rounded grid-button-text">6</button>
+                    <button onclick="startStandardMode('battle', 7)" class="btn border border-green-500/50 text-green-200 py-2 rounded grid-button-text">7</button>
+                    <button onclick="startStandardMode('battle', 8)" class="btn border border-green-500/50 text-green-200 py-2 rounded grid-button-text">8</button>
+                    <button onclick="startStandardMode('battle', 9)" class="btn border border-green-500/50 text-green-200 py-2 rounded grid-button-text">9</button>
+                </div>
+                <button onclick="startStandardMode('battle', 'mix')" class="btn border-2 border-green-500 py-2 px-4 rounded w-full text-green-200 font-bold z-10 hover:bg-green-900/30">MIX [2-9] ТОТАЛЬНЫЙ РАНДОМ</button>
+            </div>
+
+            <!-- TAB 3: MATH SURVIVAL -->
+            <div class="flex flex-col items-center justify-center p-6 border-2 neon-border-red rounded-lg bg-black bg-opacity-70 relative overflow-hidden group transform hover:-translate-y-1 transition-transform">
+                <div class="absolute inset-0 bg-red-900 opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                <h2 class="text-3xl neon-text-red mb-2 font-bold title-font tracking-widest z-10">ВЫЖИВАНИЕ</h2>
+                <p class="text-xs text-gray-400 text-center mb-6 h-8 z-10">Математика против Демогоргона. Жизни, комбо, хардкор.</p>
+                <button onclick="showRpgSetup()" class="btn border-2 neon-border-red py-6 px-4 rounded w-full text-xl text-red-100 tracking-widest relative z-10 font-bold shadow-[0_0_15px_rgba(229,9,20,0.5)] bg-red-900/10 hover:bg-red-900/30">
+                    ВОЙТИ НА ИЗНАНКУ
+                </button>
+            </div>
+
+            <!-- TAB 4: RUSSIAN LANGUAGE & THEORY -->
+            <div class="flex flex-col items-center justify-center p-6 border-2 neon-border-purple rounded-lg bg-black bg-opacity-70 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-purple-900 opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                <h2 class="text-3xl neon-text-purple mb-2 font-bold title-font tracking-widest z-10">ВЗЛОМ СИСТЕМЫ</h2>
+                <p class="text-xs text-gray-400 text-center mb-6 h-8 z-10">Русский язык (3-4 кл) + Теория. Данные из Базы Знаний.</p>
+                <button onclick="startRussianMode()" class="btn border-2 neon-border-purple py-6 px-4 rounded w-full text-xl text-purple-200 tracking-widest relative z-10 font-bold shadow-[0_0_15px_rgba(147,51,234,0.5)] bg-purple-900/10 hover:bg-purple-900/30">
+                    РАСШИФРОВАТЬ
+                </button>
+            </div>
         </div>
-
-        <button onclick="showLeaderboard()" class="mt-4 text-gray-400 hover:text-white underline">Таблица рекордов</button>
-    </div>
-
-    <!-- GAME SCREEN -->
-    <div id="game-screen" class="hidden w-full max-w-3xl flex flex-col items-center justify-center z-10">
-        <div class="w-full flex justify-between items-center mb-8 px-4">
-            <div id="game-progress" class="text-xl text-gray-400">1 / 12</div>
-            <div id="game-timer" class="text-xl neon-text-blue hidden">00.00s</div>
-            <button onclick="backToMenu()" class="text-red-500 hover:text-red-400 underline">Сдаться</button>
-        </div>
-
-        <div id="motivation-text" class="h-8 text-xl neon-text-purple mb-4 opacity-0 transition-opacity duration-300">Пробей оборону!</div>
-
-        <div class="flex items-center space-x-4 md:space-x-8 text-6xl md:text-8xl font-bold">
-            <span id="question-text" class="neon-text-blue text-right w-64">2 x 2</span>
-            <span class="text-gray-500">=</span>
-            <input type="number" id="answer-input" autocomplete="off" class="w-32 md:w-48 bg-transparent border-b-4 border-gray-600 text-center text-white neon-text-green focus:border-green-400 transition-colors" placeholder="?">
-        </div>
-
-        <div id="error-hint" class="mt-8 text-2xl neon-text-red h-8 opacity-0">Ошибка! Правильно: 4. Введи ответ!</div>
-    </div>
-
-    <!-- RESULT SCREEN -->
-    <div id="result-screen" class="hidden w-full max-w-2xl flex flex-col items-center z-10 space-y-6 bg-gray-900 border-2 neon-border-purple p-8 rounded-lg shadow-2xl">
-        <h1 class="text-5xl neon-text-purple mb-2">МИССИЯ ЗАВЕРШЕНА</h1>
-        <div id="result-grade" class="text-6xl font-bold my-4 text-center">LEGEND<br><span class="text-2xl text-gray-400">(Ronaldo)</span></div>
         
-        <div class="grid grid-cols-2 gap-8 w-full text-center text-2xl">
-            <div><span class="text-gray-400 text-sm block uppercase">Время</span><span id="result-time" class="neon-text-blue">15.4s</span></div>
-            <div><span class="text-gray-400 text-sm block uppercase">Ошибки</span><span id="result-errors" class="neon-text-red">0</span></div>
-            <div class="col-span-2"><span class="text-gray-400 text-sm block uppercase">Скорость</span><span id="result-tps" class="neon-text-green">2.1s / ответ</span></div>
+        <div class="flex flex-col md:flex-row gap-4 mt-8">
+            <button onclick="showLegend()" class="btn border border-yellow-700/50 text-yellow-500 py-3 px-8 rounded hover:bg-yellow-900/30 transition-colors uppercase tracking-widest text-sm font-bold shadow-[0_0_10px_rgba(234,179,8,0.2)]">⚠️ ПРОТОКОЛ: МАКСИМ</button>
+            <button onclick="showLeaderboard()" class="btn border border-gray-700 text-gray-400 py-3 px-8 rounded hover:bg-gray-900 transition-colors uppercase tracking-widest text-sm">БАЗА РЕКОРДОВ</button>
+        </div>
+    </div>
+
+    <!-- LEGEND SCREEN (MAXIM PROTOCOL) -->
+    <div id="legend-screen" class="hidden w-full max-w-4xl flex flex-col items-center z-10 space-y-6 bg-black border border-yellow-600 p-8 rounded-lg shadow-2xl fade-in relative overflow-hidden">
+        <div class="absolute inset-0 bg-yellow-900 opacity-5 pointer-events-none"></div>
+        <h1 class="text-4xl md:text-5xl text-yellow-500 title-font tracking-widest mb-2 uppercase text-center drop-shadow-[0_0_10px_rgba(234,179,8,0.5)]">ДОСЬЕ ИЗНАНКИ: ОПЕРАТИВНИК МАКСИМ</h1>
+        <p class="text-gray-400 text-center max-w-2xl text-sm md:text-base leading-relaxed border-b border-gray-800 pb-6">
+            Изнанка не прощает слабости. Чтобы выбраться, тебе нужна абсолютная концентрация. Изучи условия выживания.
+        </p>
+
+        <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 text-left mt-4 z-10">
+            <!-- Legend: Exam Mode -->
+            <div class="bg-gray-900/50 p-6 rounded border border-gray-800 shadow-[inset_0_0_15px_rgba(34,197,94,0.1)]">
+                <h3 class="text-xl neon-text-green mb-4 font-bold tracking-widest border-b border-gray-700 pb-2">МОДУЛЬ: ИСПЫТАНИЕ (ЭКЗАМЕН)</h3>
+                <p class="text-xs text-gray-400 mb-4 leading-relaxed">Оценивается <span class="text-white font-bold">ОБЩЕЕ ВРЕМЯ</span>. Быстрые ответы компенсируют заминки. <br>База: 1 цифра (8 примеров) / MIX (30 примеров).</p>
+                <ul class="space-y-4 font-mono text-sm">
+                    <li class="flex items-start">
+                        <span class="text-blue-400 font-bold w-12 shrink-0 text-lg">S:</span> 
+                        <span class="text-gray-300 flex flex-col">
+                            <span class="text-blue-400 font-bold tracking-widest">МАСТЕР ИЗНАНКИ. Ноль ошибок.</span>
+                            <span class="text-xs text-gray-500 mt-1">ОБЩЕЕ ВРЕМЯ: <span class="text-white">Меньше 32 сек</span> (1 цифра) или <span class="text-white">Меньше 2 мин</span> (MIX).</span>
+                        </span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-green-400 font-bold w-12 shrink-0 text-lg">A:</span> 
+                        <span class="text-gray-300 flex flex-col">
+                            <span class="text-green-400 font-bold tracking-widest">ВЫЖИВШИЙ. До 2-х ошибок.</span>
+                            <span class="text-xs text-gray-500 mt-1">ОБЩЕЕ ВРЕМЯ: <span class="text-white">До 48 сек</span> (1 цифра) или <span class="text-white">До 3 мин</span> (MIX).</span>
+                        </span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-red-500 font-bold w-12 shrink-0 text-lg">C:</span> 
+                        <span class="text-gray-400 flex flex-col">
+                            <span class="text-red-500 font-bold tracking-widest">ЖЕРТВА ДЕМОГОРГОНА.</span>
+                            <span class="text-xs text-gray-500 mt-1">Дольше 48 сек (или > 3 мин для MIX), либо 3+ ошибки.</span>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Legend: RPG Mode -->
+            <div class="bg-gray-900/50 p-6 rounded border border-gray-800 shadow-[inset_0_0_15px_rgba(229,9,20,0.1)]">
+                <h3 class="text-xl neon-text-red mb-4 font-bold tracking-widest border-b border-gray-700 pb-2">МОДУЛЬ: ВЫЖИВАНИЕ И ВЗЛОМ</h3>
+                <p class="text-xs text-gray-400 mb-4 leading-relaxed">У тебя всего <span class="text-red-500 font-bold">3 ЖИЗНИ</span>. Цель: выжить как можно дольше и набрать Энергию.</p>
+                <ul class="space-y-4 font-mono text-sm">
+                    <li class="flex items-center bg-gray-800/50 p-2 rounded border border-gray-700">
+                        <span class="text-purple-400 font-bold w-24 shrink-0">СИНХРОН x2:</span> 
+                        <span class="text-gray-300 text-xs">Мгновенный ответ (< 5 сек). Дает <span class="text-green-400 font-bold">+20 PTS</span> вместо 10.</span>
+                    </li>
+                    <li class="flex items-center mt-2">
+                        <span class="text-blue-400 font-bold w-12 shrink-0 text-lg">S:</span> 
+                        <span class="text-gray-300 font-bold tracking-widest">ELEVEN <span class="text-xs text-gray-500 font-normal ml-2">(От 1000 очков)</span></span>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-green-400 font-bold w-12 shrink-0 text-lg">A:</span> 
+                        <span class="text-gray-300 font-bold tracking-widest">ХОППЕР <span class="text-xs text-gray-500 font-normal ml-2">(От 500 очков)</span></span>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-yellow-500 font-bold w-12 shrink-0 text-lg">B:</span> 
+                        <span class="text-gray-400 font-bold tracking-widest">МАЙК <span class="text-xs text-gray-600 font-normal ml-2">(От 200 очков)</span></span>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-gray-600 font-bold w-12 shrink-0 text-lg">C:</span> 
+                        <span class="text-gray-600 font-bold tracking-widest">УИЛЛ <span class="text-xs text-gray-700 font-normal ml-2">(Меньше 200 очков)</span></span>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        <div id="result-mode-note" class="text-gray-500 text-sm">Режим: Битва | Цифра: MIX</div>
+        <button onclick="backToMenu()" class="mt-8 btn border border-yellow-600 text-yellow-500 py-3 px-12 rounded hover:bg-yellow-900/30 transition-colors uppercase tracking-widest font-bold z-10">ПОНЯЛ. ВЕРНУТЬСЯ НА БАЗУ</button>
+    </div>
 
-        <div class="flex space-x-4 mt-8">
-            <button onclick="backToMenu()" class="btn border-2 border-gray-500 text-gray-300 py-3 px-6 rounded hover:border-white hover:text-white">В МЕНЮ</button>
-            <button onclick="showLeaderboard()" class="btn border-2 neon-border-blue py-3 px-6 rounded">РЕКОРДЫ</button>
+    <!-- STANDARD GAME SCREEN (Training & Exam) -->
+    <div id="standard-game-screen" class="hidden w-full max-w-3xl flex flex-col items-center justify-center z-10 fade-in relative">
+        <div class="w-full flex justify-between items-center mb-8 px-6 py-4 bg-black/60 border border-gray-800 rounded-lg shadow-lg">
+            <div class="flex flex-col">
+                <span class="text-xs text-gray-500 uppercase tracking-widest">Прогресс</span>
+                <div id="std-progress" class="text-2xl text-blue-300 font-bold">1 / 12</div>
+            </div>
+            
+            <div id="std-timer-container" class="flex flex-col items-center hidden">
+                <span class="text-xs text-gray-500 uppercase tracking-widest">Время</span>
+                <div id="std-timer" class="text-2xl neon-text-green font-bold">00.0s</div>
+            </div>
+
+            <button onclick="interruptStdGame()" class="text-gray-500 hover:text-red-400 transition-colors uppercase tracking-widest text-xs border border-gray-800 py-2 px-4 rounded hover:border-red-900">ПРЕРВАТЬ</button>
+        </div>
+
+        <div id="std-motivation" class="h-8 text-xl text-blue-400 mb-8 opacity-0 transition-opacity duration-300 uppercase tracking-widest text-center">Сфокусируйся!</div>
+
+        <div class="flex items-center space-x-4 md:space-x-8 text-6xl md:text-8xl font-bold my-8">
+            <span id="std-question" class="text-white text-right min-w-[280px]">2 x 2</span>
+            <span class="text-gray-600">=</span>
+            <input type="number" id="std-input" autocomplete="off" class="w-32 md:w-48 bg-transparent border-b-4 border-gray-700 text-center text-white focus:border-blue-500 transition-colors" placeholder="_">
+        </div>
+
+        <div id="std-error" class="mt-8 text-xl text-red-500 h-8 opacity-0 uppercase tracking-widest text-center bg-red-900/20 px-6 py-2 rounded border border-red-900/50">Ошибка! Правильно: 4.</div>
+    </div>
+
+    <!-- STANDARD RESULT SCREEN (For Exam Mode) -->
+    <div id="std-result-screen" class="hidden w-full max-w-2xl flex flex-col items-center z-10 space-y-6 bg-black border-2 neon-border-green p-8 rounded-lg shadow-2xl fade-in">
+        <h1 class="text-4xl md:text-5xl neon-text-green title-font tracking-widest mb-2 uppercase text-center" id="std-result-title">ЭКЗАМЕН СДАН</h1>
+        
+        <div id="std-result-grade" class="text-5xl md:text-6xl font-bold my-6 text-center text-white title-font tracking-wider">МАСТЕР</div>
+        
+        <div class="grid grid-cols-2 gap-8 w-full text-center text-2xl mb-4 border-t border-b border-gray-800 py-6 bg-black/50">
+            <div class="col-span-2 border-b border-gray-800 pb-4 mb-2"><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Общее затраченное время</span><span id="std-result-time" class="text-4xl neon-text-blue font-bold tracking-widest">15.4s</span></div>
+            <div><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Ошибки</span><span id="std-result-errors" class="neon-text-red font-bold">0</span></div>
+            <div><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Средний темп</span><span id="std-result-tps" class="text-gray-300 font-bold text-xl">2.1s / шт</span></div>
+        </div>
+
+        <div id="std-result-note" class="text-gray-600 text-sm uppercase tracking-widest">Режим: ЭКЗАМЕН | Цифра: MIX</div>
+
+        <div class="flex space-x-4 mt-6 w-full">
+            <button onclick="backToMenu()" class="btn border border-gray-700 text-gray-400 py-4 px-6 rounded w-1/2 hover:bg-gray-800 uppercase tracking-widest text-sm">В МЕНЮ</button>
+            <button onclick="showLeaderboard()" class="btn border-2 neon-border-green py-4 px-6 rounded w-1/2 uppercase tracking-widest text-sm bg-green-900/20 hover:bg-green-900/40">РЕКОРДЫ</button>
+        </div>
+    </div>
+
+    <!-- MATH RPG SETUP SCREEN -->
+    <div id="rpg-setup-screen" class="hidden w-full max-w-2xl flex flex-col items-center z-10 space-y-6 bg-black border-2 neon-border-red p-8 rounded-lg shadow-2xl fade-in">
+        <h1 class="text-4xl neon-text-red title-font tracking-widest mb-4 uppercase">Протокол Выживания</h1>
+        <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="flex flex-col space-y-4">
+                <h3 class="text-lg text-gray-500 border-b border-gray-800 pb-2 uppercase tracking-widest">Оружие</h3>
+                <label class="flex items-center space-x-3 text-xl cursor-pointer hover:text-red-400"><input type="checkbox" id="op-add" checked class="w-5 h-5 accent-red-600"><span>[+] Сложение</span></label>
+                <label class="flex items-center space-x-3 text-xl cursor-pointer hover:text-red-400"><input type="checkbox" id="op-sub" checked class="w-5 h-5 accent-red-600"><span>[-] Вычитание</span></label>
+                <label class="flex items-center space-x-3 text-xl cursor-pointer hover:text-red-400"><input type="checkbox" id="op-mul" checked class="w-5 h-5 accent-red-600"><span>[×] Умножение</span></label>
+                <label class="flex items-center space-x-3 text-xl cursor-pointer hover:text-red-400"><input type="checkbox" id="op-div" checked class="w-5 h-5 accent-red-600"><span>[÷] Деление</span></label>
+            </div>
+            <div class="flex flex-col space-y-4">
+                <h3 class="text-lg text-gray-500 border-b border-gray-800 pb-2 uppercase tracking-widest">Угроза</h3>
+                <label class="flex items-center space-x-3 text-xl cursor-pointer"><input type="radio" name="rpg-diff" value="junior" class="w-5 h-5 accent-blue-500"><span class="text-blue-400">JUNIOR (Свет)</span></label>
+                <label class="flex items-center space-x-3 text-xl cursor-pointer"><input type="radio" name="rpg-diff" value="middle" checked class="w-5 h-5 accent-purple-500"><span class="text-purple-400">MIDDLE (Сумерки)</span></label>
+                <label class="flex items-center space-x-3 text-xl cursor-pointer"><input type="radio" name="rpg-diff" value="senior" class="w-5 h-5 accent-red-600"><span class="neon-text-red font-bold">SENIOR (ИЗНАНКА)</span></label>
+            </div>
+        </div>
+        <div id="rpg-setup-error" class="text-red-500 h-6 opacity-0 uppercase tracking-widest text-sm">Выбери оружие, солдат!</div>
+        <div class="flex space-x-4 mt-8 w-full">
+            <button onclick="backToMenu()" class="btn border border-gray-700 text-gray-400 py-3 px-6 rounded w-1/3 hover:bg-gray-900">ОТМЕНА</button>
+            <button onclick="startRpg()" class="btn border-2 neon-border-red py-3 px-6 rounded w-2/3 text-xl bg-red-900 bg-opacity-20 hover:bg-opacity-40 title-font tracking-widest">СПУСК</button>
+        </div>
+    </div>
+
+    <!-- RPG GAME SCREEN (Math & Russian) -->
+    <div id="rpg-game-screen" class="hidden w-full max-w-4xl flex flex-col items-center justify-center z-10 fade-in relative">
+        <div class="w-full flex justify-between items-start mb-8 px-6 py-4 bg-black bg-opacity-60 rounded-lg border border-gray-800 shadow-[0_0_20px_rgba(0,0,0,0.8)] backdrop-blur-sm">
+            <div class="flex flex-col items-center w-1/3">
+                <span class="text-xs text-gray-500 uppercase tracking-widest mb-1">Разум</span>
+                <div id="rpg-hp" class="text-2xl md:text-3xl tracking-[0.2em] drop-shadow-lg">❤️❤️❤️</div>
+            </div>
+            <div class="flex flex-col items-center w-1/3 border-l border-r border-gray-800">
+                <span class="text-xs text-gray-500 uppercase tracking-widest mb-1">Энергия</span>
+                <div id="rpg-score" class="text-4xl md:text-5xl font-bold text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] title-font">0</div>
+            </div>
+            <div class="flex flex-col items-center w-1/3">
+                <span class="text-xs text-gray-500 uppercase tracking-widest mb-1">Множитель</span>
+                <div id="rpg-combo" class="text-2xl md:text-3xl text-gray-700 font-bold transition-all duration-300">x1</div>
+            </div>
+        </div>
+
+        <div id="rpg-error-hint" class="h-8 text-xl md:text-2xl neon-text-red mb-4 opacity-0 transition-opacity uppercase tracking-widest title-font text-center">ОШИБКА!</div>
+
+        <!-- MATH INPUT -->
+        <div id="math-input-section" class="flex items-center space-x-4 md:space-x-8 text-6xl md:text-8xl font-bold my-8 w-full justify-center">
+            <span id="rpg-question-text" class="text-gray-200 text-right min-w-[280px] drop-shadow-md">2 + 2</span>
+            <span class="text-gray-600">=</span>
+            <input type="number" id="rpg-answer-input" autocomplete="off" class="w-40 md:w-56 bg-transparent border-b-4 border-gray-700 text-center text-white focus:border-red-500 transition-colors drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]" placeholder="_">
+        </div>
+
+        <!-- RUSSIAN INPUT -->
+        <div id="russian-input-section" class="hidden flex flex-col items-center space-y-8 my-4 w-full px-4">
+            <div id="knowledge-base-error" class="text-red-500 text-sm border border-red-900 p-2 rounded hidden bg-black">Внимание: Внешняя база не загружена. Используется резервный архив.</div>
+            <div class="text-3xl md:text-5xl font-bold text-white tracking-widest drop-shadow-[0_0_15px_rgba(216,180,254,0.6)] text-center leading-relaxed" id="russian-word">
+                <!-- Injected -->
+            </div>
+            <div id="russian-options" class="flex flex-wrap justify-center gap-4 w-full max-w-2xl">
+                <!-- Buttons injected via JS -->
+            </div>
+        </div>
+        
+        <button onclick="endRpg('surrendered')" class="mt-12 text-gray-600 hover:text-red-500 transition-colors uppercase tracking-widest text-xs border border-gray-800 py-2 px-4 rounded hover:border-red-900">Прервать сеанс</button>
+    </div>
+
+    <!-- RPG RESULT SCREEN -->
+    <div id="rpg-result-screen" class="hidden w-full max-w-2xl flex flex-col items-center z-10 space-y-6 bg-black border-2 neon-border-red p-8 rounded-lg shadow-2xl relative overflow-hidden fade-in">
+        <h1 class="text-5xl md:text-6xl text-red-600 text-shadow-red mb-2 uppercase title-font tracking-widest text-center" id="rpg-result-title">СВЯЗЬ ПОТЕРЯНА</h1>
+        <div id="rpg-final-grade" class="text-4xl md:text-5xl font-bold my-4 text-center text-white title-font tracking-wider">РАНГ: B</div>
+        
+        <div class="grid grid-cols-2 gap-8 w-full text-center text-2xl md:text-3xl mb-4 border-t border-b border-gray-800 py-6 bg-black/50 z-10">
+            <div><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Набрано Энергии</span><span id="rpg-final-score" class="text-white font-bold">1200</span></div>
+            <div><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Абсолютный Рекорд</span><span id="rpg-high-score" class="text-red-500 font-bold">1500</span></div>
+        </div>
+
+        <div class="w-full max-h-48 overflow-y-auto bg-gray-900 bg-opacity-80 p-4 rounded text-left border border-gray-800 z-10">
+            <h3 class="text-gray-500 mb-3 border-b border-gray-800 pb-2 text-xs uppercase tracking-widest">Анализ Ошибок (Учи Правила!):</h3>
+            <ul id="rpg-error-log" class="text-red-400 space-y-2 font-mono text-sm leading-relaxed">
+                <!-- JS injected -->
+            </ul>
+        </div>
+
+        <div class="flex space-x-4 mt-6 w-full relative z-10">
+            <button onclick="backToMenu()" class="btn border border-gray-700 text-gray-400 py-4 px-6 rounded w-1/2 hover:bg-gray-800 uppercase tracking-widest text-sm">НА БАЗУ</button>
+            <button onclick="showLeaderboard()" class="btn border-2 neon-border-red py-4 px-6 rounded w-1/2 uppercase tracking-widest text-sm bg-red-900/20 hover:bg-red-900/40">РЕКОРДЫ</button>
         </div>
     </div>
 
     <!-- LEADERBOARD SCREEN -->
-    <div id="leaderboard-screen" class="hidden w-full max-w-3xl flex flex-col items-center z-10 space-y-6">
-        <h1 class="text-4xl neon-text-blue">ЗАЛ СЛАВЫ</h1>
-        <div class="w-full bg-gray-900 border border-gray-700 rounded p-4">
-            <table class="w-full text-left border-collapse">
+    <div id="leaderboard-screen" class="hidden w-full max-w-5xl flex flex-col items-center z-10 space-y-6 fade-in">
+        <h1 class="text-5xl title-font neon-text-red uppercase tracking-widest mb-4">БАЗА ДАННЫХ</h1>
+        <div class="w-full bg-black bg-opacity-80 border border-gray-800 rounded p-4 shadow-[0_0_30px_rgba(0,0,0,0.9)] overflow-x-auto">
+            <table class="w-full text-left border-collapse min-w-[600px]">
                 <thead>
-                    <tr class="border-b border-gray-700 text-gray-400">
-                        <th class="p-2">#</th>
-                        <th class="p-2">Грейд</th>
-                        <th class="p-2">Режим</th>
-                        <th class="p-2">Результат</th>
-                        <th class="p-2">Ошибки</th>
-                        <th class="p-2 hidden md:table-cell">Дата</th>
-                        <th id="th-action" class="p-2 hidden">Del</th>
+                    <tr class="border-b border-gray-800 text-gray-500 text-xs uppercase tracking-widest">
+                        <th class="p-3">#</th>
+                        <th class="p-3">Объект / Ранг</th>
+                        <th class="p-3">Протокол</th>
+                        <th class="p-3">Показатели</th>
+                        <th class="p-3">Сбои</th>
+                        <th class="p-3 hidden md:table-cell">Дата</th>
+                        <th id="th-action" class="p-3 hidden text-red-500">УДАЛИТЬ</th>
                     </tr>
                 </thead>
-                <tbody id="leaderboard-body">
+                <tbody id="leaderboard-body" class="font-mono text-sm">
                     <!-- JS injected -->
                 </tbody>
             </table>
         </div>
         
-        <div class="flex flex-wrap justify-between w-full mt-4 gap-4">
-            <button onclick="backToMenu()" class="btn border-2 border-gray-500 text-gray-300 py-3 px-8 rounded">НАЗАД</button>
+        <div class="flex flex-wrap justify-between w-full mt-6 gap-4">
+            <button onclick="backToMenu()" class="btn border border-gray-700 text-gray-400 py-3 px-8 rounded hover:bg-gray-900 tracking-widest">НАЗАД</button>
             <div class="flex gap-4">
-                <button onclick="toggleEditMode()" id="btn-edit-mode" class="btn border-2 neon-border-purple text-purple-400 py-3 px-6 rounded transition-colors">⚙️ УПРАВЛЕНИЕ</button>
-                <button onclick="clearAllRecords()" id="btn-clear-all" class="btn border-2 neon-border-red text-red-500 py-3 px-6 rounded hidden transition-colors">💀 СТЕРЕТЬ ВСЁ</button>
+                <button onclick="toggleEditMode()" id="btn-edit-mode" class="btn border border-gray-700 text-gray-500 py-3 px-6 rounded hover:text-white tracking-widest text-sm">⚙️ РЕЖИМ БОГА</button>
+                <button onclick="clearAllRecords()" id="btn-clear-all" class="btn border-2 neon-border-red text-red-500 py-3 px-6 rounded hidden title-font tracking-widest text-lg bg-red-900/20">💀 СТЕРЕТЬ ВСЁ</button>
             </div>
         </div>
     </div>
 
-    <!-- RPG SETUP SCREEN -->
-    <div id="rpg-setup-screen" class="hidden w-full max-w-2xl flex flex-col items-center z-10 space-y-6 bg-gray-900 border-2 neon-border-blue p-8 rounded-lg shadow-2xl">
-        <h1 class="text-4xl neon-text-blue mb-4">НАСТРОЙКИ SURVIVAL</h1>
-        
-        <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Operations -->
-            <div class="flex flex-col space-y-4">
-                <h3 class="text-xl text-gray-400 border-b border-gray-700 pb-2">ОПЕРАЦИИ</h3>
-                <label class="flex items-center space-x-3 text-xl cursor-pointer">
-                    <input type="checkbox" id="op-add" checked class="w-6 h-6 accent-blue-500">
-                    <span>[+] Сложение</span>
-                </label>
-                <label class="flex items-center space-x-3 text-xl cursor-pointer">
-                    <input type="checkbox" id="op-sub" checked class="w-6 h-6 accent-blue-500">
-                    <span>[-] Вычитание</span>
-                </label>
-                <label class="flex items-center space-x-3 text-xl cursor-pointer">
-                    <input type="checkbox" id="op-mul" checked class="w-6 h-6 accent-blue-500">
-                    <span>[×] Умножение</span>
-                </label>
-                <label class="flex items-center space-x-3 text-xl cursor-pointer">
-                    <input type="checkbox" id="op-div" checked class="w-6 h-6 accent-blue-500">
-                    <span>[÷] Деление</span>
-                </label>
-            </div>
-
-            <!-- Difficulty -->
-            <div class="flex flex-col space-y-4">
-                <h3 class="text-xl text-gray-400 border-b border-gray-700 pb-2">СЛОЖНОСТЬ</h3>
-                <label class="flex items-center space-x-3 text-xl cursor-pointer">
-                    <input type="radio" name="rpg-diff" value="junior" class="w-6 h-6 accent-green-500">
-                    <span class="neon-text-green">JUNIOR</span>
-                </label>
-                <label class="flex items-center space-x-3 text-xl cursor-pointer">
-                    <input type="radio" name="rpg-diff" value="middle" checked class="w-6 h-6 accent-purple-500">
-                    <span class="neon-text-purple">MIDDLE</span>
-                </label>
-                <label class="flex items-center space-x-3 text-xl cursor-pointer">
-                    <input type="radio" name="rpg-diff" value="senior" class="w-6 h-6 accent-red-500">
-                    <span class="neon-text-red">SENIOR</span>
-                </label>
-            </div>
-        </div>
-
-        <div id="rpg-setup-error" class="text-red-500 h-6 opacity-0">Выбери хотя бы одну операцию!</div>
-
-        <div class="flex space-x-4 mt-4 w-full">
-            <button onclick="backToMenu()" class="btn border-2 border-gray-500 text-gray-300 py-3 px-6 rounded w-1/3">НАЗАД</button>
-            <button onclick="startRpg()" class="btn border-2 neon-border-blue py-3 px-6 rounded w-2/3 text-xl bg-blue-900 bg-opacity-30 hover:bg-opacity-60">СТАРТ</button>
+    <!-- SUPER REWARD OVERLAY (MASTER RANK) -->
+    <div id="super-reward" class="hidden fixed inset-0 z-[100] bg-black flex-col items-center justify-center fade-in">
+        <div class="portal-spin"></div>
+        <div class="relative z-10 text-center mt-32">
+            <h1 class="neon-text-red title-font text-7xl md:text-9xl glitch mb-4" data-text="ВРАТА ОТКРЫТЫ">ВРАТА ОТКРЫТЫ</h1>
+            <p class="text-white text-2xl md:text-4xl tracking-widest font-bold drop-shadow-[0_0_10px_#fff]">ТЫ — ИСТИННЫЙ МАСТЕР ИЗНАНКИ</p>
+            <button onclick="closeReward()" class="mt-12 btn border-2 neon-border-red py-4 px-12 text-red-500 hover:bg-red-900/30 font-bold text-xl tracking-widest">ВЕРНУТЬСЯ В РЕАЛЬНОСТЬ</button>
         </div>
     </div>
 
-    <!-- RPG GAME SCREEN -->
-    <div id="rpg-game-screen" class="hidden w-full max-w-3xl flex flex-col items-center justify-center z-10">
-        <div class="w-full flex justify-between items-start mb-8 px-4 bg-gray-900 bg-opacity-80 p-4 rounded-lg border neon-border-blue">
-            <div class="flex flex-col">
-                <span class="text-sm text-gray-400 uppercase">HP (Жизни)</span>
-                <div id="rpg-hp" class="text-3xl tracking-widest text-red-500">❤️❤️❤️</div>
-            </div>
-            <div class="flex flex-col items-center">
-                <span class="text-sm text-gray-400 uppercase">Очки</span>
-                <div id="rpg-score" class="text-4xl neon-text-blue font-bold">0</div>
-            </div>
-            <div class="flex flex-col items-end">
-                <span class="text-sm text-gray-400 uppercase">Комбо (< 5s)</span>
-                <div id="rpg-combo" class="text-2xl text-gray-600 font-bold transition-colors">x1</div>
-            </div>
-        </div>
-
-        <div id="rpg-error-hint" class="h-8 text-2xl neon-text-red mb-4 opacity-0 transition-opacity">УДАР! Правильно: 42</div>
-
-        <div class="flex items-center space-x-4 md:space-x-8 text-6xl md:text-8xl font-bold my-8">
-            <span id="rpg-question-text" class="text-white text-right min-w-[280px]">2 + 2</span>
-            <span class="text-gray-500">=</span>
-            <input type="number" id="rpg-answer-input" autocomplete="off" class="w-40 md:w-56 bg-transparent border-b-4 border-gray-600 text-center text-white neon-text-green focus:border-green-400 transition-colors" placeholder="?">
-        </div>
-        
-        <button onclick="endRpg()" class="mt-12 text-gray-500 hover:text-red-400 underline text-sm">Сбежать с поля боя</button>
-    </div>
-
-    <!-- RPG RESULT SCREEN -->
-    <div id="rpg-result-screen" class="hidden w-full max-w-2xl flex flex-col items-center z-10 space-y-6 bg-gray-900 border-2 neon-border-red p-8 rounded-lg shadow-2xl">
-        <h1 class="text-5xl text-red-500 text-shadow-red mb-2 uppercase">Game Over</h1>
-        <div class="text-xl text-gray-400">Сурвайвал завершен</div>
-        
-        <div id="rpg-final-grade" class="text-5xl font-bold my-4 text-center neon-text-purple">РАНГ: B</div>
-        
-        <div class="grid grid-cols-2 gap-8 w-full text-center text-3xl mb-4 border-t border-b border-gray-700 py-6">
-            <div><span class="text-gray-400 text-sm block uppercase">Итоговый Счет</span><span id="rpg-final-score" class="neon-text-blue font-bold">1200</span></div>
-            <div><span class="text-gray-400 text-sm block uppercase">Рекорд (High Score)</span><span id="rpg-high-score" class="text-yellow-400 font-bold">1500</span></div>
-        </div>
-
-        <div class="w-full max-h-48 overflow-y-auto bg-black bg-opacity-50 p-4 rounded text-left border border-gray-700">
-            <h3 class="text-gray-400 mb-2 border-b border-gray-700 pb-1 text-sm uppercase">Лог ошибок (учись на них):</h3>
-            <ul id="rpg-error-log" class="text-red-400 space-y-1 font-mono text-sm">
-                <!-- JS injected -->
-            </ul>
-        </div>
-
-        <div class="flex space-x-4 mt-4 w-full">
-            <button onclick="backToMenu()" class="btn border-2 border-gray-500 text-gray-300 py-3 px-6 rounded w-1/2">В МЕНЮ</button>
-            <button onclick="startRpg()" class="btn border-2 neon-border-red py-3 px-6 rounded w-1/2">ПЕРЕИГРАТЬ</button>
-        </div>
-    </div>
-
-    <!-- AUDIO SYSTEM (Synthesized) -->
     <script>
-        // --- AUDIO ENGINE ---
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        let audioCtx;
+        // --- 0. AUDIO PLAYER LOGIC ---
+        const customAudio = document.getElementById('custom-bgm');
+        const btnPlay = document.getElementById('btn-play-music');
+        const volControl = document.getElementById('music-volume');
+        const iconPlay = document.getElementById('icon-play');
+        const iconPause = document.getElementById('icon-pause');
+        let customAudioActive = false;
 
-        function initAudio() {
-            if (!audioCtx) {
-                audioCtx = new AudioContext();
+        // Установка начальной громкости
+        customAudio.volume = volControl.value;
+
+        btnPlay.addEventListener('click', toggleCustomAudio);
+
+        volControl.addEventListener('input', (e) => {
+            customAudio.volume = e.target.value;
+        });
+
+        function toggleCustomAudio() {
+            if (customAudio.paused) {
+                customAudio.play().then(() => {
+                    iconPlay.classList.add('hidden');
+                    iconPause.classList.remove('hidden');
+                    customAudioActive = true;
+                    stopSynthBGM(); // Вырубаем синтезатор, если играет твой трек
+                }).catch(e => {
+                    console.error("Ошибка воспроизведения. Файл theme.mp3 должен лежать в той же папке.", e);
+                    // Визуальный фидбек для пользователя, если файла нет
+                    document.getElementById('audio-track-name').innerText = "ФАЙЛ НЕ НАЙДЕН";
+                    document.getElementById('audio-track-name').classList.add('text-red-500');
+                });
+            } else {
+                customAudio.pause();
+                iconPlay.classList.remove('hidden');
+                iconPause.classList.add('hidden');
+                customAudioActive = false;
             }
         }
+
+
+        // --- 1. VISUAL & SYNTH AUDIO FX ---
+        function createSpores() {
+            const container = document.getElementById('spores');
+            for(let i=0; i<40; i++) {
+                let spore = document.createElement('div'); spore.className = 'spore';
+                let size = Math.random() * 4 + 1;
+                spore.style.width = size + 'px'; spore.style.height = size + 'px';
+                spore.style.left = Math.random() * 100 + 'vw';
+                spore.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                spore.style.animationDelay = (Math.random() * 10) + 's';
+                container.appendChild(spore);
+            }
+        }
+        createSpores();
+
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        let audioCtx, synthBgmInterval;
+
+        function initAudio() { if (!audioCtx) audioCtx = new AudioContext(); if (audioCtx.state === 'suspended') audioCtx.resume(); }
 
         function playSound(type) {
             if (!audioCtx) return;
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
+            const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain();
+            osc.connect(gain); gain.connect(audioCtx.destination); const now = audioCtx.currentTime;
 
             if (type === 'success') {
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(800, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.1);
-                gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
-                osc.start();
-                osc.stop(audioCtx.currentTime + 0.1);
-            } else if (type === 'error') {
-                osc.type = 'sawtooth';
-                osc.frequency.setValueAtTime(150, audioCtx.currentTime);
-                osc.frequency.linearRampToValueAtTime(100, audioCtx.currentTime + 0.3);
-                gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
-                osc.start();
-                osc.stop(audioCtx.currentTime + 0.3);
-            } else if (type === 'fanfare') {
-                // Arpeggio
-                const notes = [261.63, 329.63, 392.00, 523.25]; // C4, E4, G4, C5
-                notes.forEach((freq, i) => {
-                    const o = audioCtx.createOscillator();
-                    const g = audioCtx.createGain();
-                    o.connect(g);
-                    g.connect(audioCtx.destination);
-                    o.type = 'square';
-                    o.frequency.value = freq;
-                    g.gain.setValueAtTime(0, audioCtx.currentTime + i*0.15);
-                    g.gain.linearRampToValueAtTime(0.2, audioCtx.currentTime + i*0.15 + 0.05);
-                    g.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + i*0.15 + 0.5);
-                    o.start(audioCtx.currentTime + i*0.15);
-                    o.stop(audioCtx.currentTime + i*0.15 + 0.5);
-                });
+                osc.type = 'square'; osc.frequency.setValueAtTime(440, now); osc.frequency.exponentialRampToValueAtTime(880, now + 0.1);
+                gain.gain.setValueAtTime(0.1, now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+                osc.start(now); osc.stop(now + 0.2);
+            } else if (type === 'error' || type === 'hit') {
+                osc.type = 'sawtooth'; osc.frequency.setValueAtTime(150, now); osc.frequency.exponentialRampToValueAtTime(40, now + 0.3);
+                gain.gain.setValueAtTime(0.2, now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                osc.start(now); osc.stop(now + 0.3);
+            } else if (type === 'fanfare') { 
+                osc.type = 'sine'; osc.frequency.setValueAtTime(523.25, now); osc.frequency.setValueAtTime(659.25, now+0.2); osc.frequency.setValueAtTime(783.99, now+0.4);
+                gain.gain.setValueAtTime(0.2, now); gain.gain.linearRampToValueAtTime(0, now + 1.5);
+                osc.start(now); osc.stop(now + 1.5);
+            } else if (type === 'super_portal') {
+                osc.type = 'sawtooth'; osc.frequency.setValueAtTime(40, now);
+                gain.gain.setValueAtTime(0, now); gain.gain.linearRampToValueAtTime(0.5, now + 1); gain.gain.linearRampToValueAtTime(0, now + 4);
+                osc.start(now); osc.stop(now + 4);
             }
         }
 
-        // --- GAME LOGIC ---
-        const phrases = [
-            "Пробей оборону!", 
-            "Ты на пути к Легенде!", 
-            "Слабо быстрее?", 
-            "Включай Злодея!", 
-            "Не думай - действуй!", 
-            "Больше скорости!",
-            "x10 к результату!"
+        function startSynthBGM() {
+            if (customAudioActive && !customAudio.paused) return; // Block synth if custom music is active
+            if (!audioCtx) initAudio();
+            stopSynthBGM(); 
+            
+            const notes = [130.81, 164.81, 196.00, 246.94, 261.63, 246.94, 196.00, 164.81];
+            let step = 0;
+            
+            synthBgmInterval = setInterval(() => {
+                if(audioCtx.state !== 'running') return;
+                const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain();
+                const filter = audioCtx.createBiquadFilter(); filter.type = 'lowpass'; filter.frequency.value = 800;
+                
+                osc.type = 'sawtooth'; osc.frequency.value = notes[step];
+                osc.connect(filter); filter.connect(gain); gain.connect(audioCtx.destination);
+                
+                const now = audioCtx.currentTime;
+                gain.gain.setValueAtTime(0, now); gain.gain.linearRampToValueAtTime(0.05, now + 0.02); gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+                osc.start(now); osc.stop(now + 0.3);
+                step = (step + 1) % notes.length;
+            }, 160);
+        }
+
+        function stopSynthBGM() {
+            if (synthBgmInterval) { clearInterval(synthBgmInterval); synthBgmInterval = null; }
+        }
+
+        function showFloatingText(text, colorClass, containerId) {
+            let container = document.getElementById(containerId);
+            let el = document.createElement('div');
+            el.className = `absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-5xl md:text-7xl font-bold ${colorClass} pointer-events-none z-50 floating-text`;
+            el.innerText = text;
+            container.appendChild(el);
+            setTimeout(() => el.remove(), 1000);
+        }
+
+        // --- 2. MASSIVE DATABASE FETCHING (ИМЕННО ЗДЕСЬ ИДЕТ ОБРАЩЕНИЕ К JSON) ---
+        // Если ты открываешь файл просто дабл-кликом, fetch может выдать ошибку CORS.
+        // Запускай через расширение "Live Server" в VS Code или залей на GitHub Pages.
+        const fallbackKnowledgeBase = [
+            { t: "К_рова", o: ["о", "а"], a: "о", r: "Словарное слово: кОрова" },
+            { t: "Ж_раф", o: ["и", "ы"], a: "и", r: "ЖИ-ШИ пиши с буквой И" },
+            { t: "Площадь прямоугольника равна a _ b", o: ["×", "+"], a: "×", r: "Площадь (S) = длина × ширина" }
         ];
+        let knowledgeBase = [];
 
-        let state = {
-            mode: null,
-            digit: null,
-            questions: [],
-            currentIdx: 0,
-            mistakes: 0,
-            startTime: null,
-            timerInterval: null,
-            forceCorrecting: false,
-            currentCorrectAnswer: null
-        };
+        async function loadKnowledgeBase() {
+            try {
+                // ВОТ ТУТ МЫ ЗАБИРАЕМ ДАННЫЕ ИЗ ТВОЕГО ФАЙЛА
+                const response = await fetch('./knowledge_base.json');
+                if (!response.ok) throw new Error('Network response was not ok');
+                knowledgeBase = await response.json();
+                document.getElementById('knowledge-base-error').classList.add('hidden');
+                console.log("База данных успешно загружена. Количество записей: ", knowledgeBase.length);
+            } catch (error) {
+                console.warn("Не удалось загрузить knowledge_base.json. Использую резервную базу. Запускай через Live Server.", error);
+                knowledgeBase = fallbackKnowledgeBase;
+                document.getElementById('knowledge-base-error').classList.remove('hidden');
+            }
+        }
+        document.addEventListener('DOMContentLoaded', loadKnowledgeBase);
 
+
+        // --- 3. STATE & PROGRESSION MANAGERS ---
         const els = {
             menu: document.getElementById('menu-screen'),
-            game: document.getElementById('game-screen'),
-            result: document.getElementById('result-screen'),
-            leaderboard: document.getElementById('leaderboard-screen'),
+            legend: document.getElementById('legend-screen'),
+            stdGame: document.getElementById('standard-game-screen'),
+            stdResult: document.getElementById('std-result-screen'),
             rpgSetup: document.getElementById('rpg-setup-screen'),
             rpgGame: document.getElementById('rpg-game-screen'),
             rpgResult: document.getElementById('rpg-result-screen'),
-            input: document.getElementById('answer-input'),
-            question: document.getElementById('question-text'),
-            progress: document.getElementById('game-progress'),
-            timer: document.getElementById('game-timer'),
-            motivation: document.getElementById('motivation-text'),
-            errorHint: document.getElementById('error-hint'),
-            // RPG Els
-            rpgInput: document.getElementById('rpg-answer-input'),
-            rpgQuestion: document.getElementById('rpg-question-text'),
-            rpgHp: document.getElementById('rpg-hp'),
-            rpgScore: document.getElementById('rpg-score'),
-            rpgCombo: document.getElementById('rpg-combo'),
-            rpgErrorHint: document.getElementById('rpg-error-hint'),
-            rpgErrorLog: document.getElementById('rpg-error-log')
+            leaderboard: document.getElementById('leaderboard-screen')
         };
 
-        let rpgState = {
-            active: false,
-            hp: 3,
-            score: 0,
-            comboActive: false,
-            ops: [],
-            diff: 'middle',
-            currentAns: null,
-            currentStr: "",
-            qStartTime: null,
-            startTime: null,
-            errors: []
-        };
+        function showScreen(screenEl) { Object.values(els).forEach(s => s.classList.add('hidden')); screenEl.classList.remove('hidden'); updateGlobalProgression(); }
+        function shuffle(arr) { let a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+        function getRand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
 
-        function showScreen(screenEl) {
-            [els.menu, els.game, els.result, els.leaderboard, els.rpgSetup, els.rpgGame, els.rpgResult].forEach(s => s.classList.add('hidden'));
-            screenEl.classList.remove('hidden');
-        }
+        function showLegend() { showScreen(els.legend); }
 
-        function shuffle(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
-
-        function generateQuestions(mode, digit) {
-            let q = [];
-            if (digit === 'mix') {
-                // 30 random from 2x2 to 9x9
-                for(let i=0; i<30; i++) {
-                    let a = Math.floor(Math.random() * 8) + 2;
-                    let b = Math.floor(Math.random() * 8) + 2;
-                    q.push({a, b, ans: a*b});
+        function updateGlobalProgression() {
+            let history = JSON.parse(localStorage.getItem('stDB2') || '[]');
+            let totalExp = 0;
+            history.forEach(r => {
+                if (r.score !== null) {
+                    totalExp += r.score; 
+                } else {
+                    if (r.gradeId === 'S') totalExp += 500;
+                    else if (r.gradeId === 'A') totalExp += 250;
+                    else if (r.gradeId === 'C') totalExp += 50;
                 }
-            } else {
-                // Specific digit: standard 8 + 4 random to make 12
-                let base = [2,3,4,5,6,7,8,9];
-                base.forEach(b => q.push({a: digit, b, ans: digit*b}));
-                for(let i=0; i<4; i++) {
-                    let randomB = Math.floor(Math.random() * 8) + 2;
-                    q.push({a: digit, b: randomB, ans: digit*randomB});
-                }
-                // Randomize a and b positions occasionally
-                q = q.map(item => Math.random() > 0.5 ? {a: item.b, b: item.a, ans: item.ans} : item);
-            }
-            return shuffle(q);
-        }
+            });
 
-        function selectSettings(mode, digit) {
+            if (totalExp > 0) {
+                let lvl = Math.floor(totalExp / 1000) + 1; 
+                document.getElementById('global-level').innerText = lvl;
+                document.getElementById('global-exp').innerText = totalExp;
+                document.getElementById('global-progression').classList.remove('hidden');
+            }
+        }
+        document.addEventListener('DOMContentLoaded', updateGlobalProgression);
+
+        // --- 4. STANDARD MODE: TRAINING & BATTLE (EXAM) ---
+        let stdState = { mode: null, q: [], idx: 0, mistakes: 0, startTime: null, timerInt: null, forceCorrect: false, interrupted: false, sessionScore: 0 };
+        const motivPhrases = ["Быстрее!", "Фокус!", "Не спи!", "Точно в цель!"];
+
+        function startStandardMode(mode, digit) {
             initAudio();
-            state.mode = mode;
-            state.digit = digit;
-            state.questions = generateQuestions(mode, digit);
-            state.currentIdx = 0;
-            state.mistakes = 0;
-            state.startTime = null;
-            state.forceCorrecting = false;
+            stdState = { mode: mode, digit: digit, q: [], idx: 0, mistakes: 0, startTime: null, forceCorrect: false, interrupted: false, sessionScore: 0 };
             
-            showScreen(els.game);
+            if (digit === 'mix') {
+                for(let i=0; i<30; i++) stdState.q.push({a: getRand(2,9), b: getRand(2,9), ans: null});
+                stdState.q.forEach(q => q.ans = q.a * q.b);
+                stdState.q = shuffle(stdState.q); 
+            } else {
+                [2,3,4,5,6,7,8,9].forEach(b => stdState.q.push({a: digit, b: b, ans: digit * b}));
+                if (mode === 'battle') stdState.q = shuffle(stdState.q);
+            }
+
+            document.getElementById('std-timer-container').classList.toggle('hidden', mode === 'training');
+            document.getElementById('std-input').classList.remove('border-red-500');
             
-            els.timer.classList.toggle('hidden', mode === 'training');
-            els.timer.innerText = "0.0s";
-            
-            renderQuestion();
-            els.input.focus();
-            
-            // Auto focus keeper
-            window.onclick = () => els.input.focus();
+            showScreen(els.stdGame);
+            renderStdQuestion();
+            window.onclick = () => { if(!els.stdGame.classList.contains('hidden')) document.getElementById('std-input').focus(); };
         }
 
-        // --- RPG LOGIC ---
-        function showRpgSetup() {
-            showScreen(els.rpgSetup);
+        function renderStdQuestion() {
+            let q = stdState.q[stdState.idx];
+            document.getElementById('std-question').innerText = `${q.a} x ${q.b}`;
+            document.getElementById('std-input').value = "";
+            document.getElementById('std-error').style.opacity = '0';
+            document.getElementById('std-progress').innerText = `${stdState.idx + 1} / ${stdState.q.length}`;
+            
+            if (stdState.mode === 'battle' && !stdState.startTime && stdState.idx === 0) {
+                document.getElementById('std-timer').innerText = "00.0s";
+            }
+            
+            if(Math.random() > 0.7) {
+                let m = document.getElementById('std-motivation');
+                m.innerText = motivPhrases[Math.floor(Math.random() * motivPhrases.length)];
+                m.style.opacity = '1'; setTimeout(() => m.style.opacity = '0', 1500);
+            }
+            document.getElementById('std-input').focus();
         }
+
+        document.getElementById('std-input').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                let val = parseInt(this.value, 10);
+                if (isNaN(val)) return;
+
+                if (stdState.mode === 'battle' && !stdState.startTime) {
+                    stdState.startTime = Date.now();
+                    stdState.timerInt = setInterval(() => {
+                        document.getElementById('std-timer').innerText = ((Date.now() - stdState.startTime) / 1000).toFixed(1) + "s";
+                    }, 100);
+                }
+
+                let isCorrect = (val === stdState.q[stdState.idx].ans);
+
+                if (stdState.forceCorrect) {
+                    if (isCorrect) { stdState.forceCorrect = false; playSound('success'); nextStdQuestion(); } 
+                    else { playSound('hit'); this.value = ""; }
+                    return;
+                }
+
+                if (isCorrect) {
+                    playSound('success'); 
+                    if(stdState.mode === 'training') {
+                        stdState.sessionScore += 10;
+                        showFloatingText('+10 EXP', 'neon-text-blue', 'standard-game-screen');
+                    }
+                    nextStdQuestion();
+                } else {
+                    playSound('error'); stdState.mistakes++;
+                    if (stdState.mode === 'training') {
+                        stdState.forceCorrect = true;
+                        this.classList.add('border-red-500');
+                        let errEl = document.getElementById('std-error');
+                        errEl.innerText = `Ошибка! Правильно: ${stdState.q[stdState.idx].ans}. Введи ответ!`;
+                        errEl.style.opacity = '1'; this.value = "";
+                        stdState.q.push({...stdState.q[stdState.idx]});
+                        document.getElementById('std-progress').innerText = `${stdState.idx + 1} / ${stdState.q.length}`;
+                    } else {
+                        nextStdQuestion(); 
+                    }
+                }
+            }
+        });
+
+        function nextStdQuestion() {
+            stdState.idx++;
+            if (stdState.idx >= stdState.q.length) endStdGame();
+            else renderStdQuestion();
+        }
+
+        function interruptStdGame() {
+            if (stdState.mode === 'battle' && stdState.idx > 0) { stdState.interrupted = true; endStdGame(); } 
+            else { backToMenu(); }
+        }
+
+        function endStdGame() {
+            clearInterval(stdState.timerInt);
+            window.onclick = null;
+            
+            if (stdState.mode === 'training') {
+                saveRecord(`ACADEMY [${stdState.digit.toString().toUpperCase()}]`, 0, stdState.mistakes, {id: '-', title: 'ТРЕНИРОВКА'}, Math.floor(stdState.sessionScore));
+                backToMenu(); return;
+            }
+
+            let answered = stdState.idx;
+            if (answered === 0) { backToMenu(); return; }
+
+            let totalTime = (Date.now() - stdState.startTime) / 1000;
+            let tps = totalTime / answered; 
+            let targetTime = stdState.digit === 'mix' ? 120 : 32; 
+            let midTime = stdState.digit === 'mix' ? 180 : 48; 
+            
+            let gradeObj;
+            if (stdState.interrupted) {
+                gradeObj = { id: 'C', title: 'СБЕЖАЛ С ПОЛЯ БОЯ', color: 'text-gray-500' };
+                playSound('error');
+            } else {
+                playSound('fanfare');
+                if (totalTime <= targetTime && stdState.mistakes === 0) gradeObj = { id: 'S', title: 'МАСТЕР ИЗНАНКИ', color: 'neon-text-blue' };
+                else if (totalTime <= midTime && stdState.mistakes <= 2) gradeObj = { id: 'A', title: 'ВЫЖИВШИЙ', color: 'neon-text-green' };
+                else gradeObj = { id: 'C', title: 'ЖЕРТВА ДЕМОГОРГОНА', color: 'neon-text-red' };
+            }
+
+            document.getElementById('std-result-time').innerText = totalTime.toFixed(1) + "s";
+            document.getElementById('std-result-errors').innerText = stdState.mistakes;
+            document.getElementById('std-result-tps').innerText = tps.toFixed(1) + "s / ответ";
+            document.getElementById('std-result-title').innerText = stdState.interrupted ? "СЕАНС ПРЕРВАН" : "ЭКЗАМЕН СДАН";
+            
+            let gradeEl = document.getElementById('std-result-grade');
+            gradeEl.innerHTML = `<span class="${gradeObj.color}">${gradeObj.id}</span><br><span class="text-2xl text-gray-400">(${gradeObj.title})</span>`;
+            document.getElementById('std-result-note').innerText = `Режим: ЭКЗАМЕН | Цифра: ${stdState.digit.toString().toUpperCase()}`;
+
+            saveRecord(`EXAM [${stdState.digit.toString().toUpperCase()}]`, totalTime, stdState.mistakes, gradeObj, null);
+            showScreen(els.stdResult);
+
+            if (gradeObj.id === 'S') triggerSuperReward();
+        }
+
+        function triggerSuperReward() {
+            let overlay = document.getElementById('super-reward');
+            overlay.classList.remove('hidden'); overlay.classList.add('flex');
+            playSound('super_portal');
+        }
+
+        function closeReward() {
+            document.getElementById('super-reward').classList.add('hidden');
+            document.getElementById('super-reward').classList.remove('flex');
+        }
+
+        // --- 5. RPG ENGINE (Math Survival & Russian Hack) ---
+        let rpgState = { active: false, type: null, hp: 3, score: 0, combo: false, qStart: null, gStart: null, errs: [], queue: [] };
+
+        function showRpgSetup() { initAudio(); showScreen(els.rpgSetup); }
 
         function startRpg() {
             let ops = [];
-            if(document.getElementById('op-add').checked) ops.push('+');
-            if(document.getElementById('op-sub').checked) ops.push('-');
-            if(document.getElementById('op-mul').checked) ops.push('*');
-            if(document.getElementById('op-div').checked) ops.push('/');
+            ['add','sub','mul','div'].forEach(o => { if(document.getElementById(`op-${o}`).checked) ops.push(o === 'add'?'+':o==='sub'?'-':o==='mul'?'*':'/'); });
+            if(ops.length === 0) { document.getElementById('rpg-setup-error').style.opacity = '1'; return; }
+            initRpgState('math', { ops: ops, diff: document.querySelector('input[name="rpg-diff"]:checked').value });
+        }
 
-            if(ops.length === 0) {
-                let errEl = document.getElementById('rpg-setup-error');
-                errEl.style.opacity = '1';
-                setTimeout(() => errEl.style.opacity = '0', 2000);
-                return;
-            }
+        function startRussianMode() { initAudio(); initRpgState('russian', {}); }
 
-            let diff = document.querySelector('input[name="rpg-diff"]:checked').value;
-
-            rpgState = {
-                active: true,
-                hp: 3,
-                score: 0,
-                comboActive: false,
-                ops: ops,
-                diff: diff,
-                currentAns: null,
-                currentStr: "",
-                qStartTime: null,
-                startTime: Date.now(),
-                errors: []
-            };
-
-            updateRpgUI();
-            showScreen(els.rpgGame);
-            nextRpgQuestion();
+        function initRpgState(type, config) {
+            startSynthBGM(); 
+            rpgState = { active: true, type: type, hp: 3, score: 0, combo: false, qStart: Date.now(), gStart: Date.now(), errs: [], ops: config.ops, diff: config.diff, queue: type==='russian'?shuffle(knowledgeBase):[] };
             
-            window.onclick = () => { if(rpgState.active) els.rpgInput.focus(); };
-        }
-
-        function getRand(min, max) {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
-
-        function generateRPGQuestion() {
-            let op = rpgState.ops[Math.floor(Math.random() * rpgState.ops.length)];
-            let a, b, ans;
-
-            if (rpgState.diff === 'junior') {
-                if (op === '+') { a = getRand(1, 20); b = getRand(1, 20); ans = a + b; }
-                if (op === '-') { a = getRand(1, 20); b = getRand(1, a); ans = a - b; } // Always A >= B
-                if (op === '*') { a = getRand(1, 5); b = getRand(1, 5); ans = a * b; }
-                if (op === '/') { b = getRand(1, 5); ans = getRand(1, 5); a = b * ans; } // No remainders
-            } else if (rpgState.diff === 'middle') {
-                if (op === '+') { a = getRand(10, 100); b = getRand(10, 100); ans = a + b; }
-                if (op === '-') { a = getRand(10, 100); b = getRand(1, a); ans = a - b; }
-                if (op === '*') { a = getRand(2, 10); b = getRand(2, 10); ans = a * b; }
-                if (op === '/') { b = getRand(2, 10); ans = getRand(2, 10); a = b * ans; }
-            } else { // senior
-                if (op === '+') { a = getRand(100, 1000); b = getRand(100, 1000); ans = a + b; }
-                if (op === '-') { a = getRand(100, 1000); b = getRand(10, a); ans = a - b; }
-                if (op === '*') { 
-                    // To 20x9 as requested
-                    a = Math.random() > 0.5 ? getRand(11, 20) : getRand(2, 9);
-                    b = a > 9 ? getRand(2, 9) : getRand(11, 20);
-                    ans = a * b; 
-                }
-                if (op === '/') { 
-                    b = getRand(2, 9); 
-                    ans = getRand(11, 20); 
-                    a = b * ans; 
-                }
-            }
-
-            let opStr = op === '*' ? '×' : op === '/' ? '÷' : op;
-            rpgState.currentStr = `${a} ${opStr} ${b}`;
-            rpgState.currentAns = ans;
-            
-            els.rpgQuestion.innerText = rpgState.currentStr;
-            els.rpgInput.value = "";
-            els.rpgInput.classList.remove('neon-border-red');
-            els.rpgErrorHint.style.opacity = '0';
-            rpgState.qStartTime = Date.now();
-            els.rpgInput.focus();
-        }
-
-        function updateRpgUI() {
-            els.rpgHp.innerText = '❤️'.repeat(rpgState.hp) + '🖤'.repeat(3 - rpgState.hp);
-            els.rpgScore.innerText = rpgState.score;
-            if (rpgState.comboActive) {
-                els.rpgCombo.innerText = "x2 COMBO!";
-                els.rpgCombo.className = "text-2xl font-bold neon-text-green";
-            } else {
-                els.rpgCombo.innerText = "x1";
-                els.rpgCombo.className = "text-2xl text-gray-600 font-bold";
-            }
+            document.getElementById('math-input-section').classList.toggle('hidden', type !== 'math');
+            document.getElementById('russian-input-section').classList.toggle('hidden', type !== 'russian');
+            updateRpgUI(); showScreen(els.rpgGame); nextRpgQuestion();
+            if(type === 'math') window.onclick = () => { if(rpgState.active) document.getElementById('rpg-answer-input').focus(); };
         }
 
         function nextRpgQuestion() {
-            generateRPGQuestion();
-            updateRpgUI();
-        }
-
-        els.rpgInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && rpgState.active) {
-                checkRPGAnswer();
-            }
-        });
-
-        function checkRPGAnswer() {
-            let val = parseInt(els.rpgInput.value);
-            if (isNaN(val)) return;
-
-            let timeTaken = Date.now() - rpgState.qStartTime;
-            let isFast = timeTaken < 5000;
-            
-            if (val === rpgState.currentAns) {
-                playSound('success');
-                if (isFast) {
-                    rpgState.comboActive = true;
-                    rpgState.score += 20;
-                    // Flash effect
-                    document.getElementById('main-body').classList.add('combo-flash-active');
-                    setTimeout(() => document.getElementById('main-body').classList.remove('combo-flash-active'), 500);
+            if(rpgState.type === 'math') {
+                let op = rpgState.ops[getRand(0, rpgState.ops.length-1)]; let a, b, ans;
+                if (rpgState.diff === 'junior') {
+                    if (op==='+'){a=getRand(1,20);b=getRand(1,20);ans=a+b;} if (op==='-'){a=getRand(1,20);b=getRand(1,a);ans=a-b;}
+                    if (op==='*'){a=getRand(1,5);b=getRand(1,5);ans=a*b;} if (op==='/'){b=getRand(1,5);ans=getRand(1,5);a=b*ans;}
+                } else if (rpgState.diff === 'middle') {
+                    if (op==='+'){a=getRand(10,100);b=getRand(10,100);ans=a+b;} if (op==='-'){a=getRand(10,100);b=getRand(1,a);ans=a-b;}
+                    if (op==='*'){a=getRand(2,10);b=getRand(2,10);ans=a*b;} if (op==='/'){b=getRand(2,10);ans=getRand(2,10);a=b*ans;}
                 } else {
-                    rpgState.comboActive = false;
-                    rpgState.score += 10;
+                    if (op==='+'){a=getRand(100,1000);b=getRand(100,1000);ans=a+b;} if (op==='-'){a=getRand(100,1000);b=getRand(10,a);ans=a-b;}
+                    if (op==='*'){a=Math.random()>0.5?getRand(11,20):getRand(2,9);b=a>9?getRand(2,9):getRand(11,20);ans=a*b;}
+                    if (op==='/'){b=getRand(2,9);ans=getRand(11,20);a=b*ans;}
                 }
-                nextRpgQuestion();
+                rpgState.currStr = `${a} ${op==='*'?'×':op==='/'?'÷':op} ${b}`; rpgState.currAns = ans;
+                document.getElementById('rpg-question-text').innerText = rpgState.currStr;
+                let inp = document.getElementById('rpg-answer-input'); inp.value = ""; inp.classList.remove('border-red-500');
+                inp.focus();
             } else {
-                playSound('error');
-                rpgState.hp -= 1;
-                rpgState.comboActive = false;
+                if (rpgState.queue.length === 0) rpgState.queue = shuffle(knowledgeBase);
+                let q = rpgState.queue.pop();
+                rpgState.currStr = q.t; rpgState.currAns = q.a; rpgState.currRule = q.r;
                 
-                // Track error
-                rpgState.errors.push(`${rpgState.currentStr} = ${rpgState.currentAns} (твой: ${val})`);
+                let htmlWord = q.t.replace('_', `<span class="text-purple-400 border-b-4 border-purple-500 inline-block px-2 pb-1 text-center min-w-[40px]">_</span>`);
+                document.getElementById('russian-word').innerHTML = htmlWord;
                 
-                // Shake effect
-                els.rpgGame.classList.add('shake-active');
-                setTimeout(() => els.rpgGame.classList.remove('shake-active'), 400);
-
-                els.rpgInput.classList.add('neon-border-red');
-                els.rpgErrorHint.innerText = `УДАР! Правильно: ${rpgState.currentAns}`;
-                els.rpgErrorHint.style.opacity = '1';
-                
-                updateRpgUI();
-
-                if (rpgState.hp <= 0) {
-                    rpgState.active = false;
-                    setTimeout(endRpg, 1000);
-                } else {
-                    // Slight delay to see error, then next
-                    rpgState.active = false; // block input temporarily
-                    setTimeout(() => {
-                        rpgState.active = true;
-                        nextRpgQuestion();
-                    }, 1500);
-                }
-            }
-        }
-
-        function getRpgGrade(score, diff) {
-            let diffMult = diff === 'junior' ? 1 : diff === 'middle' ? 2 : 3;
-            let adjScore = score * diffMult;
-            if (adjScore >= 1000) return "S (LEGEND)";
-            if (adjScore >= 500) return "A (SENIOR)";
-            if (adjScore >= 200) return "B (MIDDLE)";
-            return "C (JUNIOR)";
-        }
-
-        function endRpg() {
-            playSound('fanfare');
-            window.onclick = null;
-            rpgState.active = false;
-
-            let savedHighScore = parseInt(localStorage.getItem('rpgHighScore') || '0');
-            if (rpgState.score > savedHighScore) {
-                localStorage.setItem('rpgHighScore', rpgState.score);
-                savedHighScore = rpgState.score;
-            }
-
-            let timePlayed = (Date.now() - rpgState.startTime) / 1000;
-            let rawGrade = getRpgGrade(rpgState.score, rpgState.diff);
-            let gradeId = rawGrade.split(' ')[0]; // Extract "S", "A", "B", "C"
-            let gradeTitle = rawGrade.match(/\(([^)]+)\)/)[1]; // Extract title in parentheses
-
-            // Save to main history
-            saveResult('rpg', rpgState.diff, timePlayed, 0, rpgState.errors.length, {id: gradeId, title: gradeTitle}, rpgState.score);
-
-            document.getElementById('rpg-final-score').innerText = rpgState.score;
-            document.getElementById('rpg-high-score').innerText = savedHighScore;
-            document.getElementById('rpg-final-grade').innerText = `РАНГ: ${getRpgGrade(rpgState.score, rpgState.diff)}`;
-
-            els.rpgErrorLog.innerHTML = '';
-            if (rpgState.errors.length === 0) {
-                els.rpgErrorLog.innerHTML = '<li class="text-green-400">Идеальная игра! (Или ты рано сдался)</li>';
-            } else {
-                rpgState.errors.forEach(err => {
-                    let li = document.createElement('li');
-                    li.innerText = err;
-                    els.rpgErrorLog.appendChild(li);
+                let optsDiv = document.getElementById('russian-options'); optsDiv.innerHTML = '';
+                shuffle([...q.o]).forEach(opt => {
+                    let btn = document.createElement('button');
+                    let textSize = opt.length > 3 ? 'text-2xl md:text-3xl' : 'text-4xl md:text-6xl';
+                    btn.className = `btn border-2 border-purple-500 text-purple-200 py-4 px-6 md:px-10 rounded ${textSize} font-bold bg-purple-900/20 hover:bg-purple-900/50`;
+                    btn.innerText = opt.toUpperCase();
+                    btn.onclick = () => { if(rpgState.active) processRpgAnswer(opt === q.a, opt); };
+                    optsDiv.appendChild(btn);
                 });
             }
-
-            showScreen(els.rpgResult);
+            document.getElementById('rpg-error-hint').style.opacity = '0';
+            rpgState.qStart = Date.now();
         }
 
-        // --- OLD GAME LOGIC (Training/Battle) ---
-        function startTimer() {
-            if (state.startTime) return;
-            state.startTime = Date.now();
-            if (state.mode === 'battle') {
-                state.timerInterval = setInterval(() => {
-                    let diff = (Date.now() - state.startTime) / 1000;
-                    els.timer.innerText = diff.toFixed(1) + "s";
-                }, 100);
-            }
-        }
-
-        function renderQuestion() {
-            let q = state.questions[state.currentIdx];
-            state.currentCorrectAnswer = q.ans;
-            els.question.innerText = `${q.a} x ${q.b}`;
-            els.input.value = "";
-            els.input.classList.remove('neon-border-red');
-            els.errorHint.style.opacity = '0';
-            
-            els.progress.innerText = `${state.currentIdx + 1} / ${state.questions.length}`;
-            
-            if(Math.random() > 0.7) {
-                els.motivation.innerText = phrases[Math.floor(Math.random() * phrases.length)];
-                els.motivation.style.opacity = '1';
-                setTimeout(() => els.motivation.style.opacity = '0', 2000);
-            }
-        }
-
-        els.input.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                if(!state.startTime) startTimer();
-                checkAnswer();
+        document.getElementById('rpg-answer-input').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && rpgState.active && rpgState.type === 'math') {
+                let val = parseInt(this.value, 10); if (isNaN(val)) return;
+                processRpgAnswer(val === rpgState.currAns, val);
             }
         });
 
-        // Add input event for auto-check (optional, but requested enter. Will leave it on Enter strictly as requested, but fast typers love auto. Sticking to Enter for discipline).
-
-        function checkAnswer() {
-            let val = parseInt(els.input.value);
-            if (isNaN(val)) return;
-
-            let isCorrect = (val === state.currentCorrectAnswer);
-
-            if (state.forceCorrecting) {
-                if (isCorrect) {
-                    state.forceCorrecting = false;
-                    playSound('success');
-                    nextQuestion();
-                } else {
-                    playSound('error');
-                    els.input.value = "";
-                }
-                return;
-            }
-
+        function processRpgAnswer(isCorrect, userVal) {
+            let isFast = (Date.now() - rpgState.qStart) < (rpgState.type === 'math' ? 5000 : 4000);
+            
             if (isCorrect) {
                 playSound('success');
-                nextQuestion();
-            } else {
-                playSound('error');
-                state.mistakes++;
-                
-                if (state.mode === 'training') {
-                    // Force correction and append to end
-                    state.forceCorrecting = true;
-                    els.input.classList.add('neon-border-red');
-                    els.errorHint.innerText = `Ошибка! Правильно: ${state.currentCorrectAnswer}. Введи ответ!`;
-                    els.errorHint.style.opacity = '1';
-                    els.input.value = "";
-                    
-                    // Add this question to the end
-                    let currentQ = state.questions[state.currentIdx];
-                    state.questions.push({...currentQ});
-                    els.progress.innerText = `${state.currentIdx + 1} / ${state.questions.length}`;
-                } else {
-                    // Battle: just move on
-                    nextQuestion();
+                if (isFast) { 
+                    rpgState.combo = true; rpgState.score += 20; 
+                    showFloatingText('+20 PTS', 'neon-text-green', 'rpg-game-screen');
+                    document.getElementById('main-body').classList.add('combo-flash-active'); setTimeout(() => document.getElementById('main-body').classList.remove('combo-flash-active'), 500); 
+                } else { 
+                    rpgState.combo = false; rpgState.score += 10; 
+                    showFloatingText('+10 PTS', 'neon-text-blue', 'rpg-game-screen');
                 }
-            }
-        }
-
-        function nextQuestion() {
-            state.currentIdx++;
-            if (state.currentIdx >= state.questions.length) {
-                endGame();
+                updateRpgUI(); // ИСПРАВЛЕН БАГ: Теперь UI обновляется мгновенно при успехе
+                nextRpgQuestion();
             } else {
-                renderQuestion();
+                playSound('hit'); rpgState.hp -= 1; rpgState.combo = false;
+                showFloatingText('-1 HP', 'neon-text-red', 'rpg-game-screen');
+
+                if(rpgState.type === 'math') rpgState.errs.push(`${rpgState.currStr} = ${rpgState.currAns} (твой: ${userVal})`);
+                else rpgState.errs.push(`${rpgState.currStr.replace('_', rpgState.currAns.toUpperCase())} — ${rpgState.currRule}`);
+                
+                els.rpgGame.classList.add('shake-active'); setTimeout(() => els.rpgGame.classList.remove('shake-active'), 400);
+                let hintEl = document.getElementById('rpg-error-hint');
+                if(rpgState.type === 'math') { document.getElementById('rpg-answer-input').classList.add('border-red-500'); hintEl.innerText = `УДАР! Правильно: ${rpgState.currAns}`; } 
+                else { hintEl.innerText = `УДАР! ${rpgState.currRule}`; document.getElementById('russian-word').innerHTML = rpgState.currStr.replace('_', `<span class="text-red-500 border-b-4 border-red-500 inline-block px-2 pb-1 text-center">${rpgState.currAns.toUpperCase()}</span>`); }
+                
+                hintEl.style.opacity = '1'; updateRpgUI(); rpgState.active = false;
+                if (rpgState.hp <= 0) setTimeout(() => endRpg('dead'), 1500);
+                else setTimeout(() => { rpgState.active = true; nextRpgQuestion(); }, 2000);
             }
         }
 
-        function getGrade(tps, mistakes) {
-            if (tps < 4 && mistakes === 0) return { id: 'S', title: 'Legend (Ronaldo)', color: 'neon-text-blue' };
-            if (tps < 6 && mistakes <= 1) return { id: 'A', title: 'Hero (Senior)', color: 'neon-text-green' };
-            if (tps < 8 && mistakes <= 2) return { id: 'B', title: 'Warrior (Middle)', color: 'neon-text-purple' };
-            if (tps < 12 && mistakes <= 2) return { id: 'C', title: 'Noob (Junior)', color: 'text-yellow-400' };
-            return { id: 'F', title: 'System Error', color: 'neon-text-red' };
+        function updateRpgUI() {
+            document.getElementById('rpg-hp').innerText = '❤️'.repeat(rpgState.hp) + '💀'.repeat(3 - rpgState.hp);
+            document.getElementById('rpg-score').innerText = rpgState.score;
+            document.getElementById('rpg-combo').innerText = rpgState.combo ? "x2 СИНХРОН!" : "x1";
+            document.getElementById('rpg-combo').className = rpgState.combo ? "text-2xl font-bold neon-text-purple" : "text-2xl text-gray-700 font-bold";
         }
 
-        function endGame() {
-            clearInterval(state.timerInterval);
-            playSound('fanfare');
-            window.onclick = null; // remove forced focus
+        function endRpg(reason) {
+            playSound('error'); stopSynthBGM(); window.onclick = null; rpgState.active = false;
+            let sKey = rpgState.type === 'math' ? 'mathRpgScore' : 'rusRpgScore';
+            let high = parseInt(localStorage.getItem(sKey) || '0');
+            if (rpgState.score > high) { localStorage.setItem(sKey, rpgState.score); high = rpgState.score; }
 
-            let totalTime = (Date.now() - state.startTime) / 1000;
-            let totalQ = state.questions.length;
-            let tps = totalTime / totalQ;
+            let gradeObj;
+            if (rpgState.score >= 1000) gradeObj = {id: 'S', title: 'ELEVEN'};
+            else if (rpgState.score >= 500) gradeObj = {id: 'A', title: 'ХОППЕР'};
+            else if (rpgState.score >= 200) gradeObj = {id: 'B', title: 'МАЙК'};
+            else gradeObj = {id: 'C', title: 'УИЛЛ'};
 
-            let gradeObj = getGrade(tps, state.mistakes);
+            saveRecord(rpgState.type === 'math' ? `SURVIVAL [${rpgState.diff.toUpperCase()}]` : `ВЗЛОМ СЛОВ`, (Date.now() - rpgState.gStart)/1000, rpgState.errs.length, gradeObj, rpgState.score);
 
-            document.getElementById('result-time').innerText = totalTime.toFixed(1) + "s";
-            document.getElementById('result-errors').innerText = state.mistakes;
-            document.getElementById('result-tps').innerText = tps.toFixed(1) + "s / q";
+            document.getElementById('rpg-result-title').innerText = reason === 'surrendered' ? "ПРЕРВАНО" : "СВЯЗЬ ПОТЕРЯНА";
+            document.getElementById('rpg-final-score').innerText = rpgState.score;
+            document.getElementById('rpg-high-score').innerText = high;
+            document.getElementById('rpg-final-grade').innerText = `РАНГ: ${gradeObj.id} (${gradeObj.title})`;
             
-            let gradeHtml = `<span class="${gradeObj.color}">${gradeObj.id}</span><br><span class="text-2xl text-gray-400">(${gradeObj.title})</span>`;
-            document.getElementById('result-grade').innerHTML = gradeHtml;
-            document.getElementById('result-mode-note').innerText = `Режим: ${state.mode.toUpperCase()} | Цифра: ${state.digit}`;
-
-            showScreen(els.result);
-
-            saveResult(state.mode, state.digit, totalTime, tps, state.mistakes, gradeObj);
+            let logEl = document.getElementById('rpg-error-log'); logEl.innerHTML = '';
+            if (rpgState.errs.length === 0) logEl.innerHTML = '<li class="text-blue-400">Разум чист. Ошибок нет.</li>';
+            else rpgState.errs.forEach(e => { let li = document.createElement('li'); li.innerText = e; logEl.appendChild(li); });
+            
+            showScreen(els.rpgResult);
+            if (gradeObj.id === 'S') triggerSuperReward();
         }
 
-        function backToMenu() {
-            clearInterval(state.timerInterval);
-            window.onclick = null;
-            if(isEditMode) toggleEditMode(); // Turn off edit mode if active
-            showScreen(els.menu);
+        // --- 6. LEADERBOARD ---
+        function saveRecord(mode, time, mistakes, gradeObj, score) {
+            let history = JSON.parse(localStorage.getItem('stDB2') || '[]');
+            history.push({ date: new Date().toLocaleDateString(), mode: mode, time: time, mistakes: mistakes, gradeId: gradeObj.id, gradeTitle: gradeObj.title, score: score, ts: Date.now() });
+            localStorage.setItem('stDB2', JSON.stringify(history));
         }
 
-        // --- LOCAL STORAGE & LEADERBOARD ---
-        function saveResult(mode, digit, time, tps, mistakes, gradeObj, score = null) {
-            let record = {
-                date: new Date().toLocaleDateString(),
-                mode: `${mode.toUpperCase()} [${digit.toUpperCase()}]`,
-                time: time,
-                tps: tps,
-                mistakes: mistakes,
-                gradeId: gradeObj.id,
-                gradeTitle: gradeObj.title,
-                score: score,
-                timestamp: Date.now()
-            };
-
-            let history = JSON.parse(localStorage.getItem('multiLegendHistory') || '[]');
-            history.push(record);
-            localStorage.setItem('multiLegendHistory', JSON.stringify(history));
-        }
-
+        let isEditMode = false; let clearTimer = null;
         function showLeaderboard() {
-            let history = JSON.parse(localStorage.getItem('multiLegendHistory') || '[]');
-            
-            // Priority for sorting S > A > B > C > F
-            const gradePriority = { 'S': 5, 'A': 4, 'B': 3, 'C': 2, 'F': 1 };
-            
+            let history = JSON.parse(localStorage.getItem('stDB2') || '[]');
+            const gp = { 'S': 5, 'A': 4, 'B': 3, 'C': 2, 'F': 1, '-': 0 }; 
             history.sort((a, b) => {
-                let pA = gradePriority[a.gradeId] || 0;
-                let pB = gradePriority[b.gradeId] || 0;
-                if (pA !== pB) return pB - pA; // Higher priority first
-                
-                // If same grade: RPG sorted by score, Battle sorted by speed
-                if (a.score !== null && b.score !== null) return b.score - a.score; 
-                if (a.score === null && b.score === null) return a.tps - b.tps;
-                
-                // Mixed modes with same grade: prioritize RPG
-                return a.score !== null ? -1 : 1;
+                if (gp[a.gradeId] !== gp[b.gradeId]) return (gp[b.gradeId]||0) - (gp[a.gradeId]||0);
+                if (a.score !== null && b.score !== null) return b.score - a.score;
+                if (a.score === null && b.score === null) return a.time - b.time;
+                return b.ts - a.ts;
             });
 
-            let top10 = history.slice(0, 10);
-            let tbody = document.getElementById('leaderboard-body');
-            tbody.innerHTML = '';
-            
+            let tbody = document.getElementById('leaderboard-body'); tbody.innerHTML = '';
             document.getElementById('th-action').classList.toggle('hidden', !isEditMode);
 
-            if(top10.length === 0) {
-                let colSpan = isEditMode ? "7" : "6";
-                tbody.innerHTML = `<tr><td colspan="${colSpan}" class="text-center p-4 text-gray-500">Пока нет записей. Стань первым.</td></tr>`;
-            } else {
-                top10.forEach((r, i) => {
-                    let gColor = r.gradeId === 'S' ? 'text-cyan-400' : r.gradeId === 'A' ? 'text-green-400' : r.gradeId === 'F' ? 'text-red-500' : 'text-purple-400';
-                    
-                    let resultDisplay = r.score !== null 
-                        ? `<span class="neon-text-blue font-bold">${r.score} PTS</span><br><span class="text-xs text-gray-500">${r.time.toFixed(0)}s</span>` 
-                        : `${r.time.toFixed(1)}s<br><span class="text-xs text-gray-500">(${r.tps.toFixed(1)} tps)</span>`;
-
-                    let deleteCell = isEditMode 
-                        ? `<td class="p-2"><button onclick="deleteRecord(${r.timestamp})" class="text-red-500 hover:text-white hover:bg-red-600 px-3 py-1 rounded transition-colors border border-red-500 hover:border-transparent font-bold">✕</button></td>` 
-                        : '';
-
-                    let tr = document.createElement('tr');
-                    tr.className = "border-b border-gray-800 hover:bg-gray-800 transition-colors";
-                    tr.innerHTML = `
-                        <td class="p-2">${i+1}</td>
-                        <td class="p-2 font-bold ${gColor}">${r.gradeId} <span class="text-xs text-gray-500 hidden lg:inline">(${r.gradeTitle})</span></td>
-                        <td class="p-2 text-sm">${r.mode}</td>
-                        <td class="p-2">${resultDisplay}</td>
-                        <td class="p-2 text-red-400">${r.mistakes}</td>
-                        <td class="p-2 text-xs text-gray-500 hidden md:table-cell">${r.date}</td>
-                        ${deleteCell}
-                    `;
+            if(history.length === 0) { tbody.innerHTML = `<tr><td colspan="${isEditMode?7:6}" class="p-8 text-center text-gray-700">База пуста.</td></tr>`; } 
+            else {
+                history.slice(0, 15).forEach((r, i) => {
+                    let gCol = r.gradeId === 'S' ? 'text-blue-400' : r.gradeId === 'A' ? 'text-green-400' : r.gradeId === '-' ? 'text-purple-400' : r.gradeId === 'F' ? 'text-gray-500' : 'text-red-500';
+                    let res = r.score !== null ? `<span class="text-white">${r.score} EXP</span>` : `${r.time.toFixed(1)}s`;
+                    let del = isEditMode ? `<td class="p-3"><button onclick="deleteRecord(${r.ts})" class="text-red-500 hover:text-white px-2 rounded border border-red-900">✕</button></td>` : '';
+                    let tr = document.createElement('tr'); tr.className = "border-b border-gray-900";
+                    tr.innerHTML = `<td class="p-3">${i+1}</td><td class="p-3 font-bold ${gCol}">${r.gradeId} <span class="text-xs text-gray-600">(${r.gradeTitle})</span></td><td class="p-3 text-xs">${r.mode}</td><td class="p-3">${res}</td><td class="p-3 text-red-500">${r.mistakes}</td><td class="p-3 text-xs hidden md:table-cell">${r.date}</td>${del}`;
                     tbody.appendChild(tr);
                 });
             }
-
             showScreen(els.leaderboard);
         }
 
-        // --- ADMIN CONTROLS ---
-        let isEditMode = false;
-        let clearConfirmTimer = null;
-
         function toggleEditMode() {
             isEditMode = !isEditMode;
-            let btnEdit = document.getElementById('btn-edit-mode');
-            let btnClear = document.getElementById('btn-clear-all');
-            
-            if (isEditMode) {
-                btnEdit.classList.add('bg-purple-900', 'bg-opacity-50');
-                btnClear.classList.remove('hidden');
-            } else {
-                btnEdit.classList.remove('bg-purple-900', 'bg-opacity-50');
-                btnClear.classList.add('hidden');
-                // Reset clear button state if it was in confirm mode
-                btnClear.innerText = '💀 СТЕРЕТЬ ВСЁ';
-                btnClear.classList.remove('bg-red-900');
-                clearTimeout(clearConfirmTimer);
-            }
+            document.getElementById('btn-edit-mode').classList.toggle('bg-gray-800');
+            document.getElementById('btn-clear-all').classList.toggle('hidden', !isEditMode);
             showLeaderboard();
         }
 
-        function deleteRecord(timestamp) {
-            playSound('error'); // use error sound as generic delete feedback
-            let history = JSON.parse(localStorage.getItem('multiLegendHistory') || '[]');
-            history = history.filter(r => r.timestamp !== timestamp);
-            localStorage.setItem('multiLegendHistory', JSON.stringify(history));
+        function deleteRecord(ts) {
+            let h = JSON.parse(localStorage.getItem('stDB2') || '[]');
+            localStorage.setItem('stDB2', JSON.stringify(h.filter(r => r.ts !== ts)));
             showLeaderboard();
         }
 
         function clearAllRecords() {
             let btn = document.getElementById('btn-clear-all');
-            
-            if (btn.innerText === '🔥 ПОДТВЕРДИТЬ?') {
-                localStorage.removeItem('multiLegendHistory');
-                localStorage.removeItem('rpgHighScore');
-                playSound('fanfare');
-                toggleEditMode(); // This will reset UI and re-render empty table
-            } else {
-                btn.innerText = '🔥 ПОДТВЕРДИТЬ?';
-                btn.classList.add('bg-red-900');
-                clearTimeout(clearConfirmTimer);
-                clearConfirmTimer = setTimeout(() => {
-                    btn.innerText = '💀 СТЕРЕТЬ ВСЁ';
-                    btn.classList.remove('bg-red-900');
-                }, 3000);
-            }
+            if (btn.innerText === '🔥 ПОДТВЕРДИТЬ?') { localStorage.removeItem('stDB2'); localStorage.removeItem('mathRpgScore'); localStorage.removeItem('rusRpgScore'); toggleEditMode(); showScreen(els.menu); } 
+            else { btn.innerText = '🔥 ПОДТВЕРДИТЬ?'; clearTimeout(clearTimer); clearTimer = setTimeout(() => btn.innerText = '💀 СТЕРЕТЬ ВСЁ', 3000); }
         }
+
+        function backToMenu() { stopSynthBGM(); clearInterval(stdState.timerInt); window.onclick = null; if(isEditMode) toggleEditMode(); showScreen(els.menu); }
     </script>
 </body>
 </html>
