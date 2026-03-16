@@ -341,15 +341,25 @@
         function startSynthBGM() { if (customAudioActive && !customAudio.paused) return; if (!audioCtx) initAudio(); stopSynthBGM(); const notes = [130.81, 164.81, 196.00, 246.94, 261.63, 246.94, 196.00, 164.81]; let step = 0; synthBgmInterval = setInterval(() => { if(audioCtx.state !== 'running') return; const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain(); const filter = audioCtx.createBiquadFilter(); filter.type = 'lowpass'; filter.frequency.value = 800; osc.type = 'sawtooth'; osc.frequency.value = notes[step]; osc.connect(filter); filter.connect(gain); gain.connect(audioCtx.destination); const now = audioCtx.currentTime; gain.gain.setValueAtTime(0, now); gain.gain.linearRampToValueAtTime(0.05, now + 0.02); gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3); osc.start(now); osc.stop(now + 0.3); step = (step + 1) % notes.length; }, 160); }
         function stopSynthBGM() { if (synthBgmInterval) { clearInterval(synthBgmInterval); synthBgmInterval = null; } }
         function showFloatingText(text, colorClass, containerId) { let container = document.getElementById(containerId); let el = document.createElement('div'); el.className = `absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-5xl md:text-7xl font-bold ${colorClass} pointer-events-none z-50 floating-text`; el.innerText = text; container.appendChild(el); setTimeout(() => el.remove(), 1000); }
+        
+        // --- TEXT TO SPEECH ---
+        function speakWord(text, lang) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); // Stop any currently speaking audio
+                const msg = new SpeechSynthesisUtterance(text);
+                msg.lang = lang;
+                msg.rate = 0.9; // Слегка замедляем для детей
+                window.speechSynthesis.speak(msg);
+            } else {
+                console.warn("Твой браузер не поддерживает синтез речи.");
+            }
+        }
 
         // --- JSON DB FETCH (With Safe User Data Parsing) ---
-        // Если база не грузится (нет Live Server), вшиваем базовый пример + защищаем твои данные.
-        // Твои сырые данные, скопированные в prompt:
         const userProvidedData = [
           {"t": "В_да", "o": ["о", "а"], "a": "о", "r": "Проверочное слово: вОды"},
           {"t": "Тр_ва", "o": ["а", "о"], "a": "а", "r": "Проверочное слово: трАвы"},
-          {"t": "Гр_за", "o": ["о", "а"], "a": "о", "r": "Проверочное слово: грОзы"},
-          // ... Мы мапим их ниже
+          {"t": "Гр_за", "o": ["о", "а"], "a": "о", "r": "Проверочное слово: грОзы"}
         ];
 
         const defaultKnowledgeBase = [
@@ -365,14 +375,12 @@
                 if (!response.ok) throw new Error(); 
                 let fetchedData = await response.json();
                 
-                // ЗАЩИТА: Назначаем тип 'ru', если в твоем JSON его нет
                 knowledgeBase = fetchedData.map(item => {
                     if (!item.type) item.type = 'ru';
                     return item;
                 });
             } catch (error) { 
                 console.warn("Файл knowledge_base.json не найден. Использую хардкод данные.");
-                // Fallback: комбинируем твои сырые данные + дефолтные
                 knowledgeBase = [...userProvidedData, ...defaultKnowledgeBase].map(item => {
                     if (!item.type) item.type = 'ru';
                     return item;
@@ -606,6 +614,10 @@
                 let htmlWord = q.t;
                 if (rpgState.type === 'ru') {
                     htmlWord = q.t.replace('_', `<span class="text-purple-400 border-b-4 border-purple-500 inline-block px-2 pb-1 text-center min-w-[40px]">_</span>`);
+                } else if (rpgState.type === 'en') {
+                    // ДОБАВЛЯЕМ КНОПКУ ПРОСЛУШИВАНИЯ ДЛЯ АНГЛИЙСКИХ СЛОВ
+                    let safeWord = q.t.replace(/'/g, "\\'");
+                    htmlWord = `${q.t} <button onclick="speakWord('${safeWord}', 'en-US')" class="ml-2 md:ml-4 text-blue-400 hover:text-white transition-colors align-middle focus:outline-none drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]" title="Прослушать"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 md:h-12 md:w-12 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg></button>`;
                 }
                 document.getElementById('text-question').innerHTML = htmlWord;
                 
@@ -720,7 +732,13 @@
                 }
                 else { 
                     hintEl.innerText = `УДАР! ${rpgState.currRule}`; 
-                    document.getElementById('text-question').innerHTML = `<span class="text-red-500">${rpgState.currAns.toUpperCase()}</span>`; 
+                    // Если это английский, сохраняем кнопку озвучки, но перекрашиваем текст
+                    if (rpgState.type === 'en') {
+                        let safeWord = rpgState.currAns.replace(/'/g, "\\'");
+                        document.getElementById('text-question').innerHTML = `<span class="text-red-500">${rpgState.currAns.toUpperCase()}</span> <button onclick="speakWord('${safeWord}', 'en-US')" class="ml-2 md:ml-4 text-blue-400 hover:text-white transition-colors align-middle focus:outline-none drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 md:h-12 md:w-12 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg></button>`;
+                    } else {
+                        document.getElementById('text-question').innerHTML = `<span class="text-red-500">${rpgState.currAns.toUpperCase()}</span>`; 
+                    }
                 }
                 
                 hintEl.style.opacity = '1'; 
