@@ -62,7 +62,6 @@
         .gate-current { border-color: #e50914; background: rgba(229, 9, 20, 0.4); color: #fff; box-shadow: 0 0 15px #e50914; animation: pulseRed 1s infinite alternate; }
         @keyframes pulseRed { from { box-shadow: 0 0 5px #e50914; } to { box-shadow: 0 0 20px #e50914; } }
         
-        /* RSVP Reading Flash Word */
         .rsvp-word { font-size: 5rem; font-weight: bold; color: white; text-shadow: 0 0 20px rgba(255,255,255,0.8); letter-spacing: 0.1rem; text-transform: uppercase; text-align: center; }
         @media (min-width: 768px) { .rsvp-word { font-size: 8rem; } }
     </style>
@@ -84,31 +83,29 @@
             <div id="global-progression" class="level-badge shadow-[0_0_15px_rgba(229,9,20,0.4)] hidden"><span class="text-gray-400">ОПЕРАТИВНИК УР.</span> <span id="global-level" class="text-red-400 font-bold text-xl">1</span> <span class="ml-4 text-gray-500 text-xs">EXP: <span id="global-exp" class="text-white">0</span></span></div>
         </div>
         
-        <!-- MODULE GRID -->
         <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
-            
             <!-- COL 1: MATH -->
             <div class="flex flex-col gap-6">
                 <div class="flex flex-col items-center p-6 border-2 neon-border-blue rounded-lg bg-black bg-opacity-70 relative">
-                    <h2 class="text-xl neon-text-blue mb-2 font-bold title-font tracking-widest z-10 text-center">АКАДЕМИЯ (МАТЕМАТИКА)</h2>
-                    <div class="grid grid-cols-4 gap-2 mb-2 w-full z-10">
+                    <h2 class="text-xl neon-text-blue mb-2 font-bold title-font tracking-widest z-10 text-center">АКАДЕМИЯ</h2>
+                    <div class="grid grid-cols-4 gap-2 mb-2 w-full z-10 mt-2">
                         <button onclick="startStandardMode('training', 2)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded">2</button><button onclick="startStandardMode('training', 3)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded">3</button><button onclick="startStandardMode('training', 4)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded">4</button><button onclick="startStandardMode('training', 5)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded">5</button><button onclick="startStandardMode('training', 6)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded">6</button><button onclick="startStandardMode('training', 7)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded">7</button><button onclick="startStandardMode('training', 8)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded">8</button><button onclick="startStandardMode('training', 9)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded">9</button>
                     </div>
                 </div>
                 <div class="flex flex-col items-center p-6 border-2 neon-border-green rounded-lg bg-black bg-opacity-70 relative">
                     <h2 class="text-xl neon-text-green mb-2 font-bold title-font tracking-widest z-10 text-center">ИСПЫТАНИЕ</h2>
-                    <div class="grid grid-cols-4 gap-2 mb-2 w-full z-10">
+                    <div class="grid grid-cols-4 gap-2 mb-2 w-full z-10 mt-2">
                         <button onclick="startStandardMode('battle', 2)" class="btn border border-green-500/50 text-green-200 py-1 rounded">2</button><button onclick="startStandardMode('battle', 3)" class="btn border border-green-500/50 text-green-200 py-1 rounded">3</button><button onclick="startStandardMode('battle', 4)" class="btn border border-green-500/50 text-green-200 py-1 rounded">4</button><button onclick="startStandardMode('battle', 5)" class="btn border border-green-500/50 text-green-200 py-1 rounded">5</button><button onclick="startStandardMode('battle', 6)" class="btn border border-green-500/50 text-green-200 py-1 rounded">6</button><button onclick="startStandardMode('battle', 7)" class="btn border border-green-500/50 text-green-200 py-1 rounded">7</button><button onclick="startStandardMode('battle', 8)" class="btn border border-green-500/50 text-green-200 py-1 rounded">8</button><button onclick="startStandardMode('battle', 9)" class="btn border border-green-500/50 text-green-200 py-1 rounded">9</button>
                     </div>
                     <button onclick="startStandardMode('battle', 'mix')" class="btn border-2 border-green-500 py-2 px-4 rounded w-full text-green-200 font-bold hover:bg-green-900/30">MIX [2-9] ЭКЗАМЕН</button>
                 </div>
                 <div class="flex flex-col items-center p-6 border border-gray-700 rounded-lg bg-black bg-opacity-70 relative">
                     <h2 class="text-lg text-gray-300 mb-2 font-bold title-font tracking-widest z-10">БЕСКОНЕЧНЫЙ БОЙ</h2>
-                    <button onclick="showRpgSetup()" class="btn border border-gray-600 py-2 px-4 rounded w-full text-gray-300 hover:bg-gray-800">НАСТРОЙКИ (+ - * /)</button>
+                    <button onclick="showRpgSetup()" class="btn border border-gray-600 py-2 px-4 rounded w-full text-gray-300 hover:bg-gray-800 mt-2">НАСТРОЙКИ (+ - * /)</button>
                 </div>
             </div>
 
-            <!-- COL 2: MARATHON (CENTER PIECE) -->
+            <!-- COL 2: MARATHON -->
             <div class="flex flex-col items-center justify-center p-6 border-2 border-red-800 rounded-lg bg-black bg-opacity-70 relative overflow-hidden shadow-[0_0_30px_rgba(229,9,20,0.2)]">
                 <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjMDAwIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiMxMTEiPjwvcmVjdD4KPC9zdmc+')] opacity-50 pointer-events-none"></div>
                 <h2 class="text-4xl md:text-5xl neon-text-red mb-4 font-bold title-font tracking-widest z-10 glitch text-center" data-text="ПРОКЛЯТИЕ ВЕКНЫ">ПРОКЛЯТИЕ ВЕКНЫ</h2>
@@ -123,13 +120,11 @@
                     <p class="text-xs text-gray-500 mb-4 text-center">Орфограммы 3-4 кл.</p>
                     <button onclick="startLinguistics('ru')" class="btn border-2 neon-border-purple py-3 px-4 rounded w-full text-purple-200 tracking-widest hover:bg-purple-900/30 font-bold">ЗАПУСК</button>
                 </div>
-                
                 <div class="flex flex-col items-center p-6 border-2 neon-border-blue rounded-lg bg-black bg-opacity-70 relative">
                     <h2 class="text-xl neon-text-blue mb-2 font-bold title-font tracking-widest z-10 text-center">РАДИОПЕРЕХВАТ (ENG)</h2>
                     <p class="text-xs text-gray-500 mb-4 text-center">Английский 3 кл.</p>
                     <button onclick="startLinguistics('en')" class="btn border-2 neon-border-blue py-3 px-4 rounded w-full text-blue-200 tracking-widest hover:bg-blue-900/30 font-bold">СЛУШАТЬ ЭФИР</button>
                 </div>
-
                 <div class="flex flex-col items-center p-6 border-2 neon-border-white rounded-lg bg-black bg-opacity-70 relative">
                     <h2 class="text-xl neon-text-white mb-2 font-bold title-font tracking-widest z-10 text-center">СИНХРОНИЗАЦИЯ</h2>
                     <p class="text-xs text-gray-500 mb-4 text-center">Скорочтение и память.</p>
@@ -144,39 +139,18 @@
         </div>
     </div>
 
-    <!-- READ SETUP SCREEN (New) -->
+    <!-- READ SETUP SCREEN -->
     <div id="read-setup-screen" class="hidden w-full max-w-2xl flex flex-col items-center z-10 space-y-6 bg-black border-2 neon-border-white p-8 rounded-lg shadow-2xl fade-in">
         <h1 class="text-4xl neon-text-white title-font tracking-widest mb-4 uppercase text-center">СИНХРОНИЗАЦИЯ РАЗУМА</h1>
-        <p class="text-gray-400 text-center text-sm mb-4 border-b border-gray-800 pb-4">RSVP-Скорочтение. Выбери скорость мелькания текста. Чем выше уровень, тем быстрее нужно читать и запоминать детали.</p>
-        
+        <p class="text-gray-400 text-center text-sm mb-4 border-b border-gray-800 pb-4">Выбери уровень. Чем выше, тем быстрее мелькает текст (RSVP).</p>
         <div class="flex flex-col space-y-4 w-full px-8">
-            <label class="flex items-center space-x-4 cursor-pointer p-3 bg-gray-900/50 rounded border border-gray-700 hover:border-gray-500 transition-colors">
-                <input type="radio" name="read-lvl" value="1" checked class="w-5 h-5 accent-blue-500">
-                <div class="flex flex-col"><span class="text-blue-400 font-bold tracking-widest">УРОВЕНЬ 1 (LIGHT)</span><span class="text-xs text-gray-500">100 Слов/Мин. Простые тексты.</span></div>
-            </label>
-            <label class="flex items-center space-x-4 cursor-pointer p-3 bg-gray-900/50 rounded border border-gray-700 hover:border-gray-500 transition-colors">
-                <input type="radio" name="read-lvl" value="2" class="w-5 h-5 accent-green-500">
-                <div class="flex flex-col"><span class="text-green-400 font-bold tracking-widest">УРОВЕНЬ 2 (SPARK)</span><span class="text-xs text-gray-500">130 Слов/Мин. Появление деталей.</span></div>
-            </label>
-            <label class="flex items-center space-x-4 cursor-pointer p-3 bg-gray-900/50 rounded border border-gray-700 hover:border-gray-500 transition-colors">
-                <input type="radio" name="read-lvl" value="3" class="w-5 h-5 accent-yellow-500">
-                <div class="flex flex-col"><span class="text-yellow-500 font-bold tracking-widest">УРОВЕНЬ 3 (SHADOW)</span><span class="text-xs text-gray-500">160 Слов/Мин. Сложные предложения.</span></div>
-            </label>
-            <label class="flex items-center space-x-4 cursor-pointer p-3 bg-gray-900/50 rounded border border-gray-700 hover:border-gray-500 transition-colors">
-                <input type="radio" name="read-lvl" value="4" class="w-5 h-5 accent-orange-500">
-                <div class="flex flex-col"><span class="text-orange-500 font-bold tracking-widest">УРОВЕНЬ 4 (UPSIDE DOWN)</span><span class="text-xs text-gray-500">200 Слов/Мин. Вопросы на внимательность.</span></div>
-            </label>
-            <label class="flex items-center space-x-4 cursor-pointer p-3 bg-gray-900/50 rounded border border-red-900 hover:border-red-500 transition-colors">
-                <input type="radio" name="read-lvl" value="5" class="w-5 h-5 accent-red-600">
-                <div class="flex flex-col"><span class="neon-text-red font-bold tracking-widest">УРОВЕНЬ 5 (VECNA'S MIND)</span><span class="text-xs text-gray-400">250+ Слов/Мин. Экстремальный режим.</span></div>
-            </label>
+            <label class="flex items-center space-x-4 cursor-pointer p-3 bg-gray-900/50 rounded border border-gray-700 hover:border-gray-500 transition-colors"><input type="radio" name="read-lvl" value="1" checked class="w-5 h-5 accent-blue-500"><div class="flex flex-col"><span class="text-blue-400 font-bold tracking-widest">УРОВЕНЬ 1 (LIGHT)</span><span class="text-xs text-gray-500">100 WPM</span></div></label>
+            <label class="flex items-center space-x-4 cursor-pointer p-3 bg-gray-900/50 rounded border border-gray-700 hover:border-gray-500 transition-colors"><input type="radio" name="read-lvl" value="2" class="w-5 h-5 accent-green-500"><div class="flex flex-col"><span class="text-green-400 font-bold tracking-widest">УРОВЕНЬ 2 (SPARK)</span><span class="text-xs text-gray-500">130 WPM</span></div></label>
+            <label class="flex items-center space-x-4 cursor-pointer p-3 bg-gray-900/50 rounded border border-gray-700 hover:border-gray-500 transition-colors"><input type="radio" name="read-lvl" value="3" class="w-5 h-5 accent-yellow-500"><div class="flex flex-col"><span class="text-yellow-500 font-bold tracking-widest">УРОВЕНЬ 3 (SHADOW)</span><span class="text-xs text-gray-500">160 WPM</span></div></label>
+            <label class="flex items-center space-x-4 cursor-pointer p-3 bg-gray-900/50 rounded border border-gray-700 hover:border-gray-500 transition-colors"><input type="radio" name="read-lvl" value="4" class="w-5 h-5 accent-orange-500"><div class="flex flex-col"><span class="text-orange-500 font-bold tracking-widest">УРОВЕНЬ 4 (UPSIDE DOWN)</span><span class="text-xs text-gray-500">200 WPM</span></div></label>
+            <label class="flex items-center space-x-4 cursor-pointer p-3 bg-gray-900/50 rounded border border-red-900 hover:border-red-500 transition-colors"><input type="radio" name="read-lvl" value="5" class="w-5 h-5 accent-red-600"><div class="flex flex-col"><span class="neon-text-red font-bold tracking-widest">УРОВЕНЬ 5 (VECNA'S MIND)</span><span class="text-xs text-gray-400">250+ WPM</span></div></label>
         </div>
-
-        <div id="read-setup-error" class="text-red-500 h-6 opacity-0 uppercase tracking-widest text-sm">Текстов этого уровня нет в базе!</div>
-        <div class="flex space-x-4 mt-8 w-full">
-            <button onclick="backToMenu()" class="btn border border-gray-700 text-gray-400 py-3 px-6 rounded w-1/3 hover:bg-gray-900">ОТМЕНА</button>
-            <button onclick="startReadingMode()" class="btn border-2 neon-border-white py-3 px-6 rounded w-2/3 text-xl bg-white/10 hover:bg-white/20 title-font tracking-widest text-white">ПОГРУЖЕНИЕ</button>
-        </div>
+        <div class="flex space-x-4 mt-8 w-full"><button onclick="backToMenu()" class="btn border border-gray-700 text-gray-400 py-3 px-6 rounded w-1/3 hover:bg-gray-900">ОТМЕНА</button><button onclick="startReadingMode()" class="btn border-2 neon-border-white py-3 px-6 rounded w-2/3 text-xl bg-white/10 hover:bg-white/20 title-font tracking-widest text-white">ПОГРУЖЕНИЕ</button></div>
     </div>
 
     <!-- LEGEND SCREEN -->
@@ -185,37 +159,44 @@
         <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 text-left mt-4 z-10">
             <div class="bg-gray-900/50 p-6 rounded border border-gray-800">
                 <h3 class="text-xl neon-text-green mb-4 font-bold tracking-widest border-b border-gray-700 pb-2">ИСПЫТАНИЕ (ЭКЗАМЕН)</h3>
-                <ul class="space-y-4 font-mono text-sm">
-                    <li class="flex items-start"><span class="text-blue-400 font-bold w-12 shrink-0 text-lg">S:</span> <span class="text-gray-300 flex flex-col"><span class="text-blue-400 font-bold tracking-widest">МАСТЕР. 0 ошибок.</span><span class="text-xs text-gray-500 mt-1">ВРЕМЯ: <span class="text-white">Меньше 32 сек</span> (1 цифра) или <span class="text-white">Меньше 2 мин</span> (MIX).</span></span></li>
-                </ul>
+                <ul class="space-y-4 font-mono text-sm"><li class="flex items-start"><span class="text-blue-400 font-bold w-12 shrink-0 text-lg">S:</span> <span class="text-gray-300 flex flex-col"><span class="text-blue-400 font-bold tracking-widest">МАСТЕР. 0 ошибок.</span><span class="text-xs text-gray-500 mt-1">ВРЕМЯ: <span class="text-white">Меньше 32 сек</span> (1 цифра) или <span class="text-white">Меньше 2 мин</span> (MIX).</span></span></li></ul>
             </div>
-            <div class="bg-gray-900/50 p-6 rounded border border-red-900/50 shadow-[inset_0_0_15px_rgba(229,9,20,0.1)]">
+            <div class="bg-gray-900/50 p-6 rounded border border-red-900/50">
                 <h3 class="text-xl neon-text-red mb-4 font-bold tracking-widest border-b border-red-900 pb-2">ПРОКЛЯТИЕ ВЕКНЫ (МАРАФОН)</h3>
-                <ul class="space-y-4 font-mono text-sm">
-                    <li class="flex items-start"><span class="text-red-500 font-bold shrink-0">ПРОРЫВ ИЗНАНКИ:</span> <span class="text-gray-400 ml-2 text-xs">Дольше 48с или 3+ ошибки. <span class="text-red-500 font-bold">МИНУС 1 ЖИЗНЬ. Рестарт текущих врат.</span></span></li>
-                </ul>
+                <ul class="space-y-4 font-mono text-sm"><li class="flex items-start"><span class="text-red-500 font-bold shrink-0">ПРОРЫВ ИЗНАНКИ:</span> <span class="text-gray-400 ml-2 text-xs">Дольше 48с или 3+ ошибки. <span class="text-red-500 font-bold">МИНУС 1 ЖИЗНЬ. Рестарт текущих врат.</span></span></li></ul>
             </div>
             <div class="bg-gray-900/50 p-6 rounded border border-purple-900/50 col-span-1 md:col-span-2">
                 <h3 class="text-xl neon-text-purple mb-4 font-bold tracking-widest border-b border-purple-900 pb-2">ЛИНГВИСТИКА И СИНХРОНИЗАЦИЯ</h3>
-                <p class="text-xs text-gray-400">Работает по законам Выживания. 3 Жизни. Очки (EXP) начисляются за правильные ответы. В режиме Чтения текст мелькает со скоростью выбранного уровня (до 250 слов/мин). Будь предельно внимателен.</p>
+                <p class="text-xs text-gray-400">Работает по законам Выживания. 3 Жизни. В режиме Чтения текст мелькает со скоростью выбранного уровня. Ошибся с ответом — потерял жизнь.</p>
             </div>
         </div>
         <button onclick="backToMenu()" class="btn border border-yellow-600 text-yellow-500 py-3 px-12 rounded hover:bg-yellow-900/30 uppercase tracking-widest font-bold z-10">ПОНЯЛ</button>
     </div>
 
-    <!-- RPG & LINGUISTIC GAME SCREEN (Unified) -->
+    <!-- MATH RPG SETUP SCREEN -->
+    <div id="rpg-setup-screen" class="hidden w-full max-w-2xl flex flex-col items-center z-10 space-y-6 bg-black border-2 neon-border-red p-8 rounded-lg shadow-2xl fade-in">
+        <h1 class="text-4xl neon-text-red title-font tracking-widest mb-4 uppercase">Настройки Боя</h1>
+        <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="flex flex-col space-y-4"><h3 class="text-lg text-gray-500 border-b border-gray-800 pb-2 uppercase tracking-widest">Оружие</h3><label class="flex items-center space-x-3 text-xl cursor-pointer"><input type="checkbox" id="op-add" checked class="w-5 h-5 accent-red-600"><span>[+] Сложение</span></label><label class="flex items-center space-x-3 text-xl cursor-pointer"><input type="checkbox" id="op-sub" checked class="w-5 h-5 accent-red-600"><span>[-] Вычитание</span></label><label class="flex items-center space-x-3 text-xl cursor-pointer"><input type="checkbox" id="op-mul" checked class="w-5 h-5 accent-red-600"><span>[×] Умножение</span></label><label class="flex items-center space-x-3 text-xl cursor-pointer"><input type="checkbox" id="op-div" checked class="w-5 h-5 accent-red-600"><span>[÷] Деление</span></label></div>
+            <div class="flex flex-col space-y-4"><h3 class="text-lg text-gray-500 border-b border-gray-800 pb-2 uppercase tracking-widest">Угроза</h3><label class="flex items-center space-x-3 text-xl cursor-pointer"><input type="radio" name="rpg-diff" value="junior" class="w-5 h-5 accent-blue-500"><span class="text-blue-400">JUNIOR</span></label><label class="flex items-center space-x-3 text-xl cursor-pointer"><input type="radio" name="rpg-diff" value="middle" checked class="w-5 h-5 accent-purple-500"><span class="text-purple-400">MIDDLE</span></label><label class="flex items-center space-x-3 text-xl cursor-pointer"><input type="radio" name="rpg-diff" value="senior" class="w-5 h-5 accent-red-600"><span class="neon-text-red font-bold">SENIOR</span></label></div>
+        </div>
+        <div id="rpg-setup-error" class="text-red-500 h-6 opacity-0 uppercase tracking-widest text-sm">Выбери оружие!</div>
+        <div class="flex space-x-4 mt-8 w-full"><button onclick="backToMenu()" class="btn border border-gray-700 text-gray-400 py-3 px-6 rounded w-1/3 hover:bg-gray-900">ОТМЕНА</button><button onclick="startRpgMath()" class="btn border-2 neon-border-red py-3 px-6 rounded w-2/3 text-xl bg-red-900/20 hover:bg-red-900/50 title-font">СПУСК</button></div>
+    </div>
+
+    <!-- RPG & LINGUISTIC GAME SCREEN -->
     <div id="rpg-game-screen" class="hidden w-full max-w-4xl flex flex-col items-center justify-center z-10 fade-in relative">
-        <div class="w-full flex justify-between items-start mb-8 px-6 py-4 bg-black bg-opacity-60 rounded-lg border border-gray-800 shadow-[0_0_20px_rgba(0,0,0,0.8)] backdrop-blur-sm">
+        <div class="w-full flex justify-between items-start mb-8 px-6 py-4 bg-black bg-opacity-60 rounded-lg border border-gray-800 shadow-[0_0_20px_rgba(0,0,0,0.8)]">
             <div class="flex flex-col items-center w-1/3"><span class="text-xs text-gray-500 uppercase tracking-widest mb-1">Разум</span><div id="rpg-hp" class="text-2xl md:text-3xl tracking-[0.2em] drop-shadow-lg">❤️❤️❤️</div></div>
             <div class="flex flex-col items-center w-1/3 border-l border-r border-gray-800"><span class="text-xs text-gray-500 uppercase tracking-widest mb-1">Энергия</span><div id="rpg-score" class="text-4xl md:text-5xl font-bold text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] title-font">0</div></div>
             <div class="flex flex-col items-center w-1/3"><span class="text-xs text-gray-500 uppercase tracking-widest mb-1">Множитель</span><div id="rpg-combo" class="text-2xl md:text-3xl text-gray-700 font-bold transition-all duration-300">x1</div></div>
         </div>
 
-        <div id="rpg-error-hint" class="h-8 text-xl md:text-2xl neon-text-red mb-4 opacity-0 transition-opacity uppercase tracking-widest title-font text-center">ОШИБКА!</div>
+        <div id="rpg-error-hint" class="h-8 text-xl md:text-2xl neon-text-red mb-4 opacity-0 uppercase tracking-widest title-font text-center">ОШИБКА!</div>
 
         <!-- MATH INPUT -->
         <div id="math-input-section" class="flex items-center space-x-4 md:space-x-8 text-6xl md:text-8xl font-bold my-8 w-full justify-center hidden">
-            <span id="rpg-question-text" class="text-gray-200 text-right min-w-[280px] drop-shadow-md">2 + 2</span><span class="text-gray-600">=</span><input type="number" id="rpg-answer-input" autocomplete="off" class="w-40 md:w-56 bg-transparent border-b-4 border-gray-700 text-center text-white focus:border-red-500 transition-colors drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
+            <span id="rpg-question-text" class="text-gray-200 text-right min-w-[280px]">2 + 2</span><span class="text-gray-600">=</span><input type="number" id="rpg-answer-input" autocomplete="off" class="w-40 md:w-56 bg-transparent border-b-4 border-gray-700 text-center text-white focus:border-red-500">
         </div>
 
         <!-- TEXT INPUT (RU/EN/READ) -->
@@ -223,170 +204,52 @@
             <div id="text-question" class="text-3xl md:text-5xl font-bold text-white tracking-widest text-center leading-relaxed"></div>
             <div id="text-options" class="flex flex-wrap justify-center gap-4 w-full max-w-3xl"></div>
         </div>
-        
-        <button onclick="endRpg('surrendered')" class="mt-12 text-gray-600 hover:text-red-500 transition-colors uppercase tracking-widest text-xs border border-gray-800 py-2 px-4 rounded hover:border-red-900">Прервать сеанс</button>
+        <button onclick="endRpg('surrendered')" class="mt-12 text-gray-600 hover:text-red-500 transition-colors uppercase tracking-widest text-xs border border-gray-800 py-2 px-4 rounded">Прервать сеанс</button>
     </div>
 
-    <!-- RSVP READING SCREEN (Flash Words) -->
+    <!-- RSVP READING SCREEN -->
     <div id="rsvp-screen" class="hidden w-full h-full flex flex-col items-center justify-center z-50 fixed inset-0 bg-black fade-in">
-        <h2 id="rsvp-title" class="absolute top-10 text-xl text-gray-500 tracking-widest uppercase">РАПОРТ #001</h2>
+        <h2 id="rsvp-title" class="absolute top-10 text-xl text-gray-500 tracking-widest uppercase">РАПОРТ</h2>
         <div id="rsvp-word-display" class="rsvp-word">...</div>
     </div>
 
-    <!-- HIDDEN SCREENS (Marathon, StdGame, Results, Leaderboard) -->
+    <!-- MARATHON GAME SCREEN -->
     <div id="marathon-game-screen" class="hidden w-full max-w-4xl flex flex-col items-center justify-center z-10 fade-in relative"><div class="w-full text-center mb-4"><span class="text-gray-500 text-sm tracking-widest uppercase">Глобальный Разум</span><div id="marathon-hp" class="text-4xl tracking-[0.2em] mt-1 drop-shadow-lg">❤️❤️❤️</div></div><div class="w-full flex justify-center gap-2 mb-8 bg-black/50 p-4 rounded-lg border border-gray-800"><div id="gate-2" class="gate-slot">2</div><div id="gate-3" class="gate-slot">3</div><div id="gate-4" class="gate-slot">4</div><div id="gate-5" class="gate-slot">5</div><div id="gate-6" class="gate-slot">6</div><div id="gate-7" class="gate-slot">7</div><div id="gate-8" class="gate-slot">8</div><div id="gate-9" class="gate-slot">9</div></div><div class="w-full flex justify-between items-center mb-8 px-6 py-4 bg-black/80 border border-red-900/50 rounded-lg shadow-lg"><div class="flex flex-col"><span class="text-xs text-gray-500 uppercase tracking-widest">Прогресс Врат</span><div id="marathon-progress" class="text-2xl text-red-300 font-bold">1 / 8</div></div><div class="flex flex-col items-center"><span class="text-xs text-gray-500 uppercase tracking-widest">Время Врат</span><div id="marathon-timer" class="text-2xl neon-text-red font-bold">00.0s</div></div><button onclick="interruptMarathon()" class="text-gray-500 hover:text-red-400 transition-colors uppercase tracking-widest text-xs border border-gray-800 py-2 px-4 rounded">БЕЖАТЬ</button></div><div class="flex items-center space-x-4 md:space-x-8 text-6xl md:text-8xl font-bold my-8"><span id="marathon-question" class="text-white text-right min-w-[280px]">2 x 2</span><span class="text-gray-600">=</span><input type="number" id="marathon-input" autocomplete="off" class="w-32 md:w-48 bg-transparent border-b-4 border-gray-700 text-center text-white focus:border-red-500 transition-colors"></div><div id="marathon-error" class="mt-8 text-xl text-red-500 h-8 opacity-0 uppercase tracking-widest text-center bg-red-900/20 px-6 py-2 rounded border border-red-900/50">Ошибка!</div></div>
     <div id="marathon-transition-screen" class="hidden w-full max-w-2xl flex flex-col items-center z-10 space-y-6 bg-black border-2 border-red-900 p-8 rounded-lg shadow-2xl fade-in text-center"><h2 id="marathon-trans-subtitle" class="text-xl text-gray-400 tracking-[0.5em] uppercase">СТАТУС ВРАТ</h2><h1 id="marathon-trans-title" class="text-5xl md:text-6xl font-bold title-font tracking-widest mb-4">ЗАПЕЧАТАНО</h1><div id="marathon-trans-stats" class="text-gray-300 text-lg mb-4">Время: <span id="marathon-trans-time" class="text-white font-bold">20.5s</span> | Ошибки: <span id="marathon-trans-err" class="text-red-400 font-bold">0</span></div><button id="marathon-trans-btn" class="mt-8 btn border-2 py-4 px-12 uppercase tracking-widest font-bold text-xl">ПРОДОЛЖИТЬ</button></div>
+    
+    <!-- STANDARD GAME SCREEN -->
     <div id="standard-game-screen" class="hidden w-full max-w-3xl flex flex-col items-center justify-center z-10 fade-in relative"><div class="w-full flex justify-between items-center mb-8 px-6 py-4 bg-black/60 border border-gray-800 rounded-lg shadow-lg"><div class="flex flex-col"><span class="text-xs text-gray-500 uppercase tracking-widest">Прогресс</span><div id="std-progress" class="text-2xl text-blue-300 font-bold">1 / 12</div></div><div id="std-timer-container" class="flex flex-col items-center hidden"><span class="text-xs text-gray-500 uppercase tracking-widest">Время</span><div id="std-timer" class="text-2xl neon-text-green font-bold">00.0s</div></div><button onclick="interruptStdGame()" class="text-gray-500 hover:text-red-400 transition-colors uppercase tracking-widest text-xs border border-gray-800 py-2 px-4 rounded">ПРЕРВАТЬ</button></div><div id="std-motivation" class="h-8 text-xl text-blue-400 mb-8 opacity-0 transition-opacity duration-300 uppercase tracking-widest text-center">Сфокусируйся!</div><div class="flex items-center space-x-4 md:space-x-8 text-6xl md:text-8xl font-bold my-8"><span id="std-question" class="text-white text-right min-w-[280px]">2 x 2</span><span class="text-gray-600">=</span><input type="number" id="std-input" autocomplete="off" class="w-32 md:w-48 bg-transparent border-b-4 border-gray-700 text-center text-white focus:border-blue-500 transition-colors"></div><div id="std-error" class="mt-8 text-xl text-red-500 h-8 opacity-0 uppercase tracking-widest text-center bg-red-900/20 px-6 py-2 rounded border border-red-900/50">Ошибка!</div></div>
+    
+    <!-- RESULTS & LEADERBOARD -->
     <div id="std-result-screen" class="hidden w-full max-w-2xl flex flex-col items-center z-10 space-y-6 bg-black border-2 neon-border-green p-8 rounded-lg shadow-2xl fade-in"><h1 class="text-4xl md:text-5xl neon-text-green title-font tracking-widest mb-2 uppercase text-center" id="std-result-title">ЭКЗАМЕН СДАН</h1><div id="std-result-grade" class="text-5xl md:text-6xl font-bold my-6 text-center text-white title-font tracking-wider">МАСТЕР</div><div class="grid grid-cols-2 gap-8 w-full text-center text-2xl mb-4 border-t border-b border-gray-800 py-6 bg-black/50"><div class="col-span-2 border-b border-gray-800 pb-4 mb-2"><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Общее время</span><span id="std-result-time" class="text-4xl neon-text-blue font-bold tracking-widest">15.4s</span></div><div><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Ошибки</span><span id="std-result-errors" class="neon-text-red font-bold">0</span></div><div><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Ср. темп</span><span id="std-result-tps" class="text-gray-300 font-bold text-xl">2.1s/шт</span></div></div><div class="flex space-x-4 mt-6 w-full"><button onclick="backToMenu()" class="btn border border-gray-700 text-gray-400 py-4 px-6 rounded w-1/2 hover:bg-gray-800">В МЕНЮ</button><button onclick="showLeaderboard()" class="btn border-2 neon-border-green py-4 px-6 rounded w-1/2 bg-green-900/20 hover:bg-green-900/40">РЕКОРДЫ</button></div></div>
     <div id="rpg-result-screen" class="hidden w-full max-w-2xl flex flex-col items-center z-10 space-y-6 bg-black border-2 neon-border-red p-8 rounded-lg shadow-2xl relative overflow-hidden fade-in"><h1 class="text-5xl md:text-6xl text-red-600 text-shadow-red mb-2 uppercase title-font tracking-widest text-center" id="rpg-result-title">СВЯЗЬ ПОТЕРЯНА</h1><div id="rpg-final-grade" class="text-4xl md:text-5xl font-bold my-4 text-center text-white title-font tracking-wider">РАНГ: B</div><div class="grid grid-cols-2 gap-8 w-full text-center text-2xl md:text-3xl mb-4 border-t border-b border-gray-800 py-6 bg-black/50 z-10"><div><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Энергия</span><span id="rpg-final-score" class="text-white font-bold">1200</span></div><div><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Рекорд</span><span id="rpg-high-score" class="text-red-500 font-bold">1500</span></div></div><div class="w-full max-h-48 overflow-y-auto bg-gray-900 bg-opacity-80 p-4 rounded text-left border border-gray-800 z-10"><h3 class="text-gray-500 mb-3 border-b border-gray-800 pb-2 text-xs uppercase tracking-widest">Анализ Ошибок:</h3><ul id="rpg-error-log" class="text-red-400 space-y-2 font-mono text-sm leading-relaxed"></ul></div><div class="flex space-x-4 mt-6 w-full relative z-10"><button onclick="backToMenu()" class="btn border border-gray-700 text-gray-400 py-4 px-6 rounded w-1/2 hover:bg-gray-800">НА БАЗУ</button><button onclick="showLeaderboard()" class="btn border-2 neon-border-red py-4 px-6 rounded w-1/2 bg-red-900/20 hover:bg-red-900/40">РЕКОРДЫ</button></div></div>
-    <div id="rpg-setup-screen" class="hidden w-full max-w-2xl flex flex-col items-center z-10 space-y-6 bg-black border-2 neon-border-red p-8 rounded-lg shadow-2xl fade-in"><h1 class="text-4xl neon-text-red title-font tracking-widest mb-4 uppercase">Настройки Боя</h1><div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8"><div class="flex flex-col space-y-4"><h3 class="text-lg text-gray-500 border-b border-gray-800 pb-2 uppercase tracking-widest">Оружие</h3><label class="flex items-center space-x-3 text-xl cursor-pointer"><input type="checkbox" id="op-add" checked class="w-5 h-5 accent-red-600"><span>[+] Сложение</span></label><label class="flex items-center space-x-3 text-xl cursor-pointer"><input type="checkbox" id="op-sub" checked class="w-5 h-5 accent-red-600"><span>[-] Вычитание</span></label><label class="flex items-center space-x-3 text-xl cursor-pointer"><input type="checkbox" id="op-mul" checked class="w-5 h-5 accent-red-600"><span>[×] Умножение</span></label><label class="flex items-center space-x-3 text-xl cursor-pointer"><input type="checkbox" id="op-div" checked class="w-5 h-5 accent-red-600"><span>[÷] Деление</span></label></div><div class="flex flex-col space-y-4"><h3 class="text-lg text-gray-500 border-b border-gray-800 pb-2 uppercase tracking-widest">Угроза</h3><label class="flex items-center space-x-3 text-xl cursor-pointer"><input type="radio" name="rpg-diff" value="junior" class="w-5 h-5 accent-blue-500"><span class="text-blue-400">JUNIOR</span></label><label class="flex items-center space-x-3 text-xl cursor-pointer"><input type="radio" name="rpg-diff" value="middle" checked class="w-5 h-5 accent-purple-500"><span class="text-purple-400">MIDDLE</span></label><label class="flex items-center space-x-3 text-xl cursor-pointer"><input type="radio" name="rpg-diff" value="senior" class="w-5 h-5 accent-red-600"><span class="neon-text-red font-bold">SENIOR</span></label></div></div><div id="rpg-setup-error" class="text-red-500 h-6 opacity-0 uppercase tracking-widest text-sm">Выбери оружие, солдат!</div><div class="flex space-x-4 mt-8 w-full"><button onclick="backToMenu()" class="btn border border-gray-700 py-3 px-6 rounded w-1/3">ОТМЕНА</button><button onclick="startRpgMath()" class="btn border-2 neon-border-red py-3 px-6 rounded w-2/3 text-xl bg-red-900/20 title-font">СПУСК</button></div></div>
     <div id="leaderboard-screen" class="hidden w-full max-w-5xl flex flex-col items-center z-10 space-y-6 fade-in"><h1 class="text-5xl title-font neon-text-red uppercase">БАЗА ДАННЫХ</h1><div class="w-full bg-black bg-opacity-80 border border-gray-800 rounded p-4 shadow-[0_0_30px_rgba(0,0,0,0.9)] overflow-x-auto"><table class="w-full text-left border-collapse min-w-[600px]"><thead><tr class="border-b border-gray-800 text-gray-500 text-xs uppercase tracking-widest"><th class="p-3">#</th><th class="p-3">Объект / Ранг</th><th class="p-3">Протокол</th><th class="p-3">Показатели</th><th class="p-3">Сбои</th><th class="p-3 hidden md:table-cell">Дата</th><th id="th-action" class="p-3 hidden text-red-500">УДАЛИТЬ</th></tr></thead><tbody id="leaderboard-body" class="font-mono text-sm"></tbody></table></div><div class="flex flex-wrap justify-between w-full mt-6 gap-4"><button onclick="backToMenu()" class="btn border border-gray-700 text-gray-400 py-3 px-8 rounded">НАЗАД</button><div class="flex gap-4"><button onclick="toggleEditMode()" id="btn-edit-mode" class="btn border border-gray-700 text-gray-500 py-3 px-6 rounded">⚙️ РЕЖИМ БОГА</button><button onclick="clearAllRecords()" id="btn-clear-all" class="btn border-2 neon-border-red text-red-500 py-3 px-6 rounded hidden title-font">💀 СТЕРЕТЬ ВСЁ</button></div></div></div>
     <div id="super-reward" class="hidden fixed inset-0 z-[100] bg-black flex-col items-center justify-center fade-in"><div class="portal-spin"></div><div class="relative z-10 text-center mt-32"><h1 class="neon-text-red title-font text-7xl md:text-9xl glitch" data-text="ВРАТА ОТКРЫТЫ">ВРАТА ОТКРЫТЫ</h1><p class="text-white text-2xl md:text-4xl tracking-widest font-bold">ТЫ — ИСТИННЫЙ МАСТЕР ИЗНАНКИ</p><button onclick="closeReward()" class="mt-12 btn border-2 neon-border-red py-4 px-12 text-red-500 font-bold">ВЕРНУТЬСЯ В РЕАЛЬНОСТЬ</button></div></div>
 
     <script>
-        // --- AUDIO / VISUAL FX ---
-        function createSpores() { 
-            const c = document.getElementById('spores'); 
-            for(let i=0;i<40;i++){ 
-                let s = document.createElement('div'); 
-                s.className = 'spore'; 
-                s.style.width=s.style.height=(Math.random()*4+1)+'px'; 
-                s.style.left=Math.random()*100+'vw'; 
-                s.style.animationDuration=(Math.random()*10+10)+'s'; 
-                s.style.animationDelay=Math.random()*10+'s'; 
-                c.appendChild(s); 
-            } 
-        } 
-        createSpores();
-
-        const customAudio = document.getElementById('custom-bgm'); 
-        const btnPlay = document.getElementById('btn-play-music'); 
-        const volControl = document.getElementById('music-volume'); 
-        const iconPlay = document.getElementById('icon-play'); 
-        const iconPause = document.getElementById('icon-pause');
-
-        customAudio.volume = volControl.value; 
-        btnPlay.addEventListener('click', toggleCustomAudio); 
-        volControl.addEventListener('input', (e) => customAudio.volume = e.target.value); 
-        let customAudioActive = false;
-
-        function toggleCustomAudio() { 
-            if (customAudio.paused) { 
-                customAudio.play().then(() => { 
-                    iconPlay.classList.add('hidden'); 
-                    iconPause.classList.remove('hidden'); 
-                    customAudioActive = true; 
-                    stopSynthBGM(); 
-                }).catch(e => console.error(e)); 
-            } else { 
-                customAudio.pause(); 
-                iconPlay.classList.remove('hidden'); 
-                iconPause.classList.add('hidden'); 
-                customAudioActive = false; 
-            } 
-        }
-
-        const AudioContext = window.AudioContext || window.webkitAudioContext; 
-        let audioCtx, synthBgmInterval;
-
-        function initAudio() { 
-            if (!audioCtx) audioCtx = new AudioContext(); 
-            if (audioCtx.state === 'suspended') audioCtx.resume(); 
-        }
-
+        // --- AUDIO & VISUALS ---
+        function createSpores() { const c = document.getElementById('spores'); for(let i=0;i<40;i++){ let s = document.createElement('div'); s.className = 'spore'; s.style.width=s.style.height=(Math.random()*4+1)+'px'; s.style.left=Math.random()*100+'vw'; s.style.animationDuration=(Math.random()*10+10)+'s'; s.style.animationDelay=Math.random()*10+'s'; c.appendChild(s); } } createSpores();
+        const customAudio = document.getElementById('custom-bgm'); const btnPlay = document.getElementById('btn-play-music'); const volControl = document.getElementById('music-volume'); const iconPlay = document.getElementById('icon-play'); const iconPause = document.getElementById('icon-pause');
+        customAudio.volume = volControl.value; btnPlay.addEventListener('click', toggleCustomAudio); volControl.addEventListener('input', (e) => customAudio.volume = e.target.value); let customAudioActive = false;
+        function toggleCustomAudio() { if (customAudio.paused) { customAudio.play().then(() => { iconPlay.classList.add('hidden'); iconPause.classList.remove('hidden'); customAudioActive = true; stopSynthBGM(); }).catch(e => console.error(e)); } else { customAudio.pause(); iconPlay.classList.remove('hidden'); iconPause.classList.add('hidden'); customAudioActive = false; } }
+        const AudioContext = window.AudioContext || window.webkitAudioContext; let audioCtx, synthBgmInterval;
+        function initAudio() { if (!audioCtx) audioCtx = new AudioContext(); if (audioCtx.state === 'suspended') audioCtx.resume(); }
         function playSound(type) {
-            if (!audioCtx) return; 
-            const osc = audioCtx.createOscillator(); 
-            const gain = audioCtx.createGain(); 
-            osc.connect(gain); 
-            gain.connect(audioCtx.destination); 
-            const now = audioCtx.currentTime;
-
-            if (type === 'success') { 
-                osc.type = 'square'; 
-                osc.frequency.setValueAtTime(440, now); 
-                osc.frequency.exponentialRampToValueAtTime(880, now + 0.1); 
-                gain.gain.setValueAtTime(0.1, now); 
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2); 
-                osc.start(now); osc.stop(now + 0.2); 
-            }
-            else if (type === 'error' || type === 'hit') { 
-                osc.type = 'sawtooth'; 
-                osc.frequency.setValueAtTime(150, now); 
-                osc.frequency.exponentialRampToValueAtTime(40, now + 0.3); 
-                gain.gain.setValueAtTime(0.2, now); 
-                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3); 
-                osc.start(now); osc.stop(now + 0.3); 
-            }
-            else if (type === 'fanfare') { 
-                osc.type = 'sine'; 
-                osc.frequency.setValueAtTime(523.25, now); 
-                osc.frequency.setValueAtTime(659.25, now+0.2); 
-                osc.frequency.setValueAtTime(783.99, now+0.4); 
-                gain.gain.setValueAtTime(0.2, now); 
-                gain.gain.linearRampToValueAtTime(0, now + 1.5); 
-                osc.start(now); osc.stop(now + 1.5); 
-            }
-            else if (type === 'super_portal') { 
-                osc.type = 'sawtooth'; 
-                osc.frequency.setValueAtTime(40, now); 
-                gain.gain.setValueAtTime(0, now); 
-                gain.gain.linearRampToValueAtTime(0.5, now + 1); 
-                gain.gain.linearRampToValueAtTime(0, now + 4); 
-                osc.start(now); osc.stop(now + 4); 
-            }
+            if (!audioCtx) return; const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain(); osc.connect(gain); gain.connect(audioCtx.destination); const now = audioCtx.currentTime;
+            if (type === 'success') { osc.type = 'square'; osc.frequency.setValueAtTime(440, now); osc.frequency.exponentialRampToValueAtTime(880, now + 0.1); gain.gain.setValueAtTime(0.1, now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2); osc.start(now); osc.stop(now + 0.2); }
+            else if (type === 'error' || type === 'hit') { osc.type = 'sawtooth'; osc.frequency.setValueAtTime(150, now); osc.frequency.exponentialRampToValueAtTime(40, now + 0.3); gain.gain.setValueAtTime(0.2, now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3); osc.start(now); osc.stop(now + 0.3); }
+            else if (type === 'fanfare') { osc.type = 'sine'; osc.frequency.setValueAtTime(523.25, now); osc.frequency.setValueAtTime(659.25, now+0.2); osc.frequency.setValueAtTime(783.99, now+0.4); gain.gain.setValueAtTime(0.2, now); gain.gain.linearRampToValueAtTime(0, now + 1.5); osc.start(now); osc.stop(now + 1.5); }
+            else if (type === 'super_portal') { osc.type = 'sawtooth'; osc.frequency.setValueAtTime(40, now); gain.gain.setValueAtTime(0, now); gain.gain.linearRampToValueAtTime(0.5, now + 1); gain.gain.linearRampToValueAtTime(0, now + 4); osc.start(now); osc.stop(now + 4); }
         }
+        function startSynthBGM() { if (customAudioActive && !customAudio.paused) return; if (!audioCtx) initAudio(); stopSynthBGM(); const notes = [130.81, 164.81, 196.00, 246.94, 261.63, 246.94, 196.00, 164.81]; let step = 0; synthBgmInterval = setInterval(() => { if(audioCtx.state !== 'running') return; const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain(); const filter = audioCtx.createBiquadFilter(); filter.type = 'lowpass'; filter.frequency.value = 800; osc.type = 'sawtooth'; osc.frequency.value = notes[step]; osc.connect(filter); filter.connect(gain); gain.connect(audioCtx.destination); const now = audioCtx.currentTime; gain.gain.setValueAtTime(0, now); gain.gain.linearRampToValueAtTime(0.05, now + 0.02); gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3); osc.start(now); osc.stop(now + 0.3); step = (step + 1) % notes.length; }, 160); }
+        function stopSynthBGM() { if (synthBgmInterval) { clearInterval(synthBgmInterval); synthBgmInterval = null; } }
+        function showFloatingText(text, colorClass, containerId) { let container = document.getElementById(containerId); let el = document.createElement('div'); el.className = `absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-5xl md:text-7xl font-bold ${colorClass} pointer-events-none z-50 floating-text`; el.innerText = text; container.appendChild(el); setTimeout(() => el.remove(), 1000); }
 
-        function startSynthBGM() { 
-            if (customAudioActive && !customAudio.paused) return; 
-            if (!audioCtx) initAudio(); 
-            stopSynthBGM(); 
-            const notes = [130.81, 164.81, 196.00, 246.94, 261.63, 246.94, 196.00, 164.81]; 
-            let step = 0; 
-            synthBgmInterval = setInterval(() => { 
-                if(audioCtx.state !== 'running') return; 
-                const osc = audioCtx.createOscillator(); 
-                const gain = audioCtx.createGain(); 
-                const filter = audioCtx.createBiquadFilter(); 
-                filter.type = 'lowpass'; 
-                filter.frequency.value = 800; 
-                osc.type = 'sawtooth'; 
-                osc.frequency.value = notes[step]; 
-                osc.connect(filter); filter.connect(gain); gain.connect(audioCtx.destination); 
-                const now = audioCtx.currentTime; 
-                gain.gain.setValueAtTime(0, now); 
-                gain.gain.linearRampToValueAtTime(0.05, now + 0.02); 
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3); 
-                osc.start(now); osc.stop(now + 0.3); 
-                step = (step + 1) % notes.length; 
-            }, 160); 
-        }
-
-        function stopSynthBGM() { 
-            if (synthBgmInterval) { 
-                clearInterval(synthBgmInterval); 
-                synthBgmInterval = null; 
-            } 
-        }
-
-        function showFloatingText(text, colorClass, containerId) { 
-            let container = document.getElementById(containerId); 
-            let el = document.createElement('div'); 
-            el.className = `absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-5xl md:text-7xl font-bold ${colorClass} pointer-events-none z-50 floating-text`; 
-            el.innerText = text; 
-            container.appendChild(el); 
-            setTimeout(() => el.remove(), 1000); 
-        }
-
-        // --- JSON DB FETCH ---
+        // --- JSON DB FETCH (With Fallback type assignment) ---
         const fallbackKnowledgeBase = [
-            {"type": "ru", "t": "К_рова", "o": ["о", "а"], "a": "о", "r": "Словарное слово: кОрова"},
-            {"type": "en", "t": "Run", "o": ["Бежать", "Спать"], "a": "Бежать", "r": "Run - Бежать"},
-            {"type": "read", "lvl": 1, "wpm": 100, "t": "TEST", "text": "Монстр пришел.", "q": "Кто пришел?", "o": ["Монстр", "Кот"], "a": "Монстр", "r": "Был монстр."}
+            {"type": "ru", "t": "К_рова", "o": ["о", "а"], "a": "о", "r": "Словарное слово: кОрова"}
         ];
-        
         let knowledgeBase = [];
-
         async function loadKnowledgeBase() { 
             try { 
                 const response = await fetch('./knowledge_base.json'); 
@@ -396,79 +259,61 @@
                 knowledgeBase = fallbackKnowledgeBase; 
             } 
         }
-        
         document.addEventListener('DOMContentLoaded', loadKnowledgeBase);
 
-        const els = { 
-            menu: document.getElementById('menu-screen'), 
-            legend: document.getElementById('legend-screen'), 
-            stdGame: document.getElementById('standard-game-screen'), 
-            stdResult: document.getElementById('std-result-screen'), 
-            marathonGame: document.getElementById('marathon-game-screen'), 
-            marathonTrans: document.getElementById('marathon-transition-screen'), 
-            rpgSetup: document.getElementById('rpg-setup-screen'), 
-            rpgGame: document.getElementById('rpg-game-screen'), 
-            rpgResult: document.getElementById('rpg-result-screen'), 
-            leaderboard: document.getElementById('leaderboard-screen'), 
-            rsvp: document.getElementById('rsvp-screen'), 
-            readSetup: document.getElementById('read-setup-screen') 
-        };
+        // --- GLOBAL UI STATE ---
+        const els = { menu: document.getElementById('menu-screen'), legend: document.getElementById('legend-screen'), stdGame: document.getElementById('standard-game-screen'), stdResult: document.getElementById('std-result-screen'), marathonGame: document.getElementById('marathon-game-screen'), marathonTrans: document.getElementById('marathon-transition-screen'), rpgSetup: document.getElementById('rpg-setup-screen'), rpgGame: document.getElementById('rpg-game-screen'), rpgResult: document.getElementById('rpg-result-screen'), leaderboard: document.getElementById('leaderboard-screen'), rsvp: document.getElementById('rsvp-screen'), readSetup: document.getElementById('read-setup-screen') };
+        function showScreen(screenEl) { Object.values(els).forEach(s => s.classList.add('hidden')); screenEl.classList.remove('hidden'); updateGlobalProgression(); }
+        function shuffle(arr) { let a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+        function getRand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+        function showLegend() { showScreen(els.legend); }
+        function updateGlobalProgression() { let history = JSON.parse(localStorage.getItem('stDB2') || '[]'); let totalExp = 0; history.forEach(r => { if (r.score !== null) { totalExp += r.score; } else { if (r.gradeId === 'S') totalExp += 500; else if (r.gradeId === 'A') totalExp += 250; else if (r.gradeId === 'C') totalExp += 50; } }); if (totalExp > 0) { document.getElementById('global-level').innerText = Math.floor(totalExp / 1000) + 1; document.getElementById('global-exp').innerText = totalExp; document.getElementById('global-progression').classList.remove('hidden'); } }
 
-        function showScreen(screenEl) { 
-            Object.values(els).forEach(s => s.classList.add('hidden')); 
-            screenEl.classList.remove('hidden'); 
-            updateGlobalProgression(); 
-        }
-
-        function shuffle(arr) { 
-            let a = [...arr]; 
-            for (let i = a.length - 1; i > 0; i--) { 
-                const j = Math.floor(Math.random() * (i + 1)); 
-                [a[i], a[j]] = [a[j], a[i]]; 
-            } 
-            return a; 
-        }
-
-        function getRand(min, max) { 
-            return Math.floor(Math.random() * (max - min + 1)) + min; 
-        }
-
-        function showLegend() { 
-            showScreen(els.legend); 
-        }
-
-        function updateGlobalProgression() { 
-            let history = JSON.parse(localStorage.getItem('stDB2') || '[]'); 
-            let totalExp = 0; 
-            history.forEach(r => { 
-                if (r.score !== null) { 
-                    totalExp += r.score; 
-                } else { 
-                    if (r.gradeId === 'S') totalExp += 500; 
-                    else if (r.gradeId === 'A') totalExp += 250; 
-                    else if (r.gradeId === 'C') totalExp += 50; 
-                } 
-            }); 
-            
-            if (totalExp > 0) { 
-                document.getElementById('global-level').innerText = Math.floor(totalExp / 1000) + 1; 
-                document.getElementById('global-exp').innerText = totalExp; 
-                document.getElementById('global-progression').classList.remove('hidden'); 
-            } 
-        }
-
-        // --- MATH MODES (Std & Marathon kept fully intact) ---
+        // --- STANDARD MODE (ACADEMY / EXAM) ---
         let stdState = { mode: null, q: [], idx: 0, mistakes: 0, startTime: null, timerInt: null, forceCorrect: false, interrupted: false, sessionScore: 0 };
-        function startStandardMode(mode, digit) { initAudio(); stdState = { mode: mode, digit: digit, q: [], idx: 0, mistakes: 0, startTime: null, forceCorrect: false, interrupted: false, sessionScore: 0 }; if (digit === 'mix') { for(let i=0; i<30; i++) stdState.q.push({a: getRand(2,9), b: getRand(2,9), ans: null}); stdState.q.forEach(q => q.ans = q.a * q.b); stdState.q = shuffle(stdState.q); } else { [2,3,4,5,6,7,8,9].forEach(b => stdState.q.push({a: digit, b: b, ans: digit * b})); if (mode === 'battle') stdState.q = shuffle(stdState.q); } document.getElementById('std-timer-container').classList.toggle('hidden', mode === 'training'); document.getElementById('std-input').classList.remove('border-red-500'); showScreen(els.stdGame); renderStdQuestion(); window.onclick = () => { if(!els.stdGame.classList.contains('hidden')) document.getElementById('std-input').focus(); }; }
+        function startStandardMode(mode, digit) { 
+            initAudio(); 
+            stdState = { mode: mode, digit: digit, q: [], idx: 0, mistakes: 0, startTime: null, forceCorrect: false, interrupted: false, sessionScore: 0 }; 
+            if (digit === 'mix') { 
+                for(let i=0; i<30; i++) stdState.q.push({a: getRand(2,9), b: getRand(2,9), ans: null}); 
+                stdState.q.forEach(q => q.ans = q.a * q.b); stdState.q = shuffle(stdState.q); 
+            } else { 
+                [2,3,4,5,6,7,8,9].forEach(b => stdState.q.push({a: digit, b: b, ans: digit * b})); 
+                if (mode === 'battle') stdState.q = shuffle(stdState.q); 
+            } 
+            document.getElementById('std-timer-container').classList.toggle('hidden', mode === 'training'); 
+            document.getElementById('std-input').classList.remove('border-red-500'); 
+            showScreen(els.stdGame); renderStdQuestion(); 
+            window.onclick = () => { if(!els.stdGame.classList.contains('hidden')) document.getElementById('std-input').focus(); }; 
+        }
         function renderStdQuestion() { let q = stdState.q[stdState.idx]; document.getElementById('std-question').innerText = `${q.a} x ${q.b}`; document.getElementById('std-input').value = ""; document.getElementById('std-error').style.opacity = '0'; document.getElementById('std-progress').innerText = `${stdState.idx + 1} / ${stdState.q.length}`; if (stdState.mode === 'battle' && !stdState.startTime && stdState.idx === 0) document.getElementById('std-timer').innerText = "00.0s"; document.getElementById('std-input').focus(); }
-        document.getElementById('std-input').addEventListener('keydown', function(e) { if (e.key === 'Enter') { let val = parseInt(this.value, 10); if (isNaN(val)) return; if (stdState.mode === 'battle' && !stdState.startTime) { stdState.startTime = Date.now(); stdState.timerInt = setInterval(() => document.getElementById('std-timer').innerText = ((Date.now() - stdState.startTime) / 1000).toFixed(1) + "s", 100); } let isCorrect = (val === stdState.q[stdState.idx].ans); if (stdState.forceCorrect) { if (isCorrect) { stdState.forceCorrect = false; playSound('success'); nextStdQuestion(); } else { playSound('hit'); this.value = ""; } return; } if (isCorrect) { playSound('success'); if(stdState.mode === 'training') { stdState.sessionScore += 10; showFloatingText('+10 EXP', 'neon-text-blue', 'standard-game-screen'); } nextStdQuestion(); } else { playSound('error'); stdState.mistakes++; if (stdState.mode === 'training') { stdState.forceCorrect = true; this.classList.add('border-red-500'); document.getElementById('std-error').innerText = `Ошибка! Правильно: ${stdState.q[stdState.idx].ans}. Введи ответ!`; document.getElementById('std-error').style.opacity = '1'; this.value = ""; stdState.q.push({...stdState.q[stdState.idx]}); document.getElementById('std-progress').innerText = `${stdState.idx + 1} / ${stdState.q.length}`; } else { nextStdQuestion(); } } } });
+        document.getElementById('std-input').addEventListener('keydown', function(e) { 
+            if (e.key === 'Enter') { 
+                let val = parseInt(this.value, 10); if (isNaN(val)) return; 
+                if (stdState.mode === 'battle' && !stdState.startTime) { stdState.startTime = Date.now(); stdState.timerInt = setInterval(() => document.getElementById('std-timer').innerText = ((Date.now() - stdState.startTime) / 1000).toFixed(1) + "s", 100); } 
+                let isCorrect = (val === stdState.q[stdState.idx].ans); 
+                if (stdState.forceCorrect) { if (isCorrect) { stdState.forceCorrect = false; playSound('success'); nextStdQuestion(); } else { playSound('hit'); this.value = ""; } return; } 
+                if (isCorrect) { playSound('success'); if(stdState.mode === 'training') { stdState.sessionScore += 10; showFloatingText('+10 EXP', 'neon-text-blue', 'standard-game-screen'); } nextStdQuestion(); } 
+                else { playSound('error'); stdState.mistakes++; if (stdState.mode === 'training') { stdState.forceCorrect = true; this.classList.add('border-red-500'); document.getElementById('std-error').innerText = `Ошибка! Правильно: ${stdState.q[stdState.idx].ans}. Введи ответ!`; document.getElementById('std-error').style.opacity = '1'; this.value = ""; stdState.q.push({...stdState.q[stdState.idx]}); document.getElementById('std-progress').innerText = `${stdState.idx + 1} / ${stdState.q.length}`; } else { nextStdQuestion(); } } 
+            } 
+        });
         function nextStdQuestion() { stdState.idx++; if (stdState.idx >= stdState.q.length) endStdGame(); else renderStdQuestion(); }
         function interruptStdGame() { if (stdState.mode === 'battle' && stdState.idx > 0) { stdState.interrupted = true; endStdGame(); } else backToMenu(); }
-        function endStdGame() { clearInterval(stdState.timerInt); window.onclick = null; if (stdState.mode === 'training') { saveRecord(`ACADEMY [${stdState.digit.toString().toUpperCase()}]`, 0, stdState.mistakes, {id: '-', title: 'ТРЕНИРОВКА'}, Math.floor(stdState.sessionScore)); backToMenu(); return; } let answered = stdState.idx; if (answered === 0) { backToMenu(); return; } let totalTime = (Date.now() - stdState.startTime) / 1000; let tps = totalTime / answered; let targetTime = stdState.digit === 'mix' ? 120 : 32; let midTime = stdState.digit === 'mix' ? 180 : 48; let gradeObj; if (stdState.interrupted) { gradeObj = { id: 'C', title: 'СБЕЖАЛ С ПОЛЯ БОЯ', color: 'text-gray-500' }; playSound('error'); } else { playSound('fanfare'); if (totalTime <= targetTime && stdState.mistakes === 0) gradeObj = { id: 'S', title: 'МАСТЕР ИЗНАНКИ', color: 'neon-text-blue' }; else if (totalTime <= midTime && stdState.mistakes <= 2) gradeObj = { id: 'A', title: 'ВЫЖИВШИЙ', color: 'neon-text-green' }; else gradeObj = { id: 'C', title: 'ЖЕРТВА ДЕМОГОРГОНА', color: 'neon-text-red' }; } document.getElementById('std-result-time').innerText = totalTime.toFixed(1) + "s"; document.getElementById('std-result-errors').innerText = stdState.mistakes; document.getElementById('std-result-tps').innerText = tps.toFixed(1) + "s / ответ"; document.getElementById('std-result-title').innerText = stdState.interrupted ? "СЕАНС ПРЕРВАН" : "ЭКЗАМЕН СДАН"; document.getElementById('std-result-grade').innerHTML = `<span class="${gradeObj.color}">${gradeObj.id}</span><br><span class="text-2xl text-gray-400">(${gradeObj.title})</span>`; document.getElementById('std-result-note').innerText = `Режим: ЭКЗАМЕН | Цифра: ${stdState.digit.toString().toUpperCase()}`; saveRecord(`EXAM [${stdState.digit.toString().toUpperCase()}]`, totalTime, stdState.mistakes, gradeObj, null); showScreen(els.stdResult); if (gradeObj.id === 'S') triggerSuperReward(); }
+        function endStdGame() { 
+            clearInterval(stdState.timerInt); window.onclick = null; 
+            if (stdState.mode === 'training') { saveRecord(`ACADEMY [${stdState.digit.toString().toUpperCase()}]`, 0, stdState.mistakes, {id: '-', title: 'ТРЕНИРОВКА'}, Math.floor(stdState.sessionScore)); backToMenu(); return; } 
+            let answered = stdState.idx; if (answered === 0) { backToMenu(); return; } 
+            let totalTime = (Date.now() - stdState.startTime) / 1000; let tps = totalTime / answered; let targetTime = stdState.digit === 'mix' ? 120 : 32; let midTime = stdState.digit === 'mix' ? 180 : 48; let gradeObj; 
+            if (stdState.interrupted) { gradeObj = { id: 'C', title: 'СБЕЖАЛ С ПОЛЯ БОЯ', color: 'text-gray-500' }; playSound('error'); } 
+            else { playSound('fanfare'); if (totalTime <= targetTime && stdState.mistakes === 0) gradeObj = { id: 'S', title: 'МАСТЕР ИЗНАНКИ', color: 'neon-text-blue' }; else if (totalTime <= midTime && stdState.mistakes <= 2) gradeObj = { id: 'A', title: 'ВЫЖИВШИЙ', color: 'neon-text-green' }; else gradeObj = { id: 'C', title: 'ЖЕРТВА ДЕМОГОРГОНА', color: 'neon-text-red' }; } 
+            document.getElementById('std-result-time').innerText = totalTime.toFixed(1) + "s"; document.getElementById('std-result-errors').innerText = stdState.mistakes; document.getElementById('std-result-tps').innerText = tps.toFixed(1) + "s / ответ"; document.getElementById('std-result-title').innerText = stdState.interrupted ? "СЕАНС ПРЕРВАН" : "ЭКЗАМЕН СДАН"; document.getElementById('std-result-grade').innerHTML = `<span class="${gradeObj.color}">${gradeObj.id}</span><br><span class="text-2xl text-gray-400">(${gradeObj.title})</span>`; document.getElementById('std-result-note').innerText = `Режим: ЭКЗАМЕН | Цифра: ${stdState.digit.toString().toUpperCase()}`; 
+            saveRecord(`EXAM [${stdState.digit.toString().toUpperCase()}]`, totalTime, stdState.mistakes, gradeObj, null); showScreen(els.stdResult); if (gradeObj.id === 'S') triggerSuperReward(); 
+        }
 
+        // --- BOSS RUSH (MARATHON) ---
         let marState = { active: false, hp: 3, currDigit: 2, q: [], idx: 0, mistakes: 0, startTime: null, timerInt: null, forceCorrect: false };
         function startMarathon() { initAudio(); marState = { active: true, hp: 3, currDigit: 2, q: [], idx: 0, mistakes: 0, startTime: null, timerInt: null, forceCorrect: false }; for(let i=2; i<=9; i++) { document.getElementById(`gate-${i}`).className = 'gate-slot'; } startMarathonLevel(2); showScreen(els.marathonGame); }
-        function startMarathonLevel(digit) { marState.currDigit = digit; marState.idx = 0; marState.mistakes = 0; marState.forceCorrect = false; marState.startTime = Date.now(); marState.q = shuffle([2,3,4,5,6,7,8,9].map(b => ({a: digit, b: b, ans: digit*b}))); document.getElementById(`gate-${digit}`).classList.add('gate-current'); document.getElementById('marathon-timer').innerText = "00.0s"; marState.timerInt = setInterval(() => { if(els.marathonGame.classList.contains('hidden') === false) document.getElementById('marathon-timer').innerText = ((Date.now() - marState.startTime) / 1000).toFixed(1) + "s"; }, 100); renderMarathonQ(); window.onclick = () => { if(!els.marathonGame.classList.contains('hidden')) document.getElementById('marathon-input').focus(); }; }
+        function startMarathonLevel(digit) { marState.currDigit = digit; marState.idx = 0; marState.mistakes = 0; marState.forceCorrect = false; marState.startTime = Date.now(); marState.q = shuffle([2,3,4,5,6,7,8,9].map(b => ({a: digit, b: b, ans: digit*b}))); document.getElementById(`gate-${digit}`).classList.add('gate-current'); document.getElementById('marathon-timer').innerText = "00.0s"; marState.timerInt = setInterval(() => { if(!els.marathonGame.classList.contains('hidden')) document.getElementById('marathon-timer').innerText = ((Date.now() - marState.startTime) / 1000).toFixed(1) + "s"; }, 100); renderMarathonQ(); window.onclick = () => { if(!els.marathonGame.classList.contains('hidden')) document.getElementById('marathon-input').focus(); }; }
         function renderMarathonQ() { let q = marState.q[marState.idx]; document.getElementById('marathon-question').innerText = `${q.a} x ${q.b}`; document.getElementById('marathon-input').value = ""; document.getElementById('marathon-error').style.opacity = '0'; document.getElementById('marathon-input').classList.remove('border-red-500'); document.getElementById('marathon-hp').innerText = '❤️'.repeat(marState.hp) + '💀'.repeat(3 - marState.hp); document.getElementById('marathon-progress').innerText = `${marState.idx + 1} / 8`; document.getElementById('marathon-input').focus(); }
         document.getElementById('marathon-input').addEventListener('keydown', function(e) { if (e.key === 'Enter' && marState.active) { let val = parseInt(this.value, 10); if (isNaN(val)) return; let isCorrect = (val === marState.q[marState.idx].ans); if (marState.forceCorrect) { if (isCorrect) { marState.forceCorrect = false; playSound('success'); marState.idx++; checkMarathonLevelEnd(); } else { playSound('hit'); this.value = ""; } return; } if (isCorrect) { playSound('success'); marState.idx++; checkMarathonLevelEnd(); } else { playSound('error'); marState.mistakes++; marState.forceCorrect = true; this.classList.add('border-red-500'); let errEl = document.getElementById('marathon-error'); errEl.innerText = `Ошибка! Правильно: ${marState.q[marState.idx].ans}. Исправь!`; errEl.style.opacity = '1'; this.value = ""; els.marathonGame.classList.add('shake-active'); setTimeout(() => els.marathonGame.classList.remove('shake-active'), 400); } } });
         function checkMarathonLevelEnd() { if (marState.idx >= marState.q.length) { clearInterval(marState.timerInt); evaluateMarathonLevel(); } else { renderMarathonQ(); } }
@@ -477,6 +322,8 @@
         function failMarathon() { marState.active = false; saveRecord("МАРАФОН ВЕКНЫ", 0, 0, {id: 'F', title: `УМЕР НА ВРАТАХ ${marState.currDigit}`}, 0); backToMenu(); }
         function interruptMarathon() { clearInterval(marState.timerInt); marState.active = false; saveRecord("МАРАФОН ВЕКНЫ", 0, 0, {id: 'C', title: 'СБЕЖАЛ'}, 0); backToMenu(); }
 
+        function triggerSuperReward() { document.getElementById('super-reward').classList.remove('hidden'); document.getElementById('super-reward').classList.add('flex'); playSound('super_portal'); }
+        function closeReward() { document.getElementById('super-reward').classList.add('hidden'); document.getElementById('super-reward').classList.remove('flex'); showScreen(els.menu); }
 
         // --- UNIFIED LINGUISTIC & READING ENGINE ---
         let rpgState = { active: false, type: null, hp: 3, score: 0, combo: false, qStart: null, gStart: null, errs: [], queue: [] };
@@ -484,53 +331,40 @@
         function showRpgSetup() { initAudio(); showScreen(els.rpgSetup); }
         function showReadSetup() { initAudio(); showScreen(els.readSetup); }
         
-        function startRpgMath() { 
-            let ops = []; 
-            ['add','sub','mul','div'].forEach(o => { 
-                if(document.getElementById(`op-${o}`).checked) ops.push(o === 'add'?'+':o==='sub'?'-':o==='mul'?'*':'/'); 
-            }); 
-            if(ops.length === 0) return; 
-            initRpgState('math', { ops: ops, diff: document.querySelector('input[name="rpg-diff"]:checked').value }); 
-        }
-
-        function startLinguistics(type) { 
-            initAudio(); 
-            initRpgState(type, {}); 
-        }
+        function startRpgMath() { let ops = []; ['add','sub','mul','div'].forEach(o => { if(document.getElementById(`op-${o}`).checked) ops.push(o === 'add'?'+':o==='sub'?'-':o==='mul'?'*':'/'); }); if(ops.length === 0) return; initRpgState('math', { ops: ops, diff: document.querySelector('input[name="rpg-diff"]:checked').value }); }
+        function startLinguistics(type) { initAudio(); initRpgState(type, {}); }
         
         function startReadingMode() {
             let lvl = parseInt(document.querySelector('input[name="read-lvl"]:checked').value);
-            let targetQueue = knowledgeBase.filter(k => k.type === 'read' && k.lvl === lvl);
+            let targetQueue = knowledgeBase.filter(k => k.type === 'read' && parseInt(k.lvl) === lvl);
             
             if(targetQueue.length === 0) {
                 document.getElementById('read-setup-error').style.opacity = '1';
                 setTimeout(() => document.getElementById('read-setup-error').style.opacity = '0', 2000);
                 return; 
             }
-            
-            // Запускаем режим с переданным уровнем сложности
             initRpgState('read', { diff: lvl, queue: shuffle(targetQueue) });
         }
 
         function initRpgState(type, config) {
             startSynthBGM(); 
+            // ЗАЩИТА ОТ ДУРАКА: Если у слова нет типа (как в твоем старом JSON), считаем его русским языком.
+            let filteredQueue = knowledgeBase.filter(k => k.type === type || (type === 'ru' && !k.type));
+            
             rpgState = { 
                 active: true, type: type, hp: 3, score: 0, combo: false, 
                 qStart: Date.now(), gStart: Date.now(), errs: [], 
                 ops: config.ops, diff: config.diff, 
-                queue: config.queue || shuffle(knowledgeBase.filter(k => k.type === type)) 
+                queue: config.queue || shuffle(filteredQueue) 
             };
             
             if (type === 'math' || type === 'ru' || type === 'en') {
                 document.getElementById('math-input-section').classList.toggle('hidden', type !== 'math');
                 document.getElementById('text-input-section').classList.toggle('hidden', type === 'math');
-                updateRpgUI(); 
-                showScreen(els.rpgGame); 
-                nextRpgQuestion();
+                updateRpgUI(); showScreen(els.rpgGame); nextRpgQuestion();
                 if(type === 'math') window.onclick = () => { if(rpgState.active) document.getElementById('rpg-answer-input').focus(); };
             } else if (type === 'read') {
-                updateRpgUI();
-                nextRpgQuestion(); 
+                updateRpgUI(); nextRpgQuestion(); 
             }
         }
 
@@ -554,13 +388,15 @@
                 rpgState.currAns = ans;
                 document.getElementById('rpg-question-text').innerText = rpgState.currStr;
                 let inp = document.getElementById('rpg-answer-input'); 
-                inp.value = ""; 
-                inp.classList.remove('border-red-500');
-                inp.focus();
+                inp.value = ""; inp.classList.remove('border-red-500'); inp.focus();
                 rpgState.qStart = Date.now();
             } 
             else if (rpgState.type === 'ru' || rpgState.type === 'en') {
-                if (rpgState.queue.length === 0) rpgState.queue = shuffle(knowledgeBase.filter(k => k.type === rpgState.type));
+                if (rpgState.queue.length === 0) {
+                    let filteredQueue = knowledgeBase.filter(k => k.type === rpgState.type || (rpgState.type === 'ru' && !k.type));
+                    rpgState.queue = shuffle(filteredQueue);
+                }
+                
                 let q = rpgState.queue.pop();
                 
                 if (!q) {
@@ -573,13 +409,10 @@
                 rpgState.currRule = q.r;
                 
                 let htmlWord = q.t;
-                if (rpgState.type === 'ru') {
-                    htmlWord = q.t.replace('_', `<span class="text-purple-400 border-b-4 border-purple-500 inline-block px-2 pb-1 text-center min-w-[40px]">_</span>`);
-                }
+                if (rpgState.type === 'ru') htmlWord = q.t.replace('_', `<span class="text-purple-400 border-b-4 border-purple-500 inline-block px-2 pb-1 text-center min-w-[40px]">_</span>`);
                 document.getElementById('text-question').innerHTML = htmlWord;
                 
-                let optsDiv = document.getElementById('text-options'); 
-                optsDiv.innerHTML = '';
+                let optsDiv = document.getElementById('text-options'); optsDiv.innerHTML = '';
                 
                 shuffle([...q.o]).forEach(opt => {
                     let btn = document.createElement('button');
@@ -593,11 +426,11 @@
                 rpgState.qStart = Date.now();
             }
             else if (rpgState.type === 'read') {
-                if (rpgState.queue.length === 0) rpgState.queue = shuffle(knowledgeBase.filter(k => k.type === 'read' && k.lvl === rpgState.diff));
+                if (rpgState.queue.length === 0) rpgState.queue = shuffle(knowledgeBase.filter(k => k.type === 'read' && parseInt(k.lvl) === parseInt(rpgState.diff)));
                 let q = rpgState.queue.pop();
 
                 if (!q) {
-                    alert("База данных пуста для этого уровня сложности! Выбери другой уровень или проверь knowledge_base.json.");
+                    alert("База данных пуста для этого уровня сложности!");
                     return backToMenu();
                 }
 
@@ -656,7 +489,7 @@
             
             if (isCorrect) {
                 playSound('success');
-                if (isFast && rpgState.type !== 'read') { // No combo for reading
+                if (isFast && rpgState.type !== 'read') { 
                     rpgState.combo = true; rpgState.score += 20; 
                     showFloatingText('+20 PTS', 'neon-text-green', 'rpg-game-screen');
                     document.getElementById('main-body').classList.add('combo-flash-active'); setTimeout(() => document.getElementById('main-body').classList.remove('combo-flash-active'), 500); 
