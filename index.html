@@ -281,6 +281,7 @@
             <div><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Ошибки</span><span id="std-result-errors" class="neon-text-red font-bold">0</span></div>
             <div><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Ср. темп</span><span id="std-result-tps" class="text-gray-300 font-bold text-xl">2.1s/шт</span></div>
         </div>
+        <div id="std-result-note" class="text-gray-600 text-sm uppercase tracking-widest text-center">Режим: ЭКЗАМЕН | Цифра: MIX</div>
         <div class="flex space-x-4 mt-6 w-full"><button onclick="backToMenu()" class="btn border border-gray-700 text-gray-400 py-4 px-6 rounded w-1/2 hover:bg-gray-800">В МЕНЮ</button><button onclick="showLeaderboard()" class="btn border-2 neon-border-green py-4 px-6 rounded w-1/2 bg-green-900/20 hover:bg-green-900/40">РЕКОРДЫ</button></div>
     </div>
 
@@ -653,6 +654,7 @@
                             wIdx++;
                         } else {
                             clearInterval(rsvpInt);
+                            // Flash ends, show question
                             showScreen(els.rpgGame);
                             document.getElementById('math-input-section').classList.add('hidden');
                             document.getElementById('text-input-section').classList.remove('hidden');
@@ -685,7 +687,7 @@
             
             if (isCorrect) {
                 playSound('success');
-                if (isFast && rpgState.type !== 'read') { 
+                if (isFast && rpgState.type !== 'read') { // No combo for reading
                     rpgState.combo = true; rpgState.score += 20; 
                     showFloatingText('+20 PTS', 'neon-text-green', 'rpg-game-screen');
                     document.getElementById('main-body').classList.add('combo-flash-active'); setTimeout(() => document.getElementById('main-body').classList.remove('combo-flash-active'), 500); 
