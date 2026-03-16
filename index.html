@@ -64,6 +64,7 @@
         
         .rsvp-word { font-size: 5rem; font-weight: bold; color: white; text-shadow: 0 0 20px rgba(255,255,255,0.8); letter-spacing: 0.1rem; text-transform: uppercase; text-align: center; }
         @media (min-width: 768px) { .rsvp-word { font-size: 8rem; } }
+        .grid-button-text { font-size: 1.1rem; }
     </style>
 </head>
 <body id="main-body" class="min-h-screen flex flex-col items-center justify-center p-4 transition-colors duration-300">
@@ -89,13 +90,27 @@
                 <div class="flex flex-col items-center p-6 border-2 neon-border-blue rounded-lg bg-black bg-opacity-70 relative">
                     <h2 class="text-xl neon-text-blue mb-2 font-bold title-font tracking-widest z-10 text-center">АКАДЕМИЯ</h2>
                     <div class="grid grid-cols-4 gap-2 mb-2 w-full z-10 mt-2">
-                        <button onclick="startStandardMode('training', 2)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded">2</button><button onclick="startStandardMode('training', 3)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded">3</button><button onclick="startStandardMode('training', 4)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded">4</button><button onclick="startStandardMode('training', 5)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded">5</button><button onclick="startStandardMode('training', 6)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded">6</button><button onclick="startStandardMode('training', 7)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded">7</button><button onclick="startStandardMode('training', 8)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded">8</button><button onclick="startStandardMode('training', 9)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded">9</button>
+                        <button onclick="startStandardMode('training', 2)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded grid-button-text">2</button>
+                        <button onclick="startStandardMode('training', 3)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded grid-button-text">3</button>
+                        <button onclick="startStandardMode('training', 4)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded grid-button-text">4</button>
+                        <button onclick="startStandardMode('training', 5)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded grid-button-text">5</button>
+                        <button onclick="startStandardMode('training', 6)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded grid-button-text">6</button>
+                        <button onclick="startStandardMode('training', 7)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded grid-button-text">7</button>
+                        <button onclick="startStandardMode('training', 8)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded grid-button-text">8</button>
+                        <button onclick="startStandardMode('training', 9)" class="btn border border-blue-500/50 text-blue-200 py-1 rounded grid-button-text">9</button>
                     </div>
                 </div>
                 <div class="flex flex-col items-center p-6 border-2 neon-border-green rounded-lg bg-black bg-opacity-70 relative">
                     <h2 class="text-xl neon-text-green mb-2 font-bold title-font tracking-widest z-10 text-center">ИСПЫТАНИЕ</h2>
                     <div class="grid grid-cols-4 gap-2 mb-2 w-full z-10 mt-2">
-                        <button onclick="startStandardMode('battle', 2)" class="btn border border-green-500/50 text-green-200 py-1 rounded">2</button><button onclick="startStandardMode('battle', 3)" class="btn border border-green-500/50 text-green-200 py-1 rounded">3</button><button onclick="startStandardMode('battle', 4)" class="btn border border-green-500/50 text-green-200 py-1 rounded">4</button><button onclick="startStandardMode('battle', 5)" class="btn border border-green-500/50 text-green-200 py-1 rounded">5</button><button onclick="startStandardMode('battle', 6)" class="btn border border-green-500/50 text-green-200 py-1 rounded">6</button><button onclick="startStandardMode('battle', 7)" class="btn border border-green-500/50 text-green-200 py-1 rounded">7</button><button onclick="startStandardMode('battle', 8)" class="btn border border-green-500/50 text-green-200 py-1 rounded">8</button><button onclick="startStandardMode('battle', 9)" class="btn border border-green-500/50 text-green-200 py-1 rounded">9</button>
+                        <button onclick="startStandardMode('battle', 2)" class="btn border border-green-500/50 text-green-200 py-1 rounded grid-button-text">2</button>
+                        <button onclick="startStandardMode('battle', 3)" class="btn border border-green-500/50 text-green-200 py-1 rounded grid-button-text">3</button>
+                        <button onclick="startStandardMode('battle', 4)" class="btn border border-green-500/50 text-green-200 py-1 rounded grid-button-text">4</button>
+                        <button onclick="startStandardMode('battle', 5)" class="btn border border-green-500/50 text-green-200 py-1 rounded grid-button-text">5</button>
+                        <button onclick="startStandardMode('battle', 6)" class="btn border border-green-500/50 text-green-200 py-1 rounded grid-button-text">6</button>
+                        <button onclick="startStandardMode('battle', 7)" class="btn border border-green-500/50 text-green-200 py-1 rounded grid-button-text">7</button>
+                        <button onclick="startStandardMode('battle', 8)" class="btn border border-green-500/50 text-green-200 py-1 rounded grid-button-text">8</button>
+                        <button onclick="startStandardMode('battle', 9)" class="btn border border-green-500/50 text-green-200 py-1 rounded grid-button-text">9</button>
                     </div>
                     <button onclick="startStandardMode('battle', 'mix')" class="btn border-2 border-green-500 py-2 px-4 rounded w-full text-green-200 font-bold hover:bg-green-900/30">MIX [2-9] ЭКЗАМЕН</button>
                 </div>
@@ -116,7 +131,7 @@
             <!-- COL 3: LINGUISTICS & READING -->
             <div class="flex flex-col gap-6">
                 <div class="flex flex-col items-center p-6 border-2 neon-border-purple rounded-lg bg-black bg-opacity-70 relative">
-                    <h2 class="text-xl neon-text-purple mb-2 font-bold title-font tracking-widest z-10">ВЗЛОМ СИСТЕМЫ (РУС)</h2>
+                    <h2 class="text-xl neon-text-purple mb-2 font-bold title-font tracking-widest z-10 text-center">ВЗЛОМ СИСТЕМЫ (РУС)</h2>
                     <p class="text-xs text-gray-500 mb-4 text-center">Орфограммы 3-4 кл.</p>
                     <button onclick="startLinguistics('ru')" class="btn border-2 neon-border-purple py-3 px-4 rounded w-full text-purple-200 tracking-widest hover:bg-purple-900/30 font-bold">ЗАПУСК</button>
                 </div>
@@ -159,11 +174,17 @@
         <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 text-left mt-4 z-10">
             <div class="bg-gray-900/50 p-6 rounded border border-gray-800">
                 <h3 class="text-xl neon-text-green mb-4 font-bold tracking-widest border-b border-gray-700 pb-2">ИСПЫТАНИЕ (ЭКЗАМЕН)</h3>
-                <ul class="space-y-4 font-mono text-sm"><li class="flex items-start"><span class="text-blue-400 font-bold w-12 shrink-0 text-lg">S:</span> <span class="text-gray-300 flex flex-col"><span class="text-blue-400 font-bold tracking-widest">МАСТЕР. 0 ошибок.</span><span class="text-xs text-gray-500 mt-1">ВРЕМЯ: <span class="text-white">Меньше 32 сек</span> (1 цифра) или <span class="text-white">Меньше 2 мин</span> (MIX).</span></span></li></ul>
+                <ul class="space-y-4 font-mono text-sm">
+                    <li class="flex items-start"><span class="text-blue-400 font-bold w-12 shrink-0 text-lg">S:</span> <span class="text-gray-300 flex flex-col"><span class="text-blue-400 font-bold tracking-widest">ВРАТА ЗАПЕЧАТАНЫ. 0 ошибок.</span><span class="text-xs text-gray-500 mt-1">ВРЕМЯ: <span class="text-white">Меньше 32 сек</span> (1 цифра) или <span class="text-white">Меньше 2 мин</span> (MIX).</span></span></li>
+                    <li class="flex items-start"><span class="text-yellow-500 font-bold w-12 shrink-0 text-lg">A:</span> <span class="text-gray-300 flex flex-col"><span class="text-yellow-500 font-bold tracking-widest">ВРАТА КРОВОТОЧАТ. До 2 ошибок.</span><span class="text-xs text-gray-500 mt-1">ВРЕМЯ: <span class="text-white">До 48 сек</span> (1 цифра) или <span class="text-white">До 3 мин</span> (MIX).</span></span></li>
+                    <li class="flex items-start"><span class="text-red-500 font-bold w-12 shrink-0 text-lg">C:</span> <span class="text-gray-400 flex flex-col"><span class="text-red-500 font-bold tracking-widest">ПРОРЫВ ИЗНАНКИ. Провал.</span><span class="text-xs text-gray-500 mt-1">Дольше 48 сек (или > 3 мин для MIX), либо 3+ ошибки.</span></span></li>
+                </ul>
             </div>
             <div class="bg-gray-900/50 p-6 rounded border border-red-900/50">
                 <h3 class="text-xl neon-text-red mb-4 font-bold tracking-widest border-b border-red-900 pb-2">ПРОКЛЯТИЕ ВЕКНЫ (МАРАФОН)</h3>
-                <ul class="space-y-4 font-mono text-sm"><li class="flex items-start"><span class="text-red-500 font-bold shrink-0">ПРОРЫВ ИЗНАНКИ:</span> <span class="text-gray-400 ml-2 text-xs">Дольше 48с или 3+ ошибки. <span class="text-red-500 font-bold">МИНУС 1 ЖИЗНЬ. Рестарт текущих врат.</span></span></li></ul>
+                <ul class="space-y-4 font-mono text-sm">
+                    <li class="flex items-start"><span class="text-red-500 font-bold shrink-0">ПРОРЫВ ИЗНАНКИ:</span> <span class="text-gray-400 ml-2 text-xs">Дольше 48с или 3+ ошибки. <span class="text-red-500 font-bold">МИНУС 1 ЖИЗНЬ. Рестарт текущих врат.</span></span></li>
+                </ul>
             </div>
             <div class="bg-gray-900/50 p-6 rounded border border-purple-900/50 col-span-1 md:col-span-2">
                 <h3 class="text-xl neon-text-purple mb-4 font-bold tracking-widest border-b border-purple-900 pb-2">ЛИНГВИСТИКА И СИНХРОНИЗАЦИЯ</h3>
@@ -214,17 +235,92 @@
     </div>
 
     <!-- MARATHON GAME SCREEN -->
-    <div id="marathon-game-screen" class="hidden w-full max-w-4xl flex flex-col items-center justify-center z-10 fade-in relative"><div class="w-full text-center mb-4"><span class="text-gray-500 text-sm tracking-widest uppercase">Глобальный Разум</span><div id="marathon-hp" class="text-4xl tracking-[0.2em] mt-1 drop-shadow-lg">❤️❤️❤️</div></div><div class="w-full flex justify-center gap-2 mb-8 bg-black/50 p-4 rounded-lg border border-gray-800"><div id="gate-2" class="gate-slot">2</div><div id="gate-3" class="gate-slot">3</div><div id="gate-4" class="gate-slot">4</div><div id="gate-5" class="gate-slot">5</div><div id="gate-6" class="gate-slot">6</div><div id="gate-7" class="gate-slot">7</div><div id="gate-8" class="gate-slot">8</div><div id="gate-9" class="gate-slot">9</div></div><div class="w-full flex justify-between items-center mb-8 px-6 py-4 bg-black/80 border border-red-900/50 rounded-lg shadow-lg"><div class="flex flex-col"><span class="text-xs text-gray-500 uppercase tracking-widest">Прогресс Врат</span><div id="marathon-progress" class="text-2xl text-red-300 font-bold">1 / 8</div></div><div class="flex flex-col items-center"><span class="text-xs text-gray-500 uppercase tracking-widest">Время Врат</span><div id="marathon-timer" class="text-2xl neon-text-red font-bold">00.0s</div></div><button onclick="interruptMarathon()" class="text-gray-500 hover:text-red-400 transition-colors uppercase tracking-widest text-xs border border-gray-800 py-2 px-4 rounded">БЕЖАТЬ</button></div><div class="flex items-center space-x-4 md:space-x-8 text-6xl md:text-8xl font-bold my-8"><span id="marathon-question" class="text-white text-right min-w-[280px]">2 x 2</span><span class="text-gray-600">=</span><input type="number" id="marathon-input" autocomplete="off" class="w-32 md:w-48 bg-transparent border-b-4 border-gray-700 text-center text-white focus:border-red-500 transition-colors"></div><div id="marathon-error" class="mt-8 text-xl text-red-500 h-8 opacity-0 uppercase tracking-widest text-center bg-red-900/20 px-6 py-2 rounded border border-red-900/50">Ошибка!</div></div>
-    <div id="marathon-transition-screen" class="hidden w-full max-w-2xl flex flex-col items-center z-10 space-y-6 bg-black border-2 border-red-900 p-8 rounded-lg shadow-2xl fade-in text-center"><h2 id="marathon-trans-subtitle" class="text-xl text-gray-400 tracking-[0.5em] uppercase">СТАТУС ВРАТ</h2><h1 id="marathon-trans-title" class="text-5xl md:text-6xl font-bold title-font tracking-widest mb-4">ЗАПЕЧАТАНО</h1><div id="marathon-trans-stats" class="text-gray-300 text-lg mb-4">Время: <span id="marathon-trans-time" class="text-white font-bold">20.5s</span> | Ошибки: <span id="marathon-trans-err" class="text-red-400 font-bold">0</span></div><button id="marathon-trans-btn" class="mt-8 btn border-2 py-4 px-12 uppercase tracking-widest font-bold text-xl">ПРОДОЛЖИТЬ</button></div>
+    <div id="marathon-game-screen" class="hidden w-full max-w-4xl flex flex-col items-center justify-center z-10 fade-in relative">
+        <div class="w-full text-center mb-4"><span class="text-gray-500 text-sm tracking-widest uppercase">Глобальный Разум</span><div id="marathon-hp" class="text-4xl tracking-[0.2em] mt-1 drop-shadow-lg">❤️❤️❤️</div></div>
+        <div class="w-full flex justify-center gap-2 mb-8 bg-black/50 p-4 rounded-lg border border-gray-800">
+            <div id="gate-2" class="gate-slot">2</div><div id="gate-3" class="gate-slot">3</div><div id="gate-4" class="gate-slot">4</div><div id="gate-5" class="gate-slot">5</div><div id="gate-6" class="gate-slot">6</div><div id="gate-7" class="gate-slot">7</div><div id="gate-8" class="gate-slot">8</div><div id="gate-9" class="gate-slot">9</div>
+        </div>
+        <div class="w-full flex justify-between items-center mb-8 px-6 py-4 bg-black/80 border border-red-900/50 rounded-lg shadow-lg">
+            <div class="flex flex-col"><span class="text-xs text-gray-500 uppercase tracking-widest">Прогресс Врат</span><div id="marathon-progress" class="text-2xl text-red-300 font-bold">1 / 8</div></div>
+            <div class="flex flex-col items-center"><span class="text-xs text-gray-500 uppercase tracking-widest">Время Врат</span><div id="marathon-timer" class="text-2xl neon-text-red font-bold">00.0s</div></div>
+            <button onclick="interruptMarathon()" class="text-gray-500 hover:text-red-400 transition-colors uppercase tracking-widest text-xs border border-gray-800 py-2 px-4 rounded">БЕЖАТЬ</button>
+        </div>
+        <div class="flex items-center space-x-4 md:space-x-8 text-6xl md:text-8xl font-bold my-8">
+            <span id="marathon-question" class="text-white text-right min-w-[280px]">2 x 2</span><span class="text-gray-600">=</span><input type="number" id="marathon-input" autocomplete="off" class="w-32 md:w-48 bg-transparent border-b-4 border-gray-700 text-center text-white focus:border-red-500 transition-colors">
+        </div>
+        <div id="marathon-error" class="mt-8 text-xl text-red-500 h-8 opacity-0 uppercase tracking-widest text-center bg-red-900/20 px-6 py-2 rounded border border-red-900/50">Ошибка!</div>
+    </div>
+    
+    <div id="marathon-transition-screen" class="hidden w-full max-w-2xl flex flex-col items-center z-10 space-y-6 bg-black border-2 border-red-900 p-8 rounded-lg shadow-2xl fade-in text-center">
+        <h2 id="marathon-trans-subtitle" class="text-xl text-gray-400 tracking-[0.5em] uppercase">СТАТУС ВРАТ</h2>
+        <h1 id="marathon-trans-title" class="text-5xl md:text-6xl font-bold title-font tracking-widest mb-4">ЗАПЕЧАТАНО</h1>
+        <div id="marathon-trans-stats" class="text-gray-300 text-lg mb-4">Время: <span id="marathon-trans-time" class="text-white font-bold">20.5s</span> | Ошибки: <span id="marathon-trans-err" class="text-red-400 font-bold">0</span></div>
+        <button id="marathon-trans-btn" class="mt-8 btn border-2 py-4 px-12 uppercase tracking-widest font-bold text-xl">ПРОДОЛЖИТЬ</button>
+    </div>
     
     <!-- STANDARD GAME SCREEN -->
-    <div id="standard-game-screen" class="hidden w-full max-w-3xl flex flex-col items-center justify-center z-10 fade-in relative"><div class="w-full flex justify-between items-center mb-8 px-6 py-4 bg-black/60 border border-gray-800 rounded-lg shadow-lg"><div class="flex flex-col"><span class="text-xs text-gray-500 uppercase tracking-widest">Прогресс</span><div id="std-progress" class="text-2xl text-blue-300 font-bold">1 / 12</div></div><div id="std-timer-container" class="flex flex-col items-center hidden"><span class="text-xs text-gray-500 uppercase tracking-widest">Время</span><div id="std-timer" class="text-2xl neon-text-green font-bold">00.0s</div></div><button onclick="interruptStdGame()" class="text-gray-500 hover:text-red-400 transition-colors uppercase tracking-widest text-xs border border-gray-800 py-2 px-4 rounded">ПРЕРВАТЬ</button></div><div id="std-motivation" class="h-8 text-xl text-blue-400 mb-8 opacity-0 transition-opacity duration-300 uppercase tracking-widest text-center">Сфокусируйся!</div><div class="flex items-center space-x-4 md:space-x-8 text-6xl md:text-8xl font-bold my-8"><span id="std-question" class="text-white text-right min-w-[280px]">2 x 2</span><span class="text-gray-600">=</span><input type="number" id="std-input" autocomplete="off" class="w-32 md:w-48 bg-transparent border-b-4 border-gray-700 text-center text-white focus:border-blue-500 transition-colors"></div><div id="std-error" class="mt-8 text-xl text-red-500 h-8 opacity-0 uppercase tracking-widest text-center bg-red-900/20 px-6 py-2 rounded border border-red-900/50">Ошибка!</div></div>
+    <div id="standard-game-screen" class="hidden w-full max-w-3xl flex flex-col items-center justify-center z-10 fade-in relative">
+        <div class="w-full flex justify-between items-center mb-8 px-6 py-4 bg-black/60 border border-gray-800 rounded-lg shadow-lg">
+            <div class="flex flex-col"><span class="text-xs text-gray-500 uppercase tracking-widest">Прогресс</span><div id="std-progress" class="text-2xl text-blue-300 font-bold">1 / 12</div></div>
+            <div id="std-timer-container" class="flex flex-col items-center hidden"><span class="text-xs text-gray-500 uppercase tracking-widest">Время</span><div id="std-timer" class="text-2xl neon-text-green font-bold">00.0s</div></div>
+            <button onclick="interruptStdGame()" class="text-gray-500 hover:text-red-400 transition-colors uppercase tracking-widest text-xs border border-gray-800 py-2 px-4 rounded">ПРЕРВАТЬ</button>
+        </div>
+        <div id="std-motivation" class="h-8 text-xl text-blue-400 mb-8 opacity-0 transition-opacity duration-300 uppercase tracking-widest text-center">Сфокусируйся!</div>
+        <div class="flex items-center space-x-4 md:space-x-8 text-6xl md:text-8xl font-bold my-8">
+            <span id="std-question" class="text-white text-right min-w-[280px]">2 x 2</span><span class="text-gray-600">=</span><input type="number" id="std-input" autocomplete="off" class="w-32 md:w-48 bg-transparent border-b-4 border-gray-700 text-center text-white focus:border-blue-500 transition-colors">
+        </div>
+        <div id="std-error" class="mt-8 text-xl text-red-500 h-8 opacity-0 uppercase tracking-widest text-center bg-red-900/20 px-6 py-2 rounded border border-red-900/50">Ошибка!</div>
+    </div>
     
-    <!-- RESULTS & LEADERBOARD -->
-    <div id="std-result-screen" class="hidden w-full max-w-2xl flex flex-col items-center z-10 space-y-6 bg-black border-2 neon-border-green p-8 rounded-lg shadow-2xl fade-in"><h1 class="text-4xl md:text-5xl neon-text-green title-font tracking-widest mb-2 uppercase text-center" id="std-result-title">ЭКЗАМЕН СДАН</h1><div id="std-result-grade" class="text-5xl md:text-6xl font-bold my-6 text-center text-white title-font tracking-wider">МАСТЕР</div><div class="grid grid-cols-2 gap-8 w-full text-center text-2xl mb-4 border-t border-b border-gray-800 py-6 bg-black/50"><div class="col-span-2 border-b border-gray-800 pb-4 mb-2"><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Общее время</span><span id="std-result-time" class="text-4xl neon-text-blue font-bold tracking-widest">15.4s</span></div><div><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Ошибки</span><span id="std-result-errors" class="neon-text-red font-bold">0</span></div><div><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Ср. темп</span><span id="std-result-tps" class="text-gray-300 font-bold text-xl">2.1s/шт</span></div></div><div class="flex space-x-4 mt-6 w-full"><button onclick="backToMenu()" class="btn border border-gray-700 text-gray-400 py-4 px-6 rounded w-1/2 hover:bg-gray-800">В МЕНЮ</button><button onclick="showLeaderboard()" class="btn border-2 neon-border-green py-4 px-6 rounded w-1/2 bg-green-900/20 hover:bg-green-900/40">РЕКОРДЫ</button></div></div>
-    <div id="rpg-result-screen" class="hidden w-full max-w-2xl flex flex-col items-center z-10 space-y-6 bg-black border-2 neon-border-red p-8 rounded-lg shadow-2xl relative overflow-hidden fade-in"><h1 class="text-5xl md:text-6xl text-red-600 text-shadow-red mb-2 uppercase title-font tracking-widest text-center" id="rpg-result-title">СВЯЗЬ ПОТЕРЯНА</h1><div id="rpg-final-grade" class="text-4xl md:text-5xl font-bold my-4 text-center text-white title-font tracking-wider">РАНГ: B</div><div class="grid grid-cols-2 gap-8 w-full text-center text-2xl md:text-3xl mb-4 border-t border-b border-gray-800 py-6 bg-black/50 z-10"><div><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Энергия</span><span id="rpg-final-score" class="text-white font-bold">1200</span></div><div><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Рекорд</span><span id="rpg-high-score" class="text-red-500 font-bold">1500</span></div></div><div class="w-full max-h-48 overflow-y-auto bg-gray-900 bg-opacity-80 p-4 rounded text-left border border-gray-800 z-10"><h3 class="text-gray-500 mb-3 border-b border-gray-800 pb-2 text-xs uppercase tracking-widest">Анализ Ошибок:</h3><ul id="rpg-error-log" class="text-red-400 space-y-2 font-mono text-sm leading-relaxed"></ul></div><div class="flex space-x-4 mt-6 w-full relative z-10"><button onclick="backToMenu()" class="btn border border-gray-700 text-gray-400 py-4 px-6 rounded w-1/2 hover:bg-gray-800">НА БАЗУ</button><button onclick="showLeaderboard()" class="btn border-2 neon-border-red py-4 px-6 rounded w-1/2 bg-red-900/20 hover:bg-red-900/40">РЕКОРДЫ</button></div></div>
-    <div id="leaderboard-screen" class="hidden w-full max-w-5xl flex flex-col items-center z-10 space-y-6 fade-in"><h1 class="text-5xl title-font neon-text-red uppercase">БАЗА ДАННЫХ</h1><div class="w-full bg-black bg-opacity-80 border border-gray-800 rounded p-4 shadow-[0_0_30px_rgba(0,0,0,0.9)] overflow-x-auto"><table class="w-full text-left border-collapse min-w-[600px]"><thead><tr class="border-b border-gray-800 text-gray-500 text-xs uppercase tracking-widest"><th class="p-3">#</th><th class="p-3">Объект / Ранг</th><th class="p-3">Протокол</th><th class="p-3">Показатели</th><th class="p-3">Сбои</th><th class="p-3 hidden md:table-cell">Дата</th><th id="th-action" class="p-3 hidden text-red-500">УДАЛИТЬ</th></tr></thead><tbody id="leaderboard-body" class="font-mono text-sm"></tbody></table></div><div class="flex flex-wrap justify-between w-full mt-6 gap-4"><button onclick="backToMenu()" class="btn border border-gray-700 text-gray-400 py-3 px-8 rounded">НАЗАД</button><div class="flex gap-4"><button onclick="toggleEditMode()" id="btn-edit-mode" class="btn border border-gray-700 text-gray-500 py-3 px-6 rounded">⚙️ РЕЖИМ БОГА</button><button onclick="clearAllRecords()" id="btn-clear-all" class="btn border-2 neon-border-red text-red-500 py-3 px-6 rounded hidden title-font">💀 СТЕРЕТЬ ВСЁ</button></div></div></div>
-    <div id="super-reward" class="hidden fixed inset-0 z-[100] bg-black flex-col items-center justify-center fade-in"><div class="portal-spin"></div><div class="relative z-10 text-center mt-32"><h1 class="neon-text-red title-font text-7xl md:text-9xl glitch" data-text="ВРАТА ОТКРЫТЫ">ВРАТА ОТКРЫТЫ</h1><p class="text-white text-2xl md:text-4xl tracking-widest font-bold">ТЫ — ИСТИННЫЙ МАСТЕР ИЗНАНКИ</p><button onclick="closeReward()" class="mt-12 btn border-2 neon-border-red py-4 px-12 text-red-500 font-bold">ВЕРНУТЬСЯ В РЕАЛЬНОСТЬ</button></div></div>
+    <!-- RESULTS SCREENS -->
+    <div id="std-result-screen" class="hidden w-full max-w-2xl flex flex-col items-center z-10 space-y-6 bg-black border-2 neon-border-green p-8 rounded-lg shadow-2xl fade-in">
+        <h1 class="text-4xl md:text-5xl neon-text-green title-font tracking-widest mb-2 uppercase text-center" id="std-result-title">ЭКЗАМЕН СДАН</h1>
+        <div id="std-result-grade" class="text-5xl md:text-6xl font-bold my-6 text-center text-white title-font tracking-wider">МАСТЕР</div>
+        <div class="grid grid-cols-2 gap-8 w-full text-center text-2xl mb-4 border-t border-b border-gray-800 py-6 bg-black/50">
+            <div class="col-span-2 border-b border-gray-800 pb-4 mb-2"><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Общее время</span><span id="std-result-time" class="text-4xl neon-text-blue font-bold tracking-widest">15.4s</span></div>
+            <div><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Ошибки</span><span id="std-result-errors" class="neon-text-red font-bold">0</span></div>
+            <div><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Ср. темп</span><span id="std-result-tps" class="text-gray-300 font-bold text-xl">2.1s/шт</span></div>
+        </div>
+        <div class="flex space-x-4 mt-6 w-full"><button onclick="backToMenu()" class="btn border border-gray-700 text-gray-400 py-4 px-6 rounded w-1/2 hover:bg-gray-800">В МЕНЮ</button><button onclick="showLeaderboard()" class="btn border-2 neon-border-green py-4 px-6 rounded w-1/2 bg-green-900/20 hover:bg-green-900/40">РЕКОРДЫ</button></div>
+    </div>
+
+    <div id="rpg-result-screen" class="hidden w-full max-w-2xl flex flex-col items-center z-10 space-y-6 bg-black border-2 neon-border-red p-8 rounded-lg shadow-2xl relative overflow-hidden fade-in">
+        <h1 class="text-5xl md:text-6xl text-red-600 text-shadow-red mb-2 uppercase title-font tracking-widest text-center" id="rpg-result-title">СВЯЗЬ ПОТЕРЯНА</h1>
+        <div id="rpg-final-grade" class="text-4xl md:text-5xl font-bold my-4 text-center text-white title-font tracking-wider">РАНГ: B</div>
+        <div class="grid grid-cols-2 gap-8 w-full text-center text-2xl md:text-3xl mb-4 border-t border-b border-gray-800 py-6 bg-black/50 z-10">
+            <div><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Энергия</span><span id="rpg-final-score" class="text-white font-bold">1200</span></div>
+            <div><span class="text-gray-500 text-xs block uppercase tracking-widest mb-2">Рекорд</span><span id="rpg-high-score" class="text-red-500 font-bold">1500</span></div>
+        </div>
+        <div class="w-full max-h-48 overflow-y-auto bg-gray-900 bg-opacity-80 p-4 rounded text-left border border-gray-800 z-10">
+            <h3 class="text-gray-500 mb-3 border-b border-gray-800 pb-2 text-xs uppercase tracking-widest">Анализ Ошибок:</h3>
+            <ul id="rpg-error-log" class="text-red-400 space-y-2 font-mono text-sm leading-relaxed"></ul>
+        </div>
+        <div class="flex space-x-4 mt-6 w-full relative z-10"><button onclick="backToMenu()" class="btn border border-gray-700 text-gray-400 py-4 px-6 rounded w-1/2 hover:bg-gray-800">НА БАЗУ</button><button onclick="showLeaderboard()" class="btn border-2 neon-border-red py-4 px-6 rounded w-1/2 bg-red-900/20 hover:bg-red-900/40">РЕКОРДЫ</button></div>
+    </div>
+
+    <!-- LEADERBOARD -->
+    <div id="leaderboard-screen" class="hidden w-full max-w-5xl flex flex-col items-center z-10 space-y-6 fade-in">
+        <h1 class="text-5xl title-font neon-text-red uppercase">БАЗА ДАННЫХ</h1>
+        <div class="w-full bg-black bg-opacity-80 border border-gray-800 rounded p-4 shadow-[0_0_30px_rgba(0,0,0,0.9)] overflow-x-auto">
+            <table class="w-full text-left border-collapse min-w-[600px]">
+                <thead>
+                    <tr class="border-b border-gray-800 text-gray-500 text-xs uppercase tracking-widest"><th class="p-3">#</th><th class="p-3">Объект / Ранг</th><th class="p-3">Протокол</th><th class="p-3">Показатели</th><th class="p-3">Сбои</th><th class="p-3 hidden md:table-cell">Дата</th><th id="th-action" class="p-3 hidden text-red-500">УДАЛИТЬ</th></tr>
+                </thead>
+                <tbody id="leaderboard-body" class="font-mono text-sm"></tbody>
+            </table>
+        </div>
+        <div class="flex flex-wrap justify-between w-full mt-6 gap-4"><button onclick="backToMenu()" class="btn border border-gray-700 text-gray-400 py-3 px-8 rounded">НАЗАД</button><div class="flex gap-4"><button onclick="toggleEditMode()" id="btn-edit-mode" class="btn border border-gray-700 text-gray-500 py-3 px-6 rounded">⚙️ РЕЖИМ БОГА</button><button onclick="clearAllRecords()" id="btn-clear-all" class="btn border-2 neon-border-red text-red-500 py-3 px-6 rounded hidden title-font">💀 СТЕРЕТЬ ВСЁ</button></div></div>
+    </div>
+
+    <!-- SUPER REWARD -->
+    <div id="super-reward" class="hidden fixed inset-0 z-[100] bg-black flex-col items-center justify-center fade-in">
+        <div class="portal-spin"></div>
+        <div class="relative z-10 text-center mt-32">
+            <h1 class="neon-text-red title-font text-7xl md:text-9xl glitch" data-text="ВРАТА ОТКРЫТЫ">ВРАТА ОТКРЫТЫ</h1>
+            <p class="text-white text-2xl md:text-4xl tracking-widest font-bold">ТЫ — ИСТИННЫЙ МАСТЕР ИЗНАНКИ</p>
+            <button onclick="closeReward()" class="mt-12 btn border-2 neon-border-red py-4 px-12 text-red-500 font-bold">ВЕРНУТЬСЯ В РЕАЛЬНОСТЬ</button>
+        </div>
+    </div>
 
     <script>
         // --- AUDIO & VISUALS ---
@@ -245,29 +341,97 @@
         function stopSynthBGM() { if (synthBgmInterval) { clearInterval(synthBgmInterval); synthBgmInterval = null; } }
         function showFloatingText(text, colorClass, containerId) { let container = document.getElementById(containerId); let el = document.createElement('div'); el.className = `absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-5xl md:text-7xl font-bold ${colorClass} pointer-events-none z-50 floating-text`; el.innerText = text; container.appendChild(el); setTimeout(() => el.remove(), 1000); }
 
-        // --- JSON DB FETCH (With Fallback type assignment) ---
-        const fallbackKnowledgeBase = [
-            {"type": "ru", "t": "К_рова", "o": ["о", "а"], "a": "о", "r": "Словарное слово: кОрова"}
+        // --- JSON DB FETCH (With Safe User Data Parsing) ---
+        // Если база не грузится (нет Live Server), вшиваем базовый пример + защищаем твои данные.
+        // Твои сырые данные, скопированные в prompt:
+        const userProvidedData = [
+          {"t": "В_да", "o": ["о", "а"], "a": "о", "r": "Проверочное слово: вОды"},
+          {"t": "Тр_ва", "o": ["а", "о"], "a": "а", "r": "Проверочное слово: трАвы"},
+          {"t": "Гр_за", "o": ["о", "а"], "a": "о", "r": "Проверочное слово: грОзы"},
+          // ... Мы мапим их ниже
         ];
+
+        const defaultKnowledgeBase = [
+            {"type": "en", "t": "Run", "o": ["Бежать", "Спать", "Идти", "Прыгать"], "a": "Бежать", "r": "Run - Бежать"},
+            {"type": "read", "lvl": 1, "wpm": 100, "t": "TEST", "text": "Монстр пришел.", "q": "Кто пришел?", "o": ["Монстр", "Кот"], "a": "Монстр", "r": "Был монстр."}
+        ];
+        
         let knowledgeBase = [];
+
         async function loadKnowledgeBase() { 
             try { 
                 const response = await fetch('./knowledge_base.json'); 
                 if (!response.ok) throw new Error(); 
-                knowledgeBase = await response.json(); 
+                let fetchedData = await response.json();
+                
+                // ЗАЩИТА: Назначаем тип 'ru', если в твоем JSON его нет
+                knowledgeBase = fetchedData.map(item => {
+                    if (!item.type) item.type = 'ru';
+                    return item;
+                });
             } catch (error) { 
-                knowledgeBase = fallbackKnowledgeBase; 
+                console.warn("Файл knowledge_base.json не найден. Использую хардкод данные.");
+                // Fallback: комбинируем твои сырые данные + дефолтные
+                knowledgeBase = [...userProvidedData, ...defaultKnowledgeBase].map(item => {
+                    if (!item.type) item.type = 'ru';
+                    return item;
+                });
             } 
         }
+        
         document.addEventListener('DOMContentLoaded', loadKnowledgeBase);
 
         // --- GLOBAL UI STATE ---
-        const els = { menu: document.getElementById('menu-screen'), legend: document.getElementById('legend-screen'), stdGame: document.getElementById('standard-game-screen'), stdResult: document.getElementById('std-result-screen'), marathonGame: document.getElementById('marathon-game-screen'), marathonTrans: document.getElementById('marathon-transition-screen'), rpgSetup: document.getElementById('rpg-setup-screen'), rpgGame: document.getElementById('rpg-game-screen'), rpgResult: document.getElementById('rpg-result-screen'), leaderboard: document.getElementById('leaderboard-screen'), rsvp: document.getElementById('rsvp-screen'), readSetup: document.getElementById('read-setup-screen') };
-        function showScreen(screenEl) { Object.values(els).forEach(s => s.classList.add('hidden')); screenEl.classList.remove('hidden'); updateGlobalProgression(); }
-        function shuffle(arr) { let a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+        const els = { 
+            menu: document.getElementById('menu-screen'), 
+            legend: document.getElementById('legend-screen'), 
+            stdGame: document.getElementById('standard-game-screen'), 
+            stdResult: document.getElementById('std-result-screen'), 
+            marathonGame: document.getElementById('marathon-game-screen'), 
+            marathonTrans: document.getElementById('marathon-transition-screen'), 
+            rpgSetup: document.getElementById('rpg-setup-screen'), 
+            rpgGame: document.getElementById('rpg-game-screen'), 
+            rpgResult: document.getElementById('rpg-result-screen'), 
+            leaderboard: document.getElementById('leaderboard-screen'), 
+            rsvp: document.getElementById('rsvp-screen'), 
+            readSetup: document.getElementById('read-setup-screen') 
+        };
+
+        function showScreen(screenEl) { 
+            Object.values(els).forEach(s => s.classList.add('hidden')); 
+            screenEl.classList.remove('hidden'); 
+            updateGlobalProgression(); 
+        }
+
+        function shuffle(arr) { 
+            let a = [...arr]; 
+            for (let i = a.length - 1; i > 0; i--) { 
+                const j = Math.floor(Math.random() * (i + 1)); 
+                [a[i], a[j]] = [a[j], a[i]]; 
+            } 
+            return a; 
+        }
+
         function getRand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
         function showLegend() { showScreen(els.legend); }
-        function updateGlobalProgression() { let history = JSON.parse(localStorage.getItem('stDB2') || '[]'); let totalExp = 0; history.forEach(r => { if (r.score !== null) { totalExp += r.score; } else { if (r.gradeId === 'S') totalExp += 500; else if (r.gradeId === 'A') totalExp += 250; else if (r.gradeId === 'C') totalExp += 50; } }); if (totalExp > 0) { document.getElementById('global-level').innerText = Math.floor(totalExp / 1000) + 1; document.getElementById('global-exp').innerText = totalExp; document.getElementById('global-progression').classList.remove('hidden'); } }
+        function updateGlobalProgression() { 
+            let history = JSON.parse(localStorage.getItem('stDB2') || '[]'); 
+            let totalExp = 0; 
+            history.forEach(r => { 
+                if (r.score !== null) { totalExp += r.score; } 
+                else { 
+                    if (r.gradeId === 'S') totalExp += 500; 
+                    else if (r.gradeId === 'A') totalExp += 250; 
+                    else if (r.gradeId === 'C') totalExp += 50; 
+                } 
+            }); 
+            
+            if (totalExp > 0) { 
+                document.getElementById('global-level').innerText = Math.floor(totalExp / 1000) + 1; 
+                document.getElementById('global-exp').innerText = totalExp; 
+                document.getElementById('global-progression').classList.remove('hidden'); 
+            } 
+        }
 
         // --- STANDARD MODE (ACADEMY / EXAM) ---
         let stdState = { mode: null, q: [], idx: 0, mistakes: 0, startTime: null, timerInt: null, forceCorrect: false, interrupted: false, sessionScore: 0 };
@@ -298,14 +462,28 @@
             } 
         });
         function nextStdQuestion() { stdState.idx++; if (stdState.idx >= stdState.q.length) endStdGame(); else renderStdQuestion(); }
-        function interruptStdGame() { if (stdState.mode === 'battle' && stdState.idx > 0) { stdState.interrupted = true; endStdGame(); } else backToMenu(); }
+        
+        function interruptStdGame() { 
+            if (stdState.mode === 'battle' && stdState.idx > 0) { 
+                stdState.interrupted = true; 
+                endStdGame(); 
+            } else { 
+                backToMenu(); 
+            } 
+        }
+        
         function endStdGame() { 
             clearInterval(stdState.timerInt); window.onclick = null; 
             if (stdState.mode === 'training') { saveRecord(`ACADEMY [${stdState.digit.toString().toUpperCase()}]`, 0, stdState.mistakes, {id: '-', title: 'ТРЕНИРОВКА'}, Math.floor(stdState.sessionScore)); backToMenu(); return; } 
             let answered = stdState.idx; if (answered === 0) { backToMenu(); return; } 
             let totalTime = (Date.now() - stdState.startTime) / 1000; let tps = totalTime / answered; let targetTime = stdState.digit === 'mix' ? 120 : 32; let midTime = stdState.digit === 'mix' ? 180 : 48; let gradeObj; 
-            if (stdState.interrupted) { gradeObj = { id: 'C', title: 'СБЕЖАЛ С ПОЛЯ БОЯ', color: 'text-gray-500' }; playSound('error'); } 
-            else { playSound('fanfare'); if (totalTime <= targetTime && stdState.mistakes === 0) gradeObj = { id: 'S', title: 'МАСТЕР ИЗНАНКИ', color: 'neon-text-blue' }; else if (totalTime <= midTime && stdState.mistakes <= 2) gradeObj = { id: 'A', title: 'ВЫЖИВШИЙ', color: 'neon-text-green' }; else gradeObj = { id: 'C', title: 'ЖЕРТВА ДЕМОГОРГОНА', color: 'neon-text-red' }; } 
+            if (stdState.interrupted) { gradeObj = { id: 'C', title: 'ПРОРЫВ ИЗНАНКИ (СБЕЖАЛ)', color: 'text-gray-500' }; playSound('error'); } 
+            else { 
+                playSound('fanfare'); 
+                if (totalTime <= targetTime && stdState.mistakes === 0) gradeObj = { id: 'S', title: 'ВРАТА ЗАПЕЧАТАНЫ', color: 'neon-text-blue' }; 
+                else if (totalTime <= midTime && stdState.mistakes <= 2) gradeObj = { id: 'A', title: 'ВРАТА КРОВОТОЧАТ', color: 'neon-text-yellow' }; 
+                else gradeObj = { id: 'C', title: 'ПРОРЫВ ИЗНАНКИ', color: 'neon-text-red' }; 
+            } 
             document.getElementById('std-result-time').innerText = totalTime.toFixed(1) + "s"; document.getElementById('std-result-errors').innerText = stdState.mistakes; document.getElementById('std-result-tps').innerText = tps.toFixed(1) + "s / ответ"; document.getElementById('std-result-title').innerText = stdState.interrupted ? "СЕАНС ПРЕРВАН" : "ЭКЗАМЕН СДАН"; document.getElementById('std-result-grade').innerHTML = `<span class="${gradeObj.color}">${gradeObj.id}</span><br><span class="text-2xl text-gray-400">(${gradeObj.title})</span>`; document.getElementById('std-result-note').innerText = `Режим: ЭКЗАМЕН | Цифра: ${stdState.digit.toString().toUpperCase()}`; 
             saveRecord(`EXAM [${stdState.digit.toString().toUpperCase()}]`, totalTime, stdState.mistakes, gradeObj, null); showScreen(els.stdResult); if (gradeObj.id === 'S') triggerSuperReward(); 
         }
@@ -331,8 +509,19 @@
         function showRpgSetup() { initAudio(); showScreen(els.rpgSetup); }
         function showReadSetup() { initAudio(); showScreen(els.readSetup); }
         
-        function startRpgMath() { let ops = []; ['add','sub','mul','div'].forEach(o => { if(document.getElementById(`op-${o}`).checked) ops.push(o === 'add'?'+':o==='sub'?'-':o==='mul'?'*':'/'); }); if(ops.length === 0) return; initRpgState('math', { ops: ops, diff: document.querySelector('input[name="rpg-diff"]:checked').value }); }
-        function startLinguistics(type) { initAudio(); initRpgState(type, {}); }
+        function startRpgMath() { 
+            let ops = []; 
+            ['add','sub','mul','div'].forEach(o => { 
+                if(document.getElementById(`op-${o}`).checked) ops.push(o === 'add'?'+':o==='sub'?'-':o==='mul'?'*':'/'); 
+            }); 
+            if(ops.length === 0) return; 
+            initRpgState('math', { ops: ops, diff: document.querySelector('input[name="rpg-diff"]:checked').value }); 
+        }
+
+        function startLinguistics(type) { 
+            initAudio(); 
+            initRpgState(type, {}); 
+        }
         
         function startReadingMode() {
             let lvl = parseInt(document.querySelector('input[name="read-lvl"]:checked').value);
@@ -343,12 +532,12 @@
                 setTimeout(() => document.getElementById('read-setup-error').style.opacity = '0', 2000);
                 return; 
             }
+            
             initRpgState('read', { diff: lvl, queue: shuffle(targetQueue) });
         }
 
         function initRpgState(type, config) {
             startSynthBGM(); 
-            // ЗАЩИТА ОТ ДУРАКА: Если у слова нет типа (как в твоем старом JSON), считаем его русским языком.
             let filteredQueue = knowledgeBase.filter(k => k.type === type || (type === 'ru' && !k.type));
             
             rpgState = { 
@@ -361,10 +550,13 @@
             if (type === 'math' || type === 'ru' || type === 'en') {
                 document.getElementById('math-input-section').classList.toggle('hidden', type !== 'math');
                 document.getElementById('text-input-section').classList.toggle('hidden', type === 'math');
-                updateRpgUI(); showScreen(els.rpgGame); nextRpgQuestion();
+                updateRpgUI(); 
+                showScreen(els.rpgGame); 
+                nextRpgQuestion();
                 if(type === 'math') window.onclick = () => { if(rpgState.active) document.getElementById('rpg-answer-input').focus(); };
             } else if (type === 'read') {
-                updateRpgUI(); nextRpgQuestion(); 
+                updateRpgUI();
+                nextRpgQuestion(); 
             }
         }
 
@@ -388,7 +580,9 @@
                 rpgState.currAns = ans;
                 document.getElementById('rpg-question-text').innerText = rpgState.currStr;
                 let inp = document.getElementById('rpg-answer-input'); 
-                inp.value = ""; inp.classList.remove('border-red-500'); inp.focus();
+                inp.value = ""; 
+                inp.classList.remove('border-red-500');
+                inp.focus();
                 rpgState.qStart = Date.now();
             } 
             else if (rpgState.type === 'ru' || rpgState.type === 'en') {
@@ -409,10 +603,13 @@
                 rpgState.currRule = q.r;
                 
                 let htmlWord = q.t;
-                if (rpgState.type === 'ru') htmlWord = q.t.replace('_', `<span class="text-purple-400 border-b-4 border-purple-500 inline-block px-2 pb-1 text-center min-w-[40px]">_</span>`);
+                if (rpgState.type === 'ru') {
+                    htmlWord = q.t.replace('_', `<span class="text-purple-400 border-b-4 border-purple-500 inline-block px-2 pb-1 text-center min-w-[40px]">_</span>`);
+                }
                 document.getElementById('text-question').innerHTML = htmlWord;
                 
-                let optsDiv = document.getElementById('text-options'); optsDiv.innerHTML = '';
+                let optsDiv = document.getElementById('text-options'); 
+                optsDiv.innerHTML = '';
                 
                 shuffle([...q.o]).forEach(opt => {
                     let btn = document.createElement('button');
@@ -430,7 +627,7 @@
                 let q = rpgState.queue.pop();
 
                 if (!q) {
-                    alert("База данных пуста для этого уровня сложности!");
+                    alert("База данных пуста для этого уровня сложности! Выбери другой уровень или проверь knowledge_base.json.");
                     return backToMenu();
                 }
 
@@ -456,7 +653,6 @@
                             wIdx++;
                         } else {
                             clearInterval(rsvpInt);
-                            // Flash ends, show question
                             showScreen(els.rpgGame);
                             document.getElementById('math-input-section').classList.add('hidden');
                             document.getElementById('text-input-section').classList.remove('hidden');
